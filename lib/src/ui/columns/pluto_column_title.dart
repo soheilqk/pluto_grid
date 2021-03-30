@@ -267,9 +267,12 @@ class _BuildColumnWidget extends StatelessWidget {
         child: Row(
           children: [
             if (column.enableRowChecked)
-              _CheckboxAllSelectionWidget(
-                column: column,
-                stateManager: stateManager,
+              Container(
+                color:Colors.white,
+                child: _CheckboxAllSelectionWidget(
+                  column: column,
+                  stateManager: stateManager,
+                ),
               ),
             Expanded(
               child: _ColumnTextWidget(
