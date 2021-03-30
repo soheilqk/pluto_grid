@@ -199,21 +199,14 @@ class _BuildDraggableWidget extends StatelessWidget {
         height: PlutoGridSettings.rowHeight,
         backgroundColor: stateManager.configuration.gridBackgroundColor,
         borderColor: stateManager.configuration.gridBorderColor,
-        child: Material(
-          type: MaterialType.transparency,
-          child: _BuildSortableWidget(
-            stateManager: stateManager,
-            column: column,
-            child: Text(
-              column.title,
-              style: stateManager.configuration.columnTextStyle,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-              softWrap: false,
-            ),
-          ),
+        child: Text(
+          column.title,
+          style: stateManager.configuration.columnTextStyle,
+          overflow: TextOverflow.ellipsis,
+          maxLines: 1,
+          softWrap: false,
         ),
-      ),
+        ),
       child: child,
     );
   }
@@ -290,20 +283,24 @@ class _BuildColumnWidget extends StatelessWidget {
                   ),
                 //if (column.enableRowChecked) const SizedBox(width: 10),
                 Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.amber,
-                      borderRadius: column.enableRowChecked
-                          ? const BorderRadius.only(topRight: Radius.circular(5), bottomRight: Radius.circular(5))
-                          : isLast
-                              ? const BorderRadius.only(topLeft: Radius.circular(5), bottomLeft: Radius.circular(5))
-                              : null,
-                    ),
-                    height: PlutoGridSettings.rowHeight,
-                    child: Center(
-                      child: _ColumnTextWidget(
-                        column: column,
-                        stateManager: stateManager,
+                  child: _BuildSortableWidget(
+                    stateManager: stateManager,
+                    column: column,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.amber,
+                        borderRadius: column.enableRowChecked
+                            ? const BorderRadius.only(topRight: Radius.circular(5), bottomRight: Radius.circular(5))
+                            : isLast
+                                ? const BorderRadius.only(topLeft: Radius.circular(5), bottomLeft: Radius.circular(5))
+                                : null,
+                      ),
+                      height: PlutoGridSettings.rowHeight,
+                      child: Center(
+                        child: _ColumnTextWidget(
+                          column: column,
+                          stateManager: stateManager,
+                        ),
                       ),
                     ),
                   ),
