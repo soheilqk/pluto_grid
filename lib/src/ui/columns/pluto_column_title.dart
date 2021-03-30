@@ -273,7 +273,7 @@ class _BuildColumnWidget extends StatelessWidget {
                 //if (column.enableRowChecked) const SizedBox(width: 10),
                 Expanded(
                   child: Container(
-                    padding: const EdgeInsets.only(left: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     decoration: BoxDecoration(
 
                       color:Colors.amber,
