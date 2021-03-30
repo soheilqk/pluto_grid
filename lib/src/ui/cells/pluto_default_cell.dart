@@ -134,6 +134,19 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
             child: Center(child: cellWidget),
           ),
         ),
+        if (!widget.isLast)
+          Container(
+            color:Colors.amber,
+            height: PlutoGridSettings.rowHeight,
+            child: Row(children: [
+              Container(
+                height: PlutoGridSettings.rowHeight/2,
+                width: 1,
+                color: Colors.red,
+              ),
+            ],
+            ),
+          ),
       ],
     );
   }
