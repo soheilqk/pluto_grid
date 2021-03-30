@@ -136,7 +136,7 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
         ),
         if (!widget.isLast)
           Container(
-            color:Colors.amber,
+            color:Colors.amberAccent,
             height: PlutoGridSettings.rowHeight,
             child: Row(children: [
               Container(
