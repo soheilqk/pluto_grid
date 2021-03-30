@@ -6,6 +6,7 @@ class PlutoBaseRow extends StatelessWidget {
   final int rowIdx;
   final PlutoRow row;
   final List<PlutoColumn> columns;
+  final bool isLast;
 
   PlutoBaseRow({
     Key key,
@@ -13,6 +14,7 @@ class PlutoBaseRow extends StatelessWidget {
     this.rowIdx,
     this.row,
     this.columns,
+   this.isLast,
   }) : super(key: key);
 
   @override
@@ -32,6 +34,7 @@ class PlutoBaseRow extends StatelessWidget {
             height: stateManager.rowHeight,
             column: column,
             rowIdx: rowIdx,
+            isLast:isLast,
           );
         }).toList(growable: false),
       ),

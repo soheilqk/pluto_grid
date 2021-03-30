@@ -58,30 +58,13 @@ class _PlutoBaseColumnState extends _PlutoBaseColumnStateWithChange {
   }
 
   Widget build(BuildContext context) {
-    var child = PlutoColumnTitle(
-      stateManager: widget.stateManager,
-      column: widget.column,
-      isLast: widget.last,
-    );
     return Column(
       children: [
-        if (widget.first)
-          Container(
-              // decoration: BoxDecoration(
-              //   borderRadius: const BorderRadius.only(topLeft: Radius.circular(5), bottomLeft: Radius.circular(5)),
-              //   color: Colors.grey[200],
-              // ),
-              child: child),
-        if (widget.last)
-          Container(
-              // decoration: const BoxDecoration(
-              //     borderRadius: BorderRadius.only(topRight: Radius.circular(5), bottomRight: Radius.circular(5)),
-              //     color: Colors.amber),
-              child: child),
-        if (widget.first == false && widget.last == false)
-          Container(
-              //color: Colors.grey[200],
-              child: child),
+        PlutoColumnTitle(
+          stateManager: widget.stateManager,
+          column: widget.column,
+          isLast: widget.last,
+        ),
         showFilter,
       ],
     );

@@ -8,12 +8,14 @@ class PlutoDefaultCell extends PlutoStatefulWidget {
   final PlutoCell cell;
   final PlutoColumn column;
   final int rowIdx;
+  final bool isLast;
 
   PlutoDefaultCell({
     this.stateManager,
     this.cell,
     this.column,
     this.rowIdx,
+    this.isLast,
   });
 
   @override
@@ -124,8 +126,10 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
             decoration: BoxDecoration(
                 color: Colors.amberAccent,
                 borderRadius: widget.column.enableRowChecked
-                    ? BorderRadius.only(topRight: Radius.circular(5), bottomRight: Radius.circular(5))
-                    : null),
+                    ? const BorderRadius.only(topRight: Radius.circular(5), bottomRight: Radius.circular(5))
+                    : widget.isLast
+                        ? const BorderRadius.only(topLeft: Radius.circular(5), bottomLeft: Radius.circular(5))
+                        : null),
             child: Center(child: cellWidget),
           ),
         ),

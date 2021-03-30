@@ -8,6 +8,7 @@ class PlutoBaseCell extends PlutoStatefulWidget {
   final double height;
   final PlutoColumn column;
   final int rowIdx;
+  final bool isLast;
 
   PlutoBaseCell({
     Key key,
@@ -17,6 +18,7 @@ class PlutoBaseCell extends PlutoStatefulWidget {
     this.height,
     this.column,
     this.rowIdx,
+    this.isLast,
   }) : super(key: key);
 
   @override
@@ -128,6 +130,7 @@ class _PlutoBaseCellState extends _PlutoBaseCellStateWithChangeKeepAlive {
         isSelectedCell: isSelectedCell,
         configuration: widget.stateManager.configuration,
         child: _BuildCell(
+          isLast:widget.isLast,
           stateManager: widget.stateManager,
           rowIdx: widget.rowIdx,
           column: widget.column,
@@ -237,6 +240,7 @@ class _BuildCell extends StatelessWidget {
   final PlutoCell cell;
   final bool isCurrentCell;
   final bool isEditing;
+  final bool isLast;
 
   const _BuildCell({
     Key key,
@@ -246,6 +250,7 @@ class _BuildCell extends StatelessWidget {
     this.cell,
     this.isCurrentCell,
     this.isEditing,
+    this.isLast,
   }) : super(key: key);
 
   @override
@@ -289,6 +294,7 @@ class _BuildCell extends StatelessWidget {
       cell: cell,
       column: column,
       rowIdx: rowIdx,
+      isLast: isLast,
     );
   }
 }

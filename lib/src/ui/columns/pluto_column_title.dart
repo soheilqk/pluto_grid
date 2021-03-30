@@ -285,7 +285,7 @@ class _BuildColumnWidget extends StatelessWidget {
                       column.enableRowChecked
                           ? const BorderRadius.only(topRight: Radius.circular(5), bottomRight: Radius.circular(5))
                           : isLast
-                              ? const BorderRadius.only(topLeft: Radius.circular(20), bottomLeft: Radius.circular(5))
+                              ? const BorderRadius.only(topLeft: Radius.circular(5), bottomLeft: Radius.circular(5))
                               : null,
                     ),
                     height: PlutoGridSettings.rowHeight,
