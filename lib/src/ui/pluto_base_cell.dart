@@ -312,6 +312,7 @@ class _BuildCell extends StatelessWidget {
       rowColor: rowColor,
       headerColor: headerColor,
       dividerColor: dividerColor,
+      rowRadius: rowRadius,
     );
   }
 }
