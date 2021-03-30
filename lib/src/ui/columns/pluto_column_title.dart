@@ -265,7 +265,6 @@ class _BuildColumnWidget extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     height: PlutoGridSettings.rowHeight,
-                    color: Colors.white,
                     child: _CheckboxAllSelectionWidget(
                       column: column,
                       stateManager: stateManager,
