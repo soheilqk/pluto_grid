@@ -192,10 +192,10 @@ class _CellContainer extends StatelessWidget {
     if (isCurrentCell) {
       return BoxDecoration(
         color: _currentCellColor(),
-        border: Border.all(
+        border:configuration.activatedBorderColor != null ? Border.all(
           color: configuration.activatedBorderColor,
           width: 1,
-        ),
+        ): null,
       );
     } else if (isSelectedCell) {
       return BoxDecoration(
