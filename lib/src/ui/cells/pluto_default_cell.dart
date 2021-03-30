@@ -120,6 +120,7 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
           ),
         Expanded(
           child: Container(
+            height: PlutoGridSettings.rowHeight,
             decoration: BoxDecoration(
                 color: Colors.amberAccent,
                 borderRadius: widget.column.enableRowChecked
