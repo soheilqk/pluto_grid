@@ -304,11 +304,14 @@ class _BuildColumnWidget extends StatelessWidget {
                   ),
                 ),
                 if (!isLast)
-                  Container(
-                      height: PlutoGridSettings.rowHeight,
+                  const IntrinsicHeight(
+                    child: VerticalDivider(
                       width: 1,
-                      color: Colors.amber,
-                      child: IntrinsicHeight(child: Container(height: 10, width: 1, color: Colors.red))),
+                      color: Colors.red,
+                      indent: 3,
+                      endIndent: 3,
+                    ),
+                  ),
               ],
             ),
           ],
