@@ -34,7 +34,7 @@ class PlutoBaseRow extends StatelessWidget {
             height: stateManager.rowHeight,
             column: column,
             rowIdx: rowIdx,
-            isLast:isLast,
+            isLast:columns.indexOf(column) == columns.length-1,
           );
         }).toList(growable: false),
       ),
