@@ -115,10 +115,10 @@ class _PlutoColumnTitleState extends _PlutoColumnTitleStateWithChange {
         Positioned(
           child: widget.column.enableColumnDrag
               ? _BuildDraggableWidget(
-                  stateManager: widget.stateManager,
-                  column: widget.column,
-                  child: _columnWidget,
-                )
+            stateManager: widget.stateManager,
+            column: widget.column,
+            child: _columnWidget,
+          )
               : _columnWidget,
         ),
         if (widget.column.enableContextMenu || !widget.column.sort.isNone)
@@ -126,12 +126,12 @@ class _PlutoColumnTitleState extends _PlutoColumnTitleStateWithChange {
             right: -3,
             child: widget.column.enableContextMenu
                 ? GestureDetector(
-                    onTapUp: _handleOnTapUpContextMenu,
-                    onHorizontalDragUpdate:
-                        _handleOnHorizontalDragUpdateContextMenu,
-                    onHorizontalDragEnd: _handleOnHorizontalDragEndContextMenu,
-                    child: _contextMenuIcon,
-                  )
+              onTapUp: _handleOnTapUpContextMenu,
+              onHorizontalDragUpdate:
+              _handleOnHorizontalDragUpdateContextMenu,
+              onHorizontalDragEnd: _handleOnHorizontalDragEndContextMenu,
+              child: _contextMenuIcon,
+            )
                 : _contextMenuIcon,
           ),
       ],
@@ -195,7 +195,7 @@ class _BuildDraggableWidget extends StatelessWidget {
       feedback: PlutoShadowContainer(
         width: column.width,
         height: PlutoGridSettings.rowHeight,
-        backgroundColor: stateManager.configuration.gridBackgroundColor,
+        backgroundColor:stateManager.configuration.gridBackgroundColor,
         borderColor: stateManager.configuration.gridBorderColor,
         child: Text(
           column.title,
@@ -226,11 +226,11 @@ class _BuildSortableWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return column.enableSorting
         ? InkWell(
-            onTap: () {
-              stateManager.toggleSortColumn(column.key);
-            },
-            child: child,
-          )
+      onTap: () {
+        stateManager.toggleSortColumn(column.key);
+      },
+      child: child,
+    )
         : child;
   }
 }
@@ -251,16 +251,16 @@ class _BuildColumnWidget extends StatelessWidget {
       width: column.width,
       height: PlutoGridSettings.rowHeight,
       padding:
-          const EdgeInsets.symmetric(horizontal: PlutoGridSettings.cellPadding),
+      const EdgeInsets.symmetric(horizontal: PlutoGridSettings.cellPadding),
       decoration: stateManager.configuration.enableColumnBorder
           ? BoxDecoration(
-              border: Border(
-                right: BorderSide(
-                  color: stateManager.configuration.borderColor,
-                  width: 1.0,
-                ),
-              ),
-            )
+        border: Border(
+          right: BorderSide(
+            color: stateManager.configuration.borderColor,
+            width: 1.0,
+          ),
+        ),
+      )
           : const BoxDecoration(),
       child: Align(
         alignment: Alignment.centerLeft,
@@ -408,6 +408,7 @@ class __ColumnTextWidgetState extends __ColumnTextWidgetStateWithChange {
         ],
       ),
       style: widget.stateManager.configuration.columnTextStyle,
+      textAlign: TextAlign.center,
       overflow: TextOverflow.ellipsis,
       softWrap: false,
       maxLines: 1,

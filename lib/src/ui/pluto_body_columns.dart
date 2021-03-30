@@ -11,8 +11,7 @@ class PlutoBodyColumns extends PlutoStatefulWidget {
   _PlutoBodyColumnsState createState() => _PlutoBodyColumnsState();
 }
 
-abstract class _PlutoBodyColumnsStateWithChange
-    extends PlutoStateWithChange<PlutoBodyColumns> {
+abstract class _PlutoBodyColumnsStateWithChange extends PlutoStateWithChange<PlutoBodyColumns> {
   List<PlutoColumn> columns;
 
   double width;
@@ -73,7 +72,10 @@ class _PlutoBodyColumnsState extends _PlutoBodyColumnsStateWithChange {
           return PlutoBaseColumn(
             stateManager: widget.stateManager,
             column: columns[i],
+            first: i==0,
+            last:  i==columns.length-1,
           );
+
         },
       ),
     );

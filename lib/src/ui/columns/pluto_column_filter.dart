@@ -35,7 +35,7 @@ abstract class _PlutoColumnFilterStateWithChange
     return filterRows.isEmpty
         ? ''
         : filterRows.first.cells[FilterHelper.filterFieldValue].value
-            .toString();
+        .toString();
   }
 
   bool get hasCompositeFilter {
@@ -137,10 +137,10 @@ abstract class _PlutoColumnFilterStateWithChange
     if (plutoEvent is PlutoGridCannotMoveCurrentCellEvent &&
         plutoEvent.direction.isUp) {
       var isCurrentColumn = widget
-              .stateManager
-              .refColumns[widget.stateManager
-                  .columnIndexesByShowFrozen[plutoEvent.cellPosition.columnIdx]]
-              .key ==
+          .stateManager
+          .refColumns[widget.stateManager
+          .columnIndexesByShowFrozen[plutoEvent.cellPosition.columnIdx]]
+          .key ==
           widget.column.key;
 
       if (isCurrentColumn) {
@@ -154,17 +154,17 @@ abstract class _PlutoColumnFilterStateWithChange
 
 class _PlutoColumnFilterState extends _PlutoColumnFilterStateWithChange {
   InputBorder get border => OutlineInputBorder(
-        borderSide: BorderSide(
-            color: widget.stateManager.configuration.borderColor, width: 0.0),
-        borderRadius: BorderRadius.zero,
-      );
+    borderSide: BorderSide(
+        color: widget.stateManager.configuration.borderColor, width: 0.0),
+    borderRadius: BorderRadius.zero,
+  );
 
   InputBorder get enabledBorder => OutlineInputBorder(
-        borderSide: BorderSide(
-            color: widget.stateManager.configuration.activatedBorderColor,
-            width: 0.0),
-        borderRadius: BorderRadius.zero,
-      );
+    borderSide: BorderSide(
+        color: widget.stateManager.configuration.activatedBorderColor,
+        width: 0.0),
+    borderRadius: BorderRadius.zero,
+  );
 
   Color get textFieldColor => enabled
       ? widget.stateManager.configuration.cellColorInEditState
@@ -193,23 +193,48 @@ class _PlutoColumnFilterState extends _PlutoColumnFilterStateWithChange {
       child: Align(
         alignment: Alignment.center,
         child: Stack(
+
           children: [
-            TextField(
-              focusNode: focusNode,
-              controller: controller,
-              enabled: enabled,
-              style: widget.stateManager.configuration.cellTextStyle,
-              onTap: handleOnTap,
-              onChanged: handleOnChanged,
-              decoration: InputDecoration(
-                hintText: enabled ? widget.column.defaultFilter.title : '',
-                isDense: true,
-                filled: true,
-                fillColor: textFieldColor,
-                border: border,
-                enabledBorder: border,
-                focusedBorder: enabledBorder,
-                contentPadding: const EdgeInsets.symmetric(vertical: 5),
+            Align(
+              alignment: Alignment.center,
+              child: TextFormField(
+                focusNode: focusNode,
+                controller: controller,
+                enabled: enabled,
+                style: widget.stateManager.configuration.cellTextStyle,
+                onTap: handleOnTap,
+                // onFieldSubmitted: (value) {
+                //   print(widget.column.field);
+                //   print(value);
+                // },
+                onFieldSubmitted: (value) => print('[onFieldSubmitted] ${widget.column.field}'),
+                onEditingComplete: () => print('[onEditingComplete] ${widget.column.field}'),
+                onChanged: handleOnChanged,
+                textAlign: TextAlign.center,
+                decoration: InputDecoration(
+                  hintText: enabled ? widget.column.defaultFilter.title : '',
+                  isDense: true,
+                  filled: true,
+                  // fillColor: textFieldColor,
+                  fillColor: Colors.grey[100],
+                  border: border,
+                  enabledBorder: border,
+                  // focusedBorder: enabledBorder,
+                  focusedBorder:InputBorder.none,
+                  contentPadding: const EdgeInsets.symmetric(vertical: 5),
+
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: IconButton(
+                icon:Icon(Icons.zoom_in_sharp),
+                color: Colors.grey,
+                iconSize: 24.0,
+                onPressed: (){
+                  print(widget.column.field);
+                },
               ),
             ),
           ],

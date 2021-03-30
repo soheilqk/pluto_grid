@@ -83,17 +83,17 @@ class _PlutoBodyRowsState extends _PlutoBodyRowsStateWithChange {
   Widget build(BuildContext context) {
     return PlutoScrollbar(
       verticalController:
-          widget.stateManager.configuration.scrollbarConfig.draggableScrollbar
-              ? verticalScroll
-              : null,
+      widget.stateManager.configuration.scrollbarConfig.draggableScrollbar
+          ? verticalScroll
+          : null,
       horizontalController:
-          widget.stateManager.configuration.scrollbarConfig.draggableScrollbar
-              ? horizontalScroll
-              : null,
+      widget.stateManager.configuration.scrollbarConfig.draggableScrollbar
+          ? horizontalScroll
+          : null,
       isAlwaysShown:
-          widget.stateManager.configuration.scrollbarConfig.isAlwaysShown,
+      widget.stateManager.configuration.scrollbarConfig.isAlwaysShown,
       thickness:
-          widget.stateManager.configuration.scrollbarConfig.scrollbarThickness,
+      widget.stateManager.configuration.scrollbarConfig.scrollbarThickness,
       thicknessWhileDragging: widget.stateManager.configuration.scrollbarConfig
           .scrollbarThicknessWhileDragging,
       radius: widget.stateManager.configuration.scrollbarConfig.scrollbarRadius,
@@ -112,13 +112,18 @@ class _PlutoBodyRowsState extends _PlutoBodyRowsStateWithChange {
             itemCount: rows.length,
             itemExtent: widget.stateManager.rowTotalHeight,
             itemBuilder: (ctx, i) {
-              return PlutoBaseRow(
-                key: ValueKey('body_row_${rows[i].key}'),
-                stateManager: widget.stateManager,
-                rowIdx: i,
-                row: rows[i],
-                columns: columns,
-              );
+              return Container(
+                  margin: EdgeInsets.only(top: 8),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5), color: Colors.grey[100]),
+                  child: PlutoBaseRow(
+                    key: ValueKey('body_row_${rows[i].key}'),
+                    stateManager: widget.stateManager,
+                    rowIdx: i,
+                    row: rows[i],
+                    columns: columns,
+                  ));
+
             },
           ),
         ),
