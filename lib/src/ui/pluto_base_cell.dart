@@ -197,12 +197,12 @@ class _CellContainer extends StatelessWidget {
           width: 1,
         ),
       );
-    } else if (isSelectedCell && configuration.activatedBorderColor != null) {
+    } else if (isSelectedCell) {
       return BoxDecoration(
         color: configuration.activatedColor,
         border: Border.all(
           color: configuration.activatedBorderColor,
-          width: 1,
+          width: configuration.activatedBorderColor != null ? 1 : 0,
         ),
       );
     } else {
