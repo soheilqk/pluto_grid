@@ -85,13 +85,16 @@ class _PlutoColumnTitleState extends _PlutoColumnTitleStateWithChange {
 
   @override
   Widget build(BuildContext context) {
-    final _columnWidget = _BuildSortableWidget(
-      stateManager: widget.stateManager,
-      column: widget.column,
-      child: _BuildColumnWidget(
-        isLast: widget.isLast,
+    final _columnWidget = Container(
+      padding: EdgeInsets.only(right: widget.column.enableRowChecked ? 30 : 0),
+      child: _BuildSortableWidget(
         stateManager: widget.stateManager,
         column: widget.column,
+        child: _BuildColumnWidget(
+          isLast: widget.isLast,
+          stateManager: widget.stateManager,
+          column: widget.column,
+        ),
       ),
     );
 
@@ -111,7 +114,6 @@ class _PlutoColumnTitleState extends _PlutoColumnTitleStateWithChange {
     return Stack(
       children: [
         Positioned(
-          right: widget.column.enableRowChecked ? 30 : 0,
           child: widget.column.enableColumnDrag
               ? _BuildDraggableWidget(
                   stateManager: widget.stateManager,
@@ -281,8 +283,7 @@ class _BuildColumnWidget extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.amber,
-                      borderRadius:
-                      column.enableRowChecked
+                      borderRadius: column.enableRowChecked
                           ? const BorderRadius.only(topRight: Radius.circular(5), bottomRight: Radius.circular(5))
                           : isLast
                               ? const BorderRadius.only(topLeft: Radius.circular(5), bottomLeft: Radius.circular(5))
