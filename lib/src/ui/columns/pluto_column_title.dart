@@ -10,6 +10,7 @@ class PlutoColumnTitle extends PlutoStatefulWidget {
   final Color headerColor;
   final Color rowColor;
   final Color dividerColor;
+  final double headerRadius;
 
   PlutoColumnTitle({
     @required this.stateManager,
@@ -18,6 +19,7 @@ class PlutoColumnTitle extends PlutoStatefulWidget {
     this.headerColor,
     this.dividerColor,
     this.rowColor,
+    this.headerRadius,
   }) : super(key: column.key);
 
   @override
@@ -95,6 +97,7 @@ class _PlutoColumnTitleState extends _PlutoColumnTitleStateWithChange {
       isLast: widget.isLast,
       headerColor: widget.headerColor,
       dividerColor: widget.dividerColor,
+      headerRadius: widget.headerRadius,
       stateManager: widget.stateManager,
       column: widget.column,
     );
@@ -251,6 +254,7 @@ class _BuildColumnWidget extends StatelessWidget {
   final Color headerColor;
   final Color rowColor;
   final Color dividerColor;
+  final double headerRadius;
 
   const _BuildColumnWidget({
     Key key,
@@ -260,6 +264,7 @@ class _BuildColumnWidget extends StatelessWidget {
     this.headerColor,
     this.dividerColor,
     this.rowColor,
+    this.headerRadius,
   }) : super(key: key);
 
   @override
@@ -301,11 +306,19 @@ class _BuildColumnWidget extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(
                         color: headerColor,
-                        borderRadius: column.enableRowChecked
-                            ? const BorderRadius.only(topRight: Radius.circular(5), bottomRight: Radius.circular(5))
-                            : isLast
-                                ? const BorderRadius.only(topLeft: Radius.circular(5), bottomLeft: Radius.circular(5))
-                                : null,
+                        borderRadius: (headerRadius != null && headerRadius > 0)
+                            ? column.enableRowChecked
+                                ? BorderRadius.only(
+                                    topRight: Radius.circular(headerRadius),
+                                    bottomRight: Radius.circular(headerRadius),
+                                  )
+                                : isLast
+                                    ? BorderRadius.only(
+                                        topLeft: Radius.circular(headerRadius),
+                                        bottomLeft: Radius.circular(headerRadius),
+                                      )
+                                    : null
+                            : null,
                       ),
                       height: PlutoGridSettings.rowHeight,
                       child: Center(
@@ -319,15 +332,16 @@ class _BuildColumnWidget extends StatelessWidget {
                 ),
                 if (!isLast)
                   Container(
-                    color:headerColor,
+                    color: headerColor,
                     height: PlutoGridSettings.rowHeight,
-                    child: Row(children: [
-                      Container(
-                        height: PlutoGridSettings.rowHeight/2,
-                        width: 1,
-                        color: dividerColor,
-                      ),
-    ],
+                    child: Row(
+                      children: [
+                        Container(
+                          height: PlutoGridSettings.rowHeight / 2,
+                          width: 1,
+                          color: dividerColor,
+                        ),
+                      ],
                     ),
                   ),
               ],
