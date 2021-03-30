@@ -251,6 +251,7 @@ class _BuildColumnWidget extends StatelessWidget {
                   color: stateManager.configuration.borderColor,
                   width: 1.0,
                 ),
+                left: const BorderSide(width: 1,color: Colors.black),
               ),
             )
           : const BoxDecoration(),
@@ -271,6 +272,10 @@ class _BuildColumnWidget extends StatelessWidget {
                   ),
                 Expanded(
                   child: Container(
+                    color:Colors.amber,
+                    decoration: BoxDecoration(
+                      borderRadius: column.enableRowChecked?  BorderRadius.only(topRight: Radius.circular(5), bottomRight: Radius.circular(5)) : null,
+                    ),
                     height: PlutoGridSettings.rowHeight,
                     child: Center(
                       child: _ColumnTextWidget(
