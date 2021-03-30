@@ -85,18 +85,21 @@ class _PlutoColumnTitleState extends _PlutoColumnTitleStateWithChange {
 
   @override
   Widget build(BuildContext context) {
-    final _columnWidget = Container(
-      padding: EdgeInsets.only(right: widget.column.enableRowChecked ? 30 : 0),
-      child: _BuildSortableWidget(
+    final _columnWidget = _BuildColumnWidget(
+        isLast: widget.isLast,
         stateManager: widget.stateManager,
         column: widget.column,
-        child: _BuildColumnWidget(
-          isLast: widget.isLast,
-          stateManager: widget.stateManager,
-          column: widget.column,
-        ),
-      ),
-    );
+
+     );
+    //final _columnWidget = _BuildSortableWidget(
+    //   stateManager: widget.stateManager,
+    //   column: widget.column,
+    //   child: _BuildColumnWidget(
+    //     isLast: widget.isLast,
+    //     stateManager: widget.stateManager,
+    //     column: widget.column,
+    //   ),
+    // );
 
     final _contextMenuIcon = Container(
       height: widget.stateManager.columnHeight,
@@ -196,12 +199,16 @@ class _BuildDraggableWidget extends StatelessWidget {
         height: PlutoGridSettings.rowHeight,
         backgroundColor: stateManager.configuration.gridBackgroundColor,
         borderColor: stateManager.configuration.gridBorderColor,
-        child: Text(
-          column.title,
-          style: stateManager.configuration.columnTextStyle,
-          overflow: TextOverflow.ellipsis,
-          maxLines: 1,
-          softWrap: false,
+        child: _BuildSortableWidget(
+          stateManager: stateManager,
+          column: column,
+          child: Text(
+            column.title,
+            style: stateManager.configuration.columnTextStyle,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+            softWrap: false,
+          ),
         ),
       ),
       child: child,
