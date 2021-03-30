@@ -270,6 +270,7 @@ class _BuildColumnWidget extends StatelessWidget {
               children: [
                 if (column.enableRowChecked)
                   Container(
+                    height: PlutoGridSettings.rowHeight,
                     color: Colors.white,
                     child: _CheckboxAllSelectionWidget(
                       column: column,
@@ -277,9 +278,12 @@ class _BuildColumnWidget extends StatelessWidget {
                     ),
                   ),
                 Expanded(
-                  child: _ColumnTextWidget(
-                    column: column,
-                    stateManager: stateManager,
+                  child: Container(
+                    height: PlutoGridSettings.rowHeight,
+                    child: _ColumnTextWidget(
+                      column: column,
+                      stateManager: stateManager,
+                    ),
                   ),
                 ),
               ],
