@@ -10,6 +10,7 @@ class PlutoBaseRow extends StatelessWidget {
   final Color headerColor;
   final Color rowColor;
   final Color dividerColor;
+  final double rowRadius;
 
   PlutoBaseRow({
     Key key,
@@ -21,6 +22,7 @@ class PlutoBaseRow extends StatelessWidget {
     this.rowColor,
     this.headerColor,
     this.dividerColor,
+    this.rowRadius,
   }) : super(key: key);
 
   @override
@@ -41,9 +43,10 @@ class PlutoBaseRow extends StatelessWidget {
             column: column,
             rowIdx: rowIdx,
             isLast: columns.indexOf(column) == columns.length - 1,
-            rowColor:rowColor,
-            headerColor:headerColor,
-            dividerColor:dividerColor,
+            rowColor: rowColor,
+            headerColor: headerColor,
+            dividerColor: dividerColor,
+            rowRadius:rowRadius,
           );
         }).toList(growable: false),
       ),

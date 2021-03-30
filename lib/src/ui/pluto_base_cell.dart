@@ -12,6 +12,7 @@ class PlutoBaseCell extends PlutoStatefulWidget {
   final Color headerColor;
   final Color rowColor;
   final Color dividerColor;
+  final double rowRadius;
 
   PlutoBaseCell({
     Key key,
@@ -25,14 +26,14 @@ class PlutoBaseCell extends PlutoStatefulWidget {
     this.rowColor,
     this.headerColor,
     this.dividerColor,
+    this.rowRadius,
   }) : super(key: key);
 
   @override
   _PlutoBaseCellState createState() => _PlutoBaseCellState();
 }
 
-abstract class _PlutoBaseCellStateWithChangeKeepAlive
-    extends PlutoStateWithChangeKeepAlive<PlutoBaseCell> {
+abstract class _PlutoBaseCellStateWithChangeKeepAlive extends PlutoStateWithChangeKeepAlive<PlutoBaseCell> {
   dynamic cellValue;
 
   bool isCurrentCell;
@@ -101,18 +102,15 @@ class _PlutoBaseCellState extends _PlutoBaseCellStateWithChangeKeepAlive {
   }
 
   void _handleOnLongPressStart(LongPressStartDetails details) {
-    _addGestureEvent(
-        PlutoGridGestureType.onLongPressStart, details.globalPosition);
+    _addGestureEvent(PlutoGridGestureType.onLongPressStart, details.globalPosition);
   }
 
   void _handleOnLongPressMoveUpdate(LongPressMoveUpdateDetails details) {
-    _addGestureEvent(
-        PlutoGridGestureType.onLongPressMoveUpdate, details.globalPosition);
+    _addGestureEvent(PlutoGridGestureType.onLongPressMoveUpdate, details.globalPosition);
   }
 
   void _handleOnLongPressEnd(LongPressEndDetails details) {
-    _addGestureEvent(
-        PlutoGridGestureType.onLongPressEnd, details.globalPosition);
+    _addGestureEvent(PlutoGridGestureType.onLongPressEnd, details.globalPosition);
   }
 
   @override
@@ -136,10 +134,11 @@ class _PlutoBaseCellState extends _PlutoBaseCellStateWithChangeKeepAlive {
         isSelectedCell: isSelectedCell,
         configuration: widget.stateManager.configuration,
         child: _BuildCell(
-          rowColor:widget.rowColor,
-          headerColor:widget.headerColor,
-          dividerColor:widget.dividerColor,
-          isLast:widget.isLast,
+          rowColor: widget.rowColor,
+          headerColor: widget.headerColor,
+          dividerColor: widget.dividerColor,
+          rowRadius: widget.rowRadius,
+          isLast: widget.isLast,
           stateManager: widget.stateManager,
           rowIdx: widget.rowIdx,
           column: widget.column,
@@ -186,9 +185,7 @@ class _CellContainer extends StatelessWidget {
       return selectingMode.isRow ? configuration.activatedColor : null;
     }
 
-    return readOnly == true
-        ? configuration.cellColorInReadOnlyState
-        : configuration.cellColorInEditState;
+    return readOnly == true ? configuration.cellColorInReadOnlyState : configuration.cellColorInEditState;
   }
 
   BoxDecoration _boxDecoration() {
@@ -253,20 +250,22 @@ class _BuildCell extends StatelessWidget {
   final Color headerColor;
   final Color rowColor;
   final Color dividerColor;
+  final double rowRadius;
 
-  const _BuildCell({
-    Key key,
-    this.stateManager,
-    this.rowIdx,
-    this.column,
-    this.cell,
-    this.isCurrentCell,
-    this.isEditing,
-    this.isLast,
-    this.rowColor,
-    this.headerColor,
-    this.dividerColor,
-  }) : super(key: key);
+  const _BuildCell(
+      {Key key,
+      this.stateManager,
+      this.rowIdx,
+      this.column,
+      this.cell,
+      this.isCurrentCell,
+      this.isEditing,
+      this.isLast,
+      this.rowColor,
+      this.headerColor,
+      this.dividerColor,
+      this.rowRadius})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -310,9 +309,9 @@ class _BuildCell extends StatelessWidget {
       column: column,
       rowIdx: rowIdx,
       isLast: isLast,
-      rowColor:rowColor,
-      headerColor:headerColor,
-      dividerColor:dividerColor,
+      rowColor: rowColor,
+      headerColor: headerColor,
+      dividerColor: dividerColor,
     );
   }
 }

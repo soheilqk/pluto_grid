@@ -8,8 +8,9 @@ class PlutoBodyRows extends PlutoStatefulWidget {
   final Color headerColor;
   final Color rowColor;
   final Color dividerColor;
+  final double rowRadius;
 
-  PlutoBodyRows(this.stateManager, {this.rowColor, this.headerColor, this.dividerColor,});
+  PlutoBodyRows(this.stateManager, {this.rowColor, this.headerColor, this.dividerColor,this.rowRadius,});
 
   @override
   _PlutoBodyRowsState createState() => _PlutoBodyRowsState();
@@ -116,6 +117,7 @@ class _PlutoBodyRowsState extends _PlutoBodyRowsStateWithChange {
                     rowColor:widget.rowColor,
                     headerColor:widget.headerColor,
                     dividerColor:widget.dividerColor,
+                    rowRadius:widget.rowRadius,
                   ));
             },
           ),
