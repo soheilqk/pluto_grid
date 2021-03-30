@@ -281,7 +281,7 @@ class _BuildColumnWidget extends StatelessWidget {
                       stateManager: stateManager,
                     ),
                   ),
-                //if (column.enableRowChecked) const SizedBox(width: 10),
+                if (!isLast) Container(height: 10, color: Colors.red),
                 Expanded(
                   child: _BuildSortableWidget(
                     stateManager: stateManager,
