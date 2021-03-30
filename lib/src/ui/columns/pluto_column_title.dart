@@ -11,6 +11,8 @@ class PlutoColumnTitle extends PlutoStatefulWidget {
   final Color rowColor;
   final Color dividerColor;
   final double headerRadius;
+  final Color descendingIconColor;
+  final Color ascendingIconColor;
 
   PlutoColumnTitle({
     @required this.stateManager,
@@ -20,6 +22,8 @@ class PlutoColumnTitle extends PlutoStatefulWidget {
     this.dividerColor,
     this.rowColor,
     this.headerRadius,
+    this.ascendingIconColor,
+    this.descendingIconColor,
   }) : super(key: column.key);
 
   @override
@@ -118,6 +122,8 @@ class _PlutoColumnTitleState extends _PlutoColumnTitleStateWithChange {
         icon: PlutoGridColumnIcon(
           sort: widget.column.sort,
           color: widget.stateManager.configuration.iconColor,
+          ascendingIconColor:widget.ascendingIconColor,
+          descendingIconColor:widget.descendingIconColor,
         ),
         iconSize: widget.stateManager.configuration.iconSize,
         onPressed: null,
@@ -155,10 +161,15 @@ class _PlutoColumnTitleState extends _PlutoColumnTitleStateWithChange {
 class PlutoGridColumnIcon extends StatelessWidget {
   final PlutoColumnSort sort;
   final Color color;
+  final Color descendingIconColor;
+  final Color ascendingIconColor;
+
 
   PlutoGridColumnIcon({
     this.sort,
     this.color,
+    this.ascendingIconColor,
+    this.descendingIconColor,
   });
 
   @override
@@ -167,15 +178,15 @@ class PlutoGridColumnIcon extends StatelessWidget {
       case PlutoColumnSort.ascending:
         return Transform.rotate(
           angle: 90 * pi / 90,
-          child: const Icon(
+          child:  Icon(
             Icons.sort,
-            color: Colors.green,
+            color: ascendingIconColor,
           ),
         );
       case PlutoColumnSort.descending:
-        return const Icon(
+        return Icon(
           Icons.sort,
-          color: Colors.red,
+          color: descendingIconColor,
         );
       default:
         return Icon(

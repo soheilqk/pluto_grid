@@ -42,6 +42,8 @@ class PlutoGrid extends StatefulWidget {
   final Color dividerColor;
   final double rowRadius;
   final double headerRadius;
+  final Color descendingIconColor;
+  final Color ascendingIconColor;
 
   const PlutoGrid({
     Key key,
@@ -59,6 +61,8 @@ class PlutoGrid extends StatefulWidget {
     this.rowColor = Colors.amberAccent,
     this.rowRadius,
     this.headerRadius,
+    this.ascendingIconColor = Colors.green,
+    this.descendingIconColor = Colors.red,
   }) : super(key: key);
 
   @override
@@ -321,6 +325,8 @@ class _PlutoGridState extends State<PlutoGrid> {
                           rowColor: widget.rowColor,
                           dividerColor: widget.dividerColor,
                           headerRadius:widget.headerRadius,
+                          ascendingIconColor:widget.ascendingIconColor,
+                          descendingIconColor:widget.descendingIconColor,
                         ),
                       ),
                       Positioned.fill(

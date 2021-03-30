@@ -9,8 +9,18 @@ class PlutoBodyColumns extends PlutoStatefulWidget {
   final Color rowColor;
   final Color dividerColor;
   final double headerRadius;
+  final Color descendingIconColor;
+  final Color ascendingIconColor;
 
-  PlutoBodyColumns(this.stateManager, {this.rowColor, this.headerColor, this.dividerColor,this.headerRadius,});
+  PlutoBodyColumns(
+    this.stateManager, {
+    this.rowColor,
+    this.headerColor,
+    this.dividerColor,
+    this.headerRadius,
+    this.ascendingIconColor,
+    this.descendingIconColor,
+  });
 
   @override
   _PlutoBodyColumnsState createState() => _PlutoBodyColumnsState();
@@ -35,9 +45,7 @@ abstract class _PlutoBodyColumnsStateWithChange extends PlutoStateWithChange<Plu
   }
 
   List<PlutoColumn> _getColumns() {
-    return widget.stateManager.showFrozenColumn
-        ? widget.stateManager.bodyColumns
-        : widget.stateManager.columns;
+    return widget.stateManager.showFrozenColumn ? widget.stateManager.bodyColumns : widget.stateManager.columns;
   }
 
   double _getWidth() {
@@ -78,11 +86,13 @@ class _PlutoBodyColumnsState extends _PlutoBodyColumnsStateWithChange {
             rowColor: widget.rowColor,
             headerColor: widget.headerColor,
             dividerColor: widget.dividerColor,
-            headerRadius:widget.headerRadius,
+            headerRadius: widget.headerRadius,
             stateManager: widget.stateManager,
             column: columns[i],
             first: i == 0,
             last: i == columns.length - 1,
+            ascendingIconColor:widget.ascendingIconColor,
+            descendingIconColor:widget.descendingIconColor,
           );
         },
       ),

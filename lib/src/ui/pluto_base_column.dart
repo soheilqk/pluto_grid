@@ -10,6 +10,8 @@ class PlutoBaseColumn extends PlutoStatefulWidget {
   final Color rowColor;
   final Color dividerColor;
   final double headerRadius;
+  final Color descendingIconColor;
+  final Color ascendingIconColor;
 
   PlutoBaseColumn({
     this.stateManager,
@@ -20,6 +22,8 @@ class PlutoBaseColumn extends PlutoStatefulWidget {
     this.dividerColor,
     this.rowColor,
     this.headerRadius,
+    this.ascendingIconColor,
+    this.descendingIconColor,
   }) : super(key: column.key);
 
   @override
@@ -81,6 +85,8 @@ class _PlutoBaseColumnState extends _PlutoBaseColumnStateWithChange {
           headerColor:widget.headerColor,
           dividerColor:widget.dividerColor,
           headerRadius:widget.headerRadius,
+          ascendingIconColor:widget.ascendingIconColor,
+          descendingIconColor:widget.descendingIconColor,
         ),
         showFilter,
       ],
