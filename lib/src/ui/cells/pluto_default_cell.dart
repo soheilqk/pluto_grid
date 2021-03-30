@@ -113,6 +113,7 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
           ),
         if (widget.column.enableRowChecked)
           Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             height: PlutoGridSettings.rowHeight,
             color: Colors.white,
             child: _CheckboxSelectionWidget(
