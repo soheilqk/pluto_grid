@@ -86,11 +86,10 @@ class _PlutoColumnTitleState extends _PlutoColumnTitleStateWithChange {
   @override
   Widget build(BuildContext context) {
     final _columnWidget = _BuildColumnWidget(
-        isLast: widget.isLast,
-        stateManager: widget.stateManager,
-        column: widget.column,
-
-     );
+      isLast: widget.isLast,
+      stateManager: widget.stateManager,
+      column: widget.column,
+    );
     //final _columnWidget = _BuildSortableWidget(
     //   stateManager: widget.stateManager,
     //   column: widget.column,
@@ -206,7 +205,7 @@ class _BuildDraggableWidget extends StatelessWidget {
           maxLines: 1,
           softWrap: false,
         ),
-        ),
+      ),
       child: child,
     );
   }
@@ -281,7 +280,6 @@ class _BuildColumnWidget extends StatelessWidget {
                       stateManager: stateManager,
                     ),
                   ),
-                if (!isLast) Container(height: 10,width: 1, color: Colors.red),
                 Expanded(
                   child: _BuildSortableWidget(
                     stateManager: stateManager,
@@ -305,6 +303,12 @@ class _BuildColumnWidget extends StatelessWidget {
                     ),
                   ),
                 ),
+                if (!isLast)
+                  Container(
+                      height: PlutoGridSettings.rowHeight,
+                      width: 1,
+                      color: Colors.amber,
+                      child: Container(height: 10, width: 1, color: Colors.red)),
               ],
             ),
           ],
