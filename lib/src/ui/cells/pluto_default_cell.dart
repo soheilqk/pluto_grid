@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pluto_grid/pluto_grid.dart';
 
+import '../../../pluto_grid.dart';
+
 class PlutoDefaultCell extends PlutoStatefulWidget {
   final PlutoGridStateManager stateManager;
   final PlutoCell cell;
@@ -111,6 +113,7 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
           ),
         if (widget.column.enableRowChecked)
           Container(
+            height: PlutoGridSettings.rowHeight,
             color: Colors.white,
             child: _CheckboxSelectionWidget(
               column: widget.column,
