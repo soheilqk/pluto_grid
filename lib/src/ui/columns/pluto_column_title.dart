@@ -308,7 +308,7 @@ class _BuildColumnWidget extends StatelessWidget {
                       height: PlutoGridSettings.rowHeight,
                       width: 1,
                       color: Colors.amber,
-                      child: Container(height: 10, width: 1, color: Colors.red)),
+                      child: IntrinsicHeight(child: Container(height: 10, width: 1, color: Colors.red))),
               ],
             ),
           ],
