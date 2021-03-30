@@ -143,7 +143,7 @@ class _PlutoColumnTitleState extends _PlutoColumnTitleStateWithChange {
         ),
         if (widget.column.enableContextMenu || !widget.column.sort.isNone)
           Positioned(
-            right: widget.column.enableRowChecked ? 30 : -5,
+            right: widget.column.enableRowChecked ? 30 : 0,
             child: widget.column.enableContextMenu
                 ? GestureDetector(
                     onTapUp: _handleOnTapUpContextMenu,
