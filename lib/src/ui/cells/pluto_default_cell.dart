@@ -110,10 +110,13 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
             ),
           ),
         if (widget.column.enableRowChecked)
-          _CheckboxSelectionWidget(
-            column: widget.column,
-            row: thisRow,
-            stateManager: widget.stateManager,
+          Container(
+            color: Colors.white,
+            child: _CheckboxSelectionWidget(
+              column: widget.column,
+              row: thisRow,
+              stateManager: widget.stateManager,
+            ),
           ),
         Expanded(
           child: cellWidget,
