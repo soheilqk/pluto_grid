@@ -92,7 +92,6 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
       cell: widget.cell,
     );
 
-    print(widget.isLast.toString());
 
     return Row(
       children: [

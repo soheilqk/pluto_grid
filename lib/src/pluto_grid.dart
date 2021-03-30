@@ -355,15 +355,15 @@ class _PlutoGridState extends State<PlutoGrid> {
                             color: stateManager.configuration.gridBorderColor,
                           ),
                         ),
-                      Positioned(
-                        top: stateManager.rowsTopOffset - 1,
-                        left: 0,
-                        right: 0,
-                        child: PlutoShadowLine(
-                          axis: Axis.horizontal,
-                          color: stateManager.configuration.gridBorderColor,
-                        ),
-                      ),
+                      // Positioned(
+                      //   top: stateManager.rowsTopOffset - 1,
+                      //   left: 0,
+                      //   right: 0,
+                      //   child: PlutoShadowLine(
+                      //     axis: Axis.horizontal,
+                      //     color: stateManager.configuration.gridBorderColor,
+                      //   ),
+                      // ),
                       if (stateManager.showFooter) ...[
                         Positioned(
                           top: stateManager.footerTopOffset,
