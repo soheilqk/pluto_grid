@@ -304,11 +304,14 @@ class _BuildColumnWidget extends StatelessWidget {
                   ),
                 ),
                 if (!isLast)
-                  const VerticalDivider(
-                    width: 1,
-                    color: Colors.red,
-                    indent: 8,
-                    endIndent: 8,
+                  Container(
+                    color:Colors.amber,
+                    child: const VerticalDivider(
+                      width: 1,
+                      color: Colors.red,
+                      indent: 8,
+                      endIndent: 8,
+                    ),
                   ),
               ],
             ),
