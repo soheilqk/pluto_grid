@@ -281,7 +281,7 @@ class _BuildColumnWidget extends StatelessWidget {
                       stateManager: stateManager,
                     ),
                   ),
-                if (!isLast) Container(height: 10, color: Colors.red),
+                if (!isLast) Container(height: 10,width: 1, color: Colors.red),
                 Expanded(
                   child: _BuildSortableWidget(
                     stateManager: stateManager,
