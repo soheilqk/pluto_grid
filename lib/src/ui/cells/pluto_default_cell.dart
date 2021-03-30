@@ -294,7 +294,7 @@ class __CheckboxSelectionWidgetState extends __CheckboxSelectionWidgetStateWithC
       scale: 0.86,
       unselectedColor: widget.stateManager.configuration.iconColor,
       activeColor: widget.stateManager.configuration.activatedBorderColor,
-      checkColor: widget.stateManager.configuration.activatedColor,
+      //checkColor: widget.stateManager.configuration.activatedColor,
     );
   }
 }
