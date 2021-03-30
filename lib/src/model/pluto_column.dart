@@ -177,13 +177,16 @@ class PlutoColumnRendererContext {
 enum PlutoColumnTextAlign {
   left,
   right,
+  center,
 }
 
 extension PlutoColumnTextAlignExtension on PlutoColumnTextAlign {
   TextAlign get value {
     return this == PlutoColumnTextAlign.right
         ? TextAlign.right
-        : TextAlign.left;
+        : this == PlutoColumnTextAlign.left
+        ? TextAlign.left
+        : TextAlign.center;
   }
 
   bool get isLeft => this == null || this == PlutoColumnTextAlign.left;
