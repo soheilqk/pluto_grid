@@ -304,13 +304,11 @@ class _BuildColumnWidget extends StatelessWidget {
                   ),
                 ),
                 if (!isLast)
-                  const IntrinsicHeight(
-                    child: VerticalDivider(
-                      width: 1,
-                      color: Colors.red,
-                      indent: 3,
-                      endIndent: 3,
-                    ),
+                  const VerticalDivider(
+                    width: 1,
+                    color: Colors.red,
+                    indent: 3,
+                    endIndent: 3,
                   ),
               ],
             ),
