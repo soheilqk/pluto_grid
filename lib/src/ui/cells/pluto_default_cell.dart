@@ -99,7 +99,7 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
       column: widget.column,
       cell: widget.cell,
     );
-
+print(widget.rowRadius.toString());
 
     return Row(
       children: [

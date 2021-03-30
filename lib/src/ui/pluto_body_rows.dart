@@ -10,7 +10,13 @@ class PlutoBodyRows extends PlutoStatefulWidget {
   final Color dividerColor;
   final double rowRadius;
 
-  PlutoBodyRows(this.stateManager, {this.rowColor, this.headerColor, this.dividerColor,this.rowRadius,});
+  PlutoBodyRows(
+    this.stateManager, {
+    this.rowColor,
+    this.headerColor,
+    this.dividerColor,
+    this.rowRadius,
+  });
 
   @override
   _PlutoBodyRowsState createState() => _PlutoBodyRowsState();
@@ -106,18 +112,18 @@ class _PlutoBodyRowsState extends _PlutoBodyRowsStateWithChange {
             itemExtent: widget.stateManager.rowTotalHeight,
             itemBuilder: (ctx, i) {
               return Container(
-                  margin:const EdgeInsets.only(top: 8),
+                  margin: const EdgeInsets.only(top: 8),
                   child: PlutoBaseRow(
                     key: ValueKey('body_row_${rows[i].key}'),
                     stateManager: widget.stateManager,
                     rowIdx: i,
                     row: rows[i],
                     columns: columns,
-                    isLast: rows.length == i-1,
-                    rowColor:widget.rowColor,
-                    headerColor:widget.headerColor,
-                    dividerColor:widget.dividerColor,
-                    rowRadius:widget.rowRadius,
+                    isLast: rows.length == i - 1,
+                    rowColor: widget.rowColor,
+                    headerColor: widget.headerColor,
+                    dividerColor: widget.dividerColor,
+                    rowRadius: widget.rowRadius,
                   ));
             },
           ),
