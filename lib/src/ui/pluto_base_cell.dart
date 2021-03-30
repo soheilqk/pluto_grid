@@ -216,7 +216,7 @@ class _CellContainer extends StatelessWidget {
       width: width,
       height: height,
       decoration: _boxDecoration(),
-      child: Padding(
+      child: Container(
         //padding: const EdgeInsets.symmetric( horizontal: PlutoGridSettings.cellPadding),
         child: Container(
           clipBehavior: Clip.hardEdge,
