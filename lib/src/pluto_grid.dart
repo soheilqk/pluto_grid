@@ -2,20 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:linked_scroll_controller/linked_scroll_controller.dart';
 import 'package:pluto_grid/pluto_grid.dart';
 
-typedef PlutoOnLoadedEventCallback = void Function(
-    PlutoGridOnLoadedEvent event);
+typedef PlutoOnLoadedEventCallback = void Function(PlutoGridOnLoadedEvent event);
 
-typedef PlutoOnChangedEventCallback = void Function(
-    PlutoGridOnChangedEvent event);
+typedef PlutoOnChangedEventCallback = void Function(PlutoGridOnChangedEvent event);
 
-typedef PlutoOnSelectedEventCallback = void Function(
-    PlutoGridOnSelectedEvent event);
+typedef PlutoOnSelectedEventCallback = void Function(PlutoGridOnSelectedEvent event);
 
-typedef CreateHeaderCallBack = Widget Function(
-    PlutoGridStateManager stateManager);
+typedef CreateHeaderCallBack = Widget Function(PlutoGridStateManager stateManager);
 
-typedef CreateFooterCallBack = Widget Function(
-    PlutoGridStateManager stateManager);
+typedef CreateFooterCallBack = Widget Function(PlutoGridStateManager stateManager);
 
 class PlutoGrid extends StatefulWidget {
   final List<PlutoColumn> columns;
@@ -45,7 +40,6 @@ class PlutoGrid extends StatefulWidget {
   final Color headerColor;
   final Color rowColor;
   final Color dividerColor;
-
 
   const PlutoGrid({
     Key key,
@@ -201,8 +195,7 @@ class _PlutoGridState extends State<PlutoGrid> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (stateManager.currentCell == null && widget.rows.isNotEmpty) {
-        stateManager.setCurrentCell(
-            widget.rows.first.cells.entries.first.value, 0);
+        stateManager.setCurrentCell(widget.rows.first.cells.entries.first.value, 0);
       }
 
       stateManager.gridFocusNode.requestFocus();
@@ -228,9 +221,7 @@ class _PlutoGridState extends State<PlutoGrid> {
       event: event,
     ));
 
-    return stateManager.isEditing
-        ? KeyEventResult.skipRemainingHandlers
-        : KeyEventResult.handled;
+    return stateManager.isEditing ? KeyEventResult.skipRemainingHandlers : KeyEventResult.handled;
   }
 
   void setLayout(BoxConstraints size) {
@@ -320,7 +311,12 @@ class _PlutoGridState extends State<PlutoGrid> {
                         top: stateManager.headerHeight,
                         left: _bodyLeftOffset,
                         right: _bodyRightOffset,
-                        child: PlutoBodyColumns(stateManager),
+                        child: PlutoBodyColumns(
+                          stateManager,
+                          headerColor: widget.headerColor,
+                          rowColor: widget.rowColor,
+                          dividerColor: widget.dividerColor,
+                        ),
                       ),
                       Positioned.fill(
                         top: stateManager.rowsTopOffset,
@@ -391,8 +387,7 @@ class _PlutoGridState extends State<PlutoGrid> {
                       ],
                       if (_showColumnFilter)
                         Positioned(
-                          top: stateManager.headerHeight +
-                              stateManager.columnHeight,
+                          top: stateManager.headerHeight + stateManager.columnHeight,
                           left: 0,
                           right: 0,
                           child: Container(
@@ -405,14 +400,10 @@ class _PlutoGridState extends State<PlutoGrid> {
                       if (stateManager.showLoading)
                         Positioned.fill(
                           child: PlutoLoading(
-                            backgroundColor:
-                                stateManager.configuration.gridBackgroundColor,
-                            indicatorColor:
-                                stateManager.configuration.cellTextStyle.color,
-                            indicatorText: stateManager
-                                .configuration.localeText.loadingText,
-                            indicatorSize: stateManager
-                                .configuration.cellTextStyle.fontSize,
+                            backgroundColor: stateManager.configuration.gridBackgroundColor,
+                            indicatorColor: stateManager.configuration.cellTextStyle.color,
+                            indicatorText: stateManager.configuration.localeText.loadingText,
+                            indicatorSize: stateManager.configuration.cellTextStyle.fontSize,
                           ),
                         ),
                     ],
@@ -488,8 +479,7 @@ class PlutoGridSettings {
   static const double shadowLineSize = 3.0;
 
   /// Sum of frozen column division line width
-  static const double totalShadowLineWidth =
-      PlutoGridSettings.shadowLineSize * 2;
+  static const double totalShadowLineWidth = PlutoGridSettings.shadowLineSize * 2;
 
   /// Grid - padding
   static const double gridPadding = 2.0;
@@ -497,8 +487,7 @@ class PlutoGridSettings {
   /// Grid - border width
   static const double gridBorderWidth = 1.0;
 
-  static const double gridInnerSpacing =
-      (gridPadding * 2) + (gridBorderWidth * 2);
+  static const double gridInnerSpacing = (gridPadding * 2) + (gridBorderWidth * 2);
 
   /// Row - Default row height
   static const double rowHeight = 45.0;
@@ -516,12 +505,10 @@ class PlutoGridSettings {
   static const double cellFontSize = 14;
 
   /// Scroll when multi-selection is as close as that value from the edge
-  static const double offsetScrollingFromEdge =
-      PlutoSetting.offsetScrollingFromEdge;
+  static const double offsetScrollingFromEdge = PlutoSetting.offsetScrollingFromEdge;
 
   /// Size that scrolls from the edge at once when selecting multiple
-  static const double offsetScrollingFromEdgeAtOnce =
-      PlutoSetting.offsetScrollingFromEdgeAtOnce;
+  static const double offsetScrollingFromEdgeAtOnce = PlutoSetting.offsetScrollingFromEdgeAtOnce;
 }
 
 enum PlutoGridMode {
