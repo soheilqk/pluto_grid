@@ -245,7 +245,6 @@ class _BuildColumnWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(isLast.toString());
     return Container(
       width: column.width,
       height: PlutoGridSettings.rowHeight,

@@ -92,6 +92,8 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
       cell: widget.cell,
     );
 
+    print(widget.isLast.toString());
+
     return Row(
       children: [
         // todo : When onDragUpdated is added to the Draggable, remove the listener.
