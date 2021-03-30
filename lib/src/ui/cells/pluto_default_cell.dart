@@ -9,6 +9,9 @@ class PlutoDefaultCell extends PlutoStatefulWidget {
   final PlutoColumn column;
   final int rowIdx;
   final bool isLast;
+  final Color headerColor;
+  final Color rowColor;
+  final Color dividerColor;
 
   PlutoDefaultCell({
     this.stateManager,
@@ -16,6 +19,9 @@ class PlutoDefaultCell extends PlutoStatefulWidget {
     this.column,
     this.rowIdx,
     this.isLast,
+    this.rowColor,
+    this.headerColor,
+    this.dividerColor,
   });
 
   @override
@@ -125,7 +131,7 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
           child: Container(
             height: PlutoGridSettings.rowHeight,
             decoration: BoxDecoration(
-                color: Colors.amberAccent,
+                color: widget.rowColor,
                 borderRadius: widget.column.enableRowChecked
                     ? const BorderRadius.only(topRight: Radius.circular(5), bottomRight: Radius.circular(5))
                     : widget.isLast
@@ -136,13 +142,13 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
         ),
         if (!widget.isLast)
           Container(
-            color:Colors.amberAccent,
+            color:widget.rowColor,
             height: PlutoGridSettings.rowHeight,
             child: Row(children: [
               Container(
                 height: PlutoGridSettings.rowHeight/2,
                 width: 1,
-                color: Colors.red,
+                color:widget.dividerColor,
               ),
             ],
             ),

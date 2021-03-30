@@ -7,6 +7,9 @@ class PlutoBaseRow extends StatelessWidget {
   final PlutoRow row;
   final List<PlutoColumn> columns;
   final bool isLast;
+  final Color headerColor;
+  final Color rowColor;
+  final Color dividerColor;
 
   PlutoBaseRow({
     Key key,
@@ -14,7 +17,10 @@ class PlutoBaseRow extends StatelessWidget {
     this.rowIdx,
     this.row,
     this.columns,
-   this.isLast,
+    this.isLast,
+    this.rowColor,
+    this.headerColor,
+    this.dividerColor,
   }) : super(key: key);
 
   @override
@@ -34,7 +40,10 @@ class PlutoBaseRow extends StatelessWidget {
             height: stateManager.rowHeight,
             column: column,
             rowIdx: rowIdx,
-            isLast:columns.indexOf(column) == columns.length-1,
+            isLast: columns.indexOf(column) == columns.length - 1,
+            rowColor:rowColor,
+            headerColor:headerColor,
+            dividerColor:dividerColor,
           );
         }).toList(growable: false),
       ),
@@ -61,8 +70,7 @@ class _RowContainerWidget extends PlutoStatefulWidget {
   __RowContainerWidgetState createState() => __RowContainerWidgetState();
 }
 
-abstract class __RowContainerWidgetStateWithChangeKeepAlive
-    extends PlutoStateWithChangeKeepAlive<_RowContainerWidget> {
+abstract class __RowContainerWidgetStateWithChangeKeepAlive extends PlutoStateWithChangeKeepAlive<_RowContainerWidget> {
   bool isCurrentRow;
 
   bool isSelectedRow;
@@ -130,34 +138,27 @@ abstract class __RowContainerWidgetStateWithChangeKeepAlive
   }
 }
 
-class __RowContainerWidgetState
-    extends __RowContainerWidgetStateWithChangeKeepAlive {
+class __RowContainerWidgetState extends __RowContainerWidgetStateWithChangeKeepAlive {
   Color rowColor() {
     if (isDragTarget) return widget.stateManager.configuration.checkedColor;
 
-    final bool checkCurrentRow =
-        isCurrentRow && (!isSelecting && !hasCurrentSelectingPosition);
+    final bool checkCurrentRow = isCurrentRow && (!isSelecting && !hasCurrentSelectingPosition);
 
-    final bool checkSelectedRow =
-        widget.stateManager.isSelectedRow(widget.row.key);
+    final bool checkSelectedRow = widget.stateManager.isSelectedRow(widget.row.key);
 
     if (!checkCurrentRow && !checkSelectedRow) {
       return Colors.transparent;
     }
 
     if (widget.stateManager.selectingMode.isRow) {
-      return checkSelectedRow
-          ? widget.stateManager.configuration.activatedColor
-          : Colors.transparent;
+      return checkSelectedRow ? widget.stateManager.configuration.activatedColor : Colors.transparent;
     }
 
     if (!hasFocus) {
       return Colors.transparent;
     }
 
-    return checkCurrentRow
-        ? widget.stateManager.configuration.activatedColor
-        : Colors.transparent;
+    return checkCurrentRow ? widget.stateManager.configuration.activatedColor : Colors.transparent;
   }
 
   @override
@@ -166,9 +167,7 @@ class __RowContainerWidgetState
 
     return Container(
       decoration: BoxDecoration(
-        color: isCheckedRow
-            ? Color.alphaBlend(const Color(0x11757575), rowColor())
-            : rowColor(),
+        color: isCheckedRow ? Color.alphaBlend(const Color(0x11757575), rowColor()) : rowColor(),
         border: Border(
           top: isDragTarget && isTopDragTarget
               ? BorderSide(

@@ -9,6 +9,9 @@ class PlutoBaseCell extends PlutoStatefulWidget {
   final PlutoColumn column;
   final int rowIdx;
   final bool isLast;
+  final Color headerColor;
+  final Color rowColor;
+  final Color dividerColor;
 
   PlutoBaseCell({
     Key key,
@@ -19,6 +22,9 @@ class PlutoBaseCell extends PlutoStatefulWidget {
     this.column,
     this.rowIdx,
     this.isLast,
+    this.rowColor,
+    this.headerColor,
+    this.dividerColor,
   }) : super(key: key);
 
   @override
@@ -130,6 +136,9 @@ class _PlutoBaseCellState extends _PlutoBaseCellStateWithChangeKeepAlive {
         isSelectedCell: isSelectedCell,
         configuration: widget.stateManager.configuration,
         child: _BuildCell(
+          rowColor:widget.rowColor,
+          headerColor:widget.headerColor,
+          dividerColor:widget.dividerColor,
           isLast:widget.isLast,
           stateManager: widget.stateManager,
           rowIdx: widget.rowIdx,
@@ -241,6 +250,9 @@ class _BuildCell extends StatelessWidget {
   final bool isCurrentCell;
   final bool isEditing;
   final bool isLast;
+  final Color headerColor;
+  final Color rowColor;
+  final Color dividerColor;
 
   const _BuildCell({
     Key key,
@@ -251,6 +263,9 @@ class _BuildCell extends StatelessWidget {
     this.isCurrentCell,
     this.isEditing,
     this.isLast,
+    this.rowColor,
+    this.headerColor,
+    this.dividerColor,
   }) : super(key: key);
 
   @override
@@ -295,6 +310,9 @@ class _BuildCell extends StatelessWidget {
       column: column,
       rowIdx: rowIdx,
       isLast: isLast,
+      rowColor:rowColor,
+      headerColor:headerColor,
+      dividerColor:dividerColor,
     );
   }
 }
