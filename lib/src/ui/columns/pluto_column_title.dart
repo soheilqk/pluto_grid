@@ -118,7 +118,7 @@ class _PlutoColumnTitleState extends _PlutoColumnTitleStateWithChange {
         ),
         if (widget.column.enableContextMenu || !widget.column.sort.isNone)
           Positioned(
-            right: widget.column.enableRowChecked? 30:3,
+            right: widget.column.enableRowChecked ? 30 : -5,
             child: widget.column.enableContextMenu
                 ? GestureDetector(
                     onTapUp: _handleOnTapUpContextMenu,
@@ -251,7 +251,7 @@ class _BuildColumnWidget extends StatelessWidget {
                   color: stateManager.configuration.borderColor,
                   width: 1.0,
                 ),
-                left: const BorderSide(width: 1,color: Colors.black),
+                left: const BorderSide(width: 1, color: Colors.black),
               ),
             )
           : const BoxDecoration(),
@@ -273,11 +273,11 @@ class _BuildColumnWidget extends StatelessWidget {
                 //if (column.enableRowChecked) const SizedBox(width: 10),
                 Expanded(
                   child: Container(
-
                     decoration: BoxDecoration(
-
-                      color:Colors.amber,
-                      borderRadius: column.enableRowChecked? const BorderRadius.only(topRight:  Radius.circular(5), bottomRight: Radius.circular(5)) : null,
+                      color: Colors.amber,
+                      borderRadius: column.enableRowChecked
+                          ? const BorderRadius.only(topRight: Radius.circular(5), bottomRight: Radius.circular(5))
+                          : null,
                     ),
                     height: PlutoGridSettings.rowHeight,
                     child: Center(
