@@ -126,7 +126,7 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
                 borderRadius: widget.column.enableRowChecked
                     ? BorderRadius.only(topRight: Radius.circular(5), bottomRight: Radius.circular(5))
                     : null),
-            child: cellWidget,
+            child: Center(child: cellWidget),
           ),
         ),
       ],
