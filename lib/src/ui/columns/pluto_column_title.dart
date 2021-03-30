@@ -273,8 +273,9 @@ class _BuildColumnWidget extends StatelessWidget {
                 if (column.enableRowChecked) const SizedBox(width: 10),
                 Expanded(
                   child: Container(
-
+clipBehavior: Clip.antiAlias,
                     decoration: BoxDecoration(
+
                       color:Colors.amber,
                       borderRadius: column.enableRowChecked?  BorderRadius.only(topRight: const Radius.circular(5), bottomRight: Radius.circular(5)) : null,
                     ),
