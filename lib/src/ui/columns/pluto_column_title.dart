@@ -307,8 +307,8 @@ class _BuildColumnWidget extends StatelessWidget {
                   const VerticalDivider(
                     width: 1,
                     color: Colors.red,
-                    indent: 3,
-                    endIndent: 3,
+                    indent: 8,
+                    endIndent: 8,
                   ),
               ],
             ),
