@@ -323,7 +323,12 @@ class _PlutoGridState extends State<PlutoGrid> {
                         left: _bodyLeftOffset,
                         right: _bodyRightOffset,
                         bottom: stateManager.footerHeight,
-                        child: PlutoBodyRows(stateManager),
+                        child: PlutoBodyRows(
+                          stateManager,
+                          headerColor: widget.headerColor,
+                          rowColor: widget.rowColor,
+                          dividerColor: widget.dividerColor,
+                        ),
                       ),
                       if (_showFrozenColumn && _hasRightFrozenColumns) ...[
                         Positioned.fill(
