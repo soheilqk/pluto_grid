@@ -74,9 +74,9 @@ class _PlutoBaseColumnState extends _PlutoBaseColumnStateWithChange {
               child: child),
         if (widget.last)
           Container(
-              decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(topRight: Radius.circular(5), bottomRight: Radius.circular(5)),
-                  color: Colors.amber),
+              // decoration: const BoxDecoration(
+              //     borderRadius: BorderRadius.only(topRight: Radius.circular(5), bottomRight: Radius.circular(5)),
+              //     color: Colors.amber),
               child: child),
         if (widget.first == false && widget.last == false)
           Container(

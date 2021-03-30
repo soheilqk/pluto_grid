@@ -282,9 +282,9 @@ class _BuildColumnWidget extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.amber,
                       borderRadius:
-                      /*column.enableRowChecked
+                      column.enableRowChecked
                           ? const BorderRadius.only(topRight: Radius.circular(5), bottomRight: Radius.circular(5))
-                          :*/ isLast
+                          : isLast
                               ? const BorderRadius.only(topLeft: Radius.circular(20), bottomLeft: Radius.circular(5))
                               : null,
                     ),
