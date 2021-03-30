@@ -263,6 +263,7 @@ class _BuildColumnWidget extends StatelessWidget {
               children: [
                 if (column.enableRowChecked)
                   Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     height: PlutoGridSettings.rowHeight,
                     color: Colors.white,
                     child: _CheckboxAllSelectionWidget(
@@ -273,7 +274,7 @@ class _BuildColumnWidget extends StatelessWidget {
                 //if (column.enableRowChecked) const SizedBox(width: 10),
                 Expanded(
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
+
                     decoration: BoxDecoration(
 
                       color:Colors.amber,
