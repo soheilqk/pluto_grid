@@ -20,8 +20,7 @@ class PlutoDefaultCell extends PlutoStatefulWidget {
   _PlutoDefaultCellState createState() => _PlutoDefaultCellState();
 }
 
-abstract class _PlutoDefaultCellStateWithChange
-    extends PlutoStateWithChange<PlutoDefaultCell> {
+abstract class _PlutoDefaultCellStateWithChange extends PlutoStateWithChange<PlutoDefaultCell> {
   bool canRowDrag;
 
   @override
@@ -54,9 +53,7 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
       PlutoGridDragRowsEvent(
         offset: offset,
         dragType: type,
-        rows: isCurrentRowSelected
-            ? widget.stateManager.currentSelectingRows
-            : [thisRow],
+        rows: isCurrentRowSelected ? widget.stateManager.currentSelectingRows : [thisRow],
       ),
     );
   }
@@ -122,7 +119,14 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
             ),
           ),
         Expanded(
-          child: cellWidget,
+          child: Container(
+            decoration: BoxDecoration(
+                color: Colors.amberAccent,
+                borderRadius: widget.column.enableRowChecked
+                    ? BorderRadius.only(topRight: Radius.circular(5), bottomRight: Radius.circular(5))
+                    : null),
+            child: cellWidget,
+          ),
         ),
       ],
     );
@@ -165,8 +169,7 @@ class __RowDragIconWidgetState extends State<_RowDragIconWidget> {
       return null;
     }
 
-    final RenderBox renderBoxRed =
-        _feedbackKey.currentContext.findRenderObject() as RenderBox;
+    final RenderBox renderBoxRed = _feedbackKey.currentContext.findRenderObject() as RenderBox;
 
     return renderBoxRed.localToGlobal(Offset.zero);
   }
@@ -201,8 +204,7 @@ class __RowDragIconWidgetState extends State<_RowDragIconWidget> {
           child: PlutoShadowContainer(
             width: widget.column.width,
             height: widget.stateManager.rowHeight,
-            backgroundColor:
-                widget.stateManager.configuration.gridBackgroundColor,
+            backgroundColor: widget.stateManager.configuration.gridBackgroundColor,
             borderColor: widget.stateManager.configuration.activatedBorderColor,
             child: Row(
               children: [
@@ -232,12 +234,10 @@ class _CheckboxSelectionWidget extends PlutoStatefulWidget {
   });
 
   @override
-  __CheckboxSelectionWidgetState createState() =>
-      __CheckboxSelectionWidgetState();
+  __CheckboxSelectionWidgetState createState() => __CheckboxSelectionWidgetState();
 }
 
-abstract class __CheckboxSelectionWidgetStateWithChange
-    extends PlutoStateWithChange<_CheckboxSelectionWidget> {
+abstract class __CheckboxSelectionWidgetStateWithChange extends PlutoStateWithChange<_CheckboxSelectionWidget> {
   bool checked;
 
   @override
@@ -248,8 +248,7 @@ abstract class __CheckboxSelectionWidgetStateWithChange
   }
 }
 
-class __CheckboxSelectionWidgetState
-    extends __CheckboxSelectionWidgetStateWithChange {
+class __CheckboxSelectionWidgetState extends __CheckboxSelectionWidgetStateWithChange {
   void _handleOnChanged(bool changed) {
     if (changed == checked) {
       return;
