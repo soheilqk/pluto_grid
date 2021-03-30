@@ -112,7 +112,7 @@ class _PlutoBodyRowsState extends _PlutoBodyRowsStateWithChange {
                     rowIdx: i,
                     row: rows[i],
                     columns: columns,
-                    isLast: row.length == i-1,
+                    isLast: rows.length == i-1,
                   ));
             },
           ),
