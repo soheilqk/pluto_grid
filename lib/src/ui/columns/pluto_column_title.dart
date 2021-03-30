@@ -118,7 +118,7 @@ class _PlutoColumnTitleState extends _PlutoColumnTitleStateWithChange {
         ),
         if (widget.column.enableContextMenu || !widget.column.sort.isNone)
           Align(
-            alignment: Alignment.centerLeft,
+            alignment: Alignment.centerRight,
             child: widget.column.enableContextMenu
                 ? GestureDetector(
                     onTapUp: _handleOnTapUpContextMenu,
