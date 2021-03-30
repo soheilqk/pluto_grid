@@ -99,7 +99,6 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
       column: widget.column,
       cell: widget.cell,
     );
-print(widget.rowRadius.toString());
 
     return Row(
       children: [
@@ -134,26 +133,34 @@ print(widget.rowRadius.toString());
             height: PlutoGridSettings.rowHeight,
             decoration: BoxDecoration(
                 color: widget.rowColor,
-                borderRadius:( widget.rowRadius != null && widget.rowRadius > 0) ?
-                widget.column.enableRowChecked
-                    ?  BorderRadius.only(topRight: Radius.circular(widget.rowRadius), bottomRight: Radius.circular(widget.rowRadius))
-                    : widget.isLast
-                        ?  BorderRadius.only(topLeft: Radius.circular(widget.rowRadius), bottomLeft: Radius.circular(widget.rowRadius))
-                        : null : null),
+                borderRadius: (widget.rowRadius != null && widget.rowRadius > 0)
+                    ? widget.column.enableRowChecked
+                        ? BorderRadius.only(
+                            topRight: Radius.circular(widget.rowRadius),
+                            bottomRight: Radius.circular(widget.rowRadius),
+                          )
+                        : widget.isLast
+                            ? BorderRadius.only(
+                                topLeft: Radius.circular(widget.rowRadius),
+                                bottomLeft: Radius.circular(widget.rowRadius),
+                              )
+                            : null
+                    : null),
             child: Center(child: cellWidget),
           ),
         ),
         if (!widget.isLast)
           Container(
-            color:widget.rowColor,
+            color: widget.rowColor,
             height: PlutoGridSettings.rowHeight,
-            child: Row(children: [
-              Container(
-                height: PlutoGridSettings.rowHeight/2,
-                width: 1,
-                color:widget.dividerColor,
-              ),
-            ],
+            child: Row(
+              children: [
+                Container(
+                  height: PlutoGridSettings.rowHeight / 2,
+                  width: 1,
+                  color: widget.dividerColor,
+                ),
+              ],
             ),
           ),
       ],
