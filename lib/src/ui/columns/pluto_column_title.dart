@@ -199,15 +199,18 @@ class _BuildDraggableWidget extends StatelessWidget {
         height: PlutoGridSettings.rowHeight,
         backgroundColor: stateManager.configuration.gridBackgroundColor,
         borderColor: stateManager.configuration.gridBorderColor,
-        child: _BuildSortableWidget(
-          stateManager: stateManager,
-          column: column,
-          child: Text(
-            column.title,
-            style: stateManager.configuration.columnTextStyle,
-            overflow: TextOverflow.ellipsis,
-            maxLines: 1,
-            softWrap: false,
+        child: Material(
+          type: MaterialType.transparency,
+          child: _BuildSortableWidget(
+            stateManager: stateManager,
+            column: column,
+            child: Text(
+              column.title,
+              style: stateManager.configuration.columnTextStyle,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+              softWrap: false,
+            ),
           ),
         ),
       ),
