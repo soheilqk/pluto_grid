@@ -197,7 +197,7 @@ class _CellContainer extends StatelessWidget {
           width: 1,
         ),
       );
-    } else if (isSelectedCell) {
+    } else if (isSelectedCell && configuration.activatedBorderColor != null) {
       return BoxDecoration(
         color: configuration.activatedColor,
         border: Border.all(
