@@ -76,20 +76,20 @@ class _PlutoBaseColumnState extends _PlutoBaseColumnStateWithChange {
     );
     return Column(
       children: [
-        if(widget.first)
-          Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(5), bottomLeft: Radius.circular(5)),
-                  color: Colors.grey[200]),
-              child: child),
+        // if(widget.first)
+        //   Container(
+        //       decoration: BoxDecoration(
+        //           borderRadius: BorderRadius.only(topLeft: Radius.circular(5), bottomLeft: Radius.circular(5)),
+        //           color: Colors.grey[200]),
+        //       child: child),
         if(widget.last)
           Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(topRight: Radius.circular(5), bottomRight: Radius.circular(5)),
-                  color: Colors.grey[200]),
+                  color: Colors.amber),
               child: child),
         if(widget.first == false && widget.last == false) Container(
-            color: Colors.grey[200],
+            //color: Colors.grey[200],
             child: child),
         showFilter,
 

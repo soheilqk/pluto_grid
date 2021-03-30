@@ -270,7 +270,7 @@ class _BuildColumnWidget extends StatelessWidget {
                       stateManager: stateManager,
                     ),
                   ),
-                const SizedBox(width: 10),
+                if (column.enableRowChecked) const SizedBox(width: 10),
                 Expanded(
                   child: Container(
 
