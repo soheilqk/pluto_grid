@@ -61,6 +61,7 @@ class _PlutoBaseColumnState extends _PlutoBaseColumnStateWithChange {
     var child = PlutoColumnTitle(
       stateManager: widget.stateManager,
       column: widget.column,
+      isLast: widget.last,
     );
     return Column(
       children: [

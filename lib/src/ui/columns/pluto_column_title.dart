@@ -6,10 +6,12 @@ import 'package:pluto_grid/pluto_grid.dart';
 class PlutoColumnTitle extends PlutoStatefulWidget {
   final PlutoGridStateManager stateManager;
   final PlutoColumn column;
+  final bool isLast;
 
   PlutoColumnTitle({
     @required this.stateManager,
     @required this.column,
+    this.isLast,
   }) : super(key: column.key);
 
   @override
@@ -87,6 +89,7 @@ class _PlutoColumnTitleState extends _PlutoColumnTitleStateWithChange {
       stateManager: widget.stateManager,
       column: widget.column,
       child: _BuildColumnWidget(
+        isLast: widget.isLast,
         stateManager: widget.stateManager,
         column: widget.column,
       ),
@@ -231,11 +234,13 @@ class _BuildSortableWidget extends StatelessWidget {
 class _BuildColumnWidget extends StatelessWidget {
   final PlutoGridStateManager stateManager;
   final PlutoColumn column;
+  final bool isLast;
 
   const _BuildColumnWidget({
     Key key,
     this.stateManager,
     this.column,
+    this.isLast,
   }) : super(key: key);
 
   @override
@@ -277,7 +282,9 @@ class _BuildColumnWidget extends StatelessWidget {
                       color: Colors.amber,
                       borderRadius: column.enableRowChecked
                           ? const BorderRadius.only(topRight: Radius.circular(5), bottomRight: Radius.circular(5))
-                          : null,
+                          : isLast
+                              ? const BorderRadius.only(topLeft: Radius.circular(5), bottomLeft: Radius.circular(5))
+                              : null,
                     ),
                     height: PlutoGridSettings.rowHeight,
                     child: Center(
