@@ -6,8 +6,19 @@ class PlutoBaseColumn extends PlutoStatefulWidget {
   final PlutoColumn column;
   final bool first;
   final bool last;
+  final Color headerColor;
+  final Color rowColor;
+  final Color dividerColor;
 
-  PlutoBaseColumn({this.stateManager, this.column, this.first, this.last}) : super(key: column.key);
+  PlutoBaseColumn({
+    this.stateManager,
+    this.column,
+    this.first,
+    this.last,
+    this.headerColor,
+    this.dividerColor,
+    this.rowColor,
+  }) : super(key: column.key);
 
   @override
   _PlutoBaseColumnState createState() => _PlutoBaseColumnState();
@@ -64,6 +75,9 @@ class _PlutoBaseColumnState extends _PlutoBaseColumnStateWithChange {
           stateManager: widget.stateManager,
           column: widget.column,
           isLast: widget.last,
+          rowColor:widget.rowColor,
+          headerColor:widget.headerColor,
+          dividerColor:widget.dividerColor,
         ),
         showFilter,
       ],

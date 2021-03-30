@@ -7,11 +7,17 @@ class PlutoColumnTitle extends PlutoStatefulWidget {
   final PlutoGridStateManager stateManager;
   final PlutoColumn column;
   final bool isLast;
+  final Color headerColor;
+  final Color rowColor;
+  final Color dividerColor;
 
   PlutoColumnTitle({
     @required this.stateManager,
     @required this.column,
     this.isLast,
+    this.headerColor,
+    this.dividerColor,
+    this.rowColor,
   }) : super(key: column.key);
 
   @override
@@ -240,12 +246,18 @@ class _BuildColumnWidget extends StatelessWidget {
   final PlutoGridStateManager stateManager;
   final PlutoColumn column;
   final bool isLast;
+  final Color headerColor;
+  final Color rowColor;
+  final Color dividerColor;
 
   const _BuildColumnWidget({
     Key key,
     this.stateManager,
     this.column,
     this.isLast,
+    this.headerColor,
+    this.dividerColor,
+    this.rowColor,
   }) : super(key: key);
 
   @override
@@ -286,7 +298,7 @@ class _BuildColumnWidget extends StatelessWidget {
                     column: column,
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.amber,
+                        color: headerColor,
                         borderRadius: column.enableRowChecked
                             ? const BorderRadius.only(topRight: Radius.circular(5), bottomRight: Radius.circular(5))
                             : isLast
@@ -305,13 +317,13 @@ class _BuildColumnWidget extends StatelessWidget {
                 ),
                 if (!isLast)
                   Container(
-                    color:Colors.amber,
+                    color:headerColor,
                     height: PlutoGridSettings.rowHeight,
                     child: Row(children: [
                       Container(
                         height: PlutoGridSettings.rowHeight/2,
                         width: 1,
-                        color: Colors.red,
+                        color: dividerColor,
                       ),
     ],
                     ),

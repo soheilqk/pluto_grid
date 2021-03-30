@@ -42,6 +42,11 @@ class PlutoGrid extends StatefulWidget {
   /// you can receive the selected row and cell from the onSelected callback.
   final PlutoGridMode mode;
 
+  final Color headerColor;
+  final Color rowColor;
+  final Color dividerColor;
+
+
   const PlutoGrid({
     Key key,
     @required this.columns,
@@ -53,6 +58,9 @@ class PlutoGrid extends StatefulWidget {
     this.createFooter,
     this.configuration,
     this.mode = PlutoGridMode.normal,
+    this.dividerColor = Colors.black54,
+    this.headerColor = Colors.amber,
+    this.rowColor = Colors.amberAccent,
   }) : super(key: key);
 
   @override
