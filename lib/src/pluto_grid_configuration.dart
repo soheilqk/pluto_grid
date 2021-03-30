@@ -71,7 +71,7 @@ class PlutoGridConfiguration {
     this.gridBackgroundColor = Colors.white,
     this.gridBorderColor = const Color(0xFFA1A5AE),
     this.activatedColor = const Color(0xFFDCF5FF),
-    this.activatedBorderColor = Colors.lightBlue,
+    this.activatedBorderColor,
     this.checkedColor = const Color(0x11757575),
     this.borderColor = const Color(0xFFDDE2EB),
     this.cellColorInEditState = Colors.white,
