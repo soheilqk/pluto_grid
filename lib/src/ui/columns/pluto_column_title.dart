@@ -111,6 +111,7 @@ class _PlutoColumnTitleState extends _PlutoColumnTitleStateWithChange {
     return Stack(
       children: [
         Positioned(
+          right: widget.column.enableRowChecked ? 30 : 0,
           child: widget.column.enableColumnDrag
               ? _BuildDraggableWidget(
                   stateManager: widget.stateManager,
