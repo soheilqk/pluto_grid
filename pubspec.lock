@@ -252,10 +252,12 @@ packages:
   pluto_inside:
     dependency: "direct main"
     description:
-      name: pluto_inside
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.0"
+      path: "."
+      ref: main
+      resolved-ref: "9045c765699fdabbff397cc1b24c1582f851805b"
+      url: "git://github.com/soheilqk/pluto_inside.git"
+    source: git
+    version: "0.1.1"
   pub_semver:
     dependency: transitive
     description:
