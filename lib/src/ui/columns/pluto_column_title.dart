@@ -93,6 +93,8 @@ class _PlutoColumnTitleState extends _PlutoColumnTitleStateWithChange {
   Widget build(BuildContext context) {
     final _columnWidget = _BuildColumnWidget(
       isLast: widget.isLast,
+      headerColor: widget.headerColor,
+      dividerColor: widget.dividerColor,
       stateManager: widget.stateManager,
       column: widget.column,
     );
