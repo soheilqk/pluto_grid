@@ -134,11 +134,11 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
             height: PlutoGridSettings.rowHeight,
             decoration: BoxDecoration(
                 color: widget.rowColor,
-                borderRadius: widget.rowRadius >0 ?
+                borderRadius:( widget.rowRadius != null && widget.rowRadius > 0) ?
                 widget.column.enableRowChecked
-                    ? const BorderRadius.only(topRight: Radius.circular(5), bottomRight: Radius.circular(5))
+                    ?  BorderRadius.only(topRight: Radius.circular(widget.rowRadius), bottomRight: Radius.circular(widget.rowRadius))
                     : widget.isLast
-                        ? const BorderRadius.only(topLeft: Radius.circular(5), bottomLeft: Radius.circular(5))
+                        ?  BorderRadius.only(topLeft: Radius.circular(widget.rowRadius), bottomLeft: Radius.circular(widget.rowRadius))
                         : null : null),
             child: Center(child: cellWidget),
           ),
