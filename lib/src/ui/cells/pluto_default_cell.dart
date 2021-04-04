@@ -290,6 +290,7 @@ class __CheckboxSelectionWidgetState extends __CheckboxSelectionWidgetStateWithC
     }
 
     widget.stateManager.setRowChecked(widget.row, changed);
+    widget.stateManager.handleOnSelected();
 
     setState(() {
       checked = changed;
