@@ -179,13 +179,15 @@ class PlutoGridColumnIcon extends StatelessWidget {
         return Transform.rotate(
           angle: 90 * pi / 90,
           child:  Icon(
-            Icons.sort,
+            //Icons.sort,
+            Icons.arrow_downward_sharp,
             color: ascendingIconColor,
           ),
         );
       case PlutoColumnSort.descending:
         return Icon(
-          Icons.sort,
+          //Icons.sort,
+          Icons.arrow_upward_sharp,
           color: descendingIconColor,
         );
       default:
