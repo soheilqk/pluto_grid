@@ -290,10 +290,10 @@ class __CheckboxSelectionWidgetState extends __CheckboxSelectionWidgetStateWithC
     }
 
     widget.stateManager.setRowChecked(widget.row, changed);
-    widget.stateManager.toggleSelectingRow(widget.row.sortIdx);
     setState(() {
       checked = changed;
     });
+    print(widget.stateManager.checkedRows);
   }
 
   @override
