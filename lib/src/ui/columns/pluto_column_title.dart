@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:pluto_grid/pluto_grid.dart';
 
@@ -176,13 +174,11 @@ class PlutoGridColumnIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (sort) {
       case PlutoColumnSort.ascending:
-        return Transform.rotate(
-          angle: 90 * pi / 90,
-          child:  Icon(
+        return Icon(
             //Icons.sort,
             Icons.arrow_downward_sharp,
             color: ascendingIconColor,
-          ),
+
         );
       case PlutoColumnSort.descending:
         return Icon(
