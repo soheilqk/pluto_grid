@@ -293,7 +293,7 @@ class __CheckboxSelectionWidgetState extends __CheckboxSelectionWidgetStateWithC
     setState(() {
       checked = changed;
     });
-    print(widget.stateManager.checkedRows);
+    print('check ${widget.stateManager.checkedRows}');
   }
 
   @override
