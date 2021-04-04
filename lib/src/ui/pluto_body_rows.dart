@@ -9,6 +9,7 @@ class PlutoBodyRows extends PlutoStatefulWidget {
   final Color rowColor;
   final Color dividerColor;
   final double rowRadius;
+  final Function onCheck;
 
   PlutoBodyRows(
     this.stateManager, {
@@ -16,6 +17,7 @@ class PlutoBodyRows extends PlutoStatefulWidget {
     this.headerColor,
     this.dividerColor,
     this.rowRadius,
+        this.onCheck,
   });
 
   @override
@@ -124,6 +126,7 @@ class _PlutoBodyRowsState extends _PlutoBodyRowsStateWithChange {
                     headerColor: widget.headerColor,
                     dividerColor: widget.dividerColor,
                     rowRadius: widget.rowRadius,
+                    onCheck: widget.onCheck,
                   ));
             },
           ),

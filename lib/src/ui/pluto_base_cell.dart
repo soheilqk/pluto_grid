@@ -13,6 +13,7 @@ class PlutoBaseCell extends PlutoStatefulWidget {
   final Color rowColor;
   final Color dividerColor;
   final double rowRadius;
+  final Function onCheck;
 
   PlutoBaseCell({
     Key key,
@@ -27,6 +28,7 @@ class PlutoBaseCell extends PlutoStatefulWidget {
     this.headerColor,
     this.dividerColor,
     this.rowRadius,
+    this.onCheck,
   }) : super(key: key);
 
   @override
@@ -145,6 +147,8 @@ class _PlutoBaseCellState extends _PlutoBaseCellStateWithChangeKeepAlive {
           cell: widget.cell,
           isCurrentCell: isCurrentCell,
           isEditing: isEditing,
+          onCheck: widget.onCheck,
+
         ),
       ),
     );
@@ -251,6 +255,7 @@ class _BuildCell extends StatelessWidget {
   final Color rowColor;
   final Color dividerColor;
   final double rowRadius;
+  final Function onCheck;
 
   const _BuildCell(
       {Key key,
@@ -264,7 +269,7 @@ class _BuildCell extends StatelessWidget {
       this.rowColor,
       this.headerColor,
       this.dividerColor,
-      this.rowRadius})
+      this.rowRadius,this.onCheck,})
       : super(key: key);
 
   @override
@@ -313,6 +318,7 @@ class _BuildCell extends StatelessWidget {
       headerColor: headerColor,
       dividerColor: dividerColor,
       rowRadius: rowRadius,
+      onCheck: onCheck,
     );
   }
 }

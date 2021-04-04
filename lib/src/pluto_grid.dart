@@ -23,6 +23,8 @@ class PlutoGrid extends StatefulWidget {
 
   final PlutoOnSelectedEventCallback onSelected;
 
+  final Function onCheck;
+
   final CreateHeaderCallBack createHeader;
 
   final CreateFooterCallBack createFooter;
@@ -52,6 +54,7 @@ class PlutoGrid extends StatefulWidget {
     this.onLoaded,
     this.onChanged,
     this.onSelected,
+    this.onCheck,
     this.createHeader,
     this.createFooter,
     this.configuration,
@@ -340,6 +343,7 @@ class _PlutoGridState extends State<PlutoGrid> {
                           rowColor: widget.rowColor,
                           dividerColor: widget.dividerColor,
                           rowRadius: widget.rowRadius,
+                          onCheck: widget.onCheck,
                         ),
                       ),
                       if (_showFrozenColumn && _hasRightFrozenColumns) ...[

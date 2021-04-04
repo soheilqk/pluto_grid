@@ -13,6 +13,7 @@ class PlutoDefaultCell extends PlutoStatefulWidget {
   final Color rowColor;
   final Color dividerColor;
   final double rowRadius;
+  final Function onCheck;
 
   PlutoDefaultCell({
     this.stateManager,
@@ -24,6 +25,7 @@ class PlutoDefaultCell extends PlutoStatefulWidget {
     this.headerColor,
     this.dividerColor,
     this.rowRadius,
+    this.onCheck
   });
 
   @override
@@ -123,6 +125,7 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
             padding: const EdgeInsets.symmetric(horizontal: 10),
             height: PlutoGridSettings.rowHeight,
             child: _CheckboxSelectionWidget(
+              onCheck: widget.onCheck,
               column: widget.column,
               row: thisRow,
               stateManager: widget.stateManager,
@@ -261,11 +264,13 @@ class _CheckboxSelectionWidget extends PlutoStatefulWidget {
   final PlutoColumn column;
   final PlutoRow row;
   final PlutoGridStateManager stateManager;
+  final Function onCheck;
 
   _CheckboxSelectionWidget({
     this.column,
     this.row,
     this.stateManager,
+    this.onCheck,
   });
 
   @override
@@ -293,7 +298,7 @@ class __CheckboxSelectionWidgetState extends __CheckboxSelectionWidgetStateWithC
     setState(() {
       checked = changed;
     });
-    print('check ${widget.stateManager.checkedRows}');
+    widget.onCheck();
   }
 
   @override

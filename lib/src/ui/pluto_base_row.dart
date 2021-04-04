@@ -11,6 +11,7 @@ class PlutoBaseRow extends StatelessWidget {
   final Color rowColor;
   final Color dividerColor;
   final double rowRadius;
+  final Function onCheck;
 
   PlutoBaseRow({
     Key key,
@@ -23,6 +24,7 @@ class PlutoBaseRow extends StatelessWidget {
     this.headerColor,
     this.dividerColor,
     this.rowRadius,
+    this.onCheck,
   }) : super(key: key);
 
   @override
@@ -47,6 +49,7 @@ class PlutoBaseRow extends StatelessWidget {
             headerColor: headerColor,
             dividerColor: dividerColor,
             rowRadius:rowRadius,
+            onCheck: onCheck,
           );
         }).toList(growable: false),
       ),
