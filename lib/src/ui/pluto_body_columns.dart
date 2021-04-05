@@ -82,9 +82,9 @@ class _PlutoBodyColumnsState extends _PlutoBodyColumnsStateWithChange {
     return SizedBox(
       width: width,
       child: ListView.builder(
-        controller: widget.horizontalController,
-        scrollDirection: Axis.horizontal,
-        physics: const NeverScrollableScrollPhysics(),
+        // controller: widget.horizontalController,
+        // scrollDirection: Axis.horizontal,
+        // physics: const NeverScrollableScrollPhysics(),
         itemCount: columns.length,
         itemBuilder: (ctx, i) {
           return PlutoBaseColumn(
