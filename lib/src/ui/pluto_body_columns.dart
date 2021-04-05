@@ -11,6 +11,7 @@ class PlutoBodyColumns extends PlutoStatefulWidget {
   final double headerRadius;
   final Color descendingIconColor;
   final Color ascendingIconColor;
+  final ScrollController horizontalController;
 
   PlutoBodyColumns(
     this.stateManager, {
@@ -20,13 +21,15 @@ class PlutoBodyColumns extends PlutoStatefulWidget {
     this.headerRadius,
     this.ascendingIconColor,
     this.descendingIconColor,
+    this.horizontalController,
   });
 
   @override
   _PlutoBodyColumnsState createState() => _PlutoBodyColumnsState();
 }
 
-abstract class _PlutoBodyColumnsStateWithChange extends PlutoStateWithChange<PlutoBodyColumns> {
+abstract class _PlutoBodyColumnsStateWithChange
+    extends PlutoStateWithChange<PlutoBodyColumns> {
   List<PlutoColumn> columns;
 
   double width;
@@ -45,7 +48,9 @@ abstract class _PlutoBodyColumnsStateWithChange extends PlutoStateWithChange<Plu
   }
 
   List<PlutoColumn> _getColumns() {
-    return widget.stateManager.showFrozenColumn ? widget.stateManager.bodyColumns : widget.stateManager.columns;
+    return widget.stateManager.showFrozenColumn
+        ? widget.stateManager.bodyColumns
+        : widget.stateManager.columns;
   }
 
   double _getWidth() {
@@ -77,7 +82,7 @@ class _PlutoBodyColumnsState extends _PlutoBodyColumnsStateWithChange {
     return SizedBox(
       width: width,
       child: ListView.builder(
-        controller: scroll,
+        controller: widget.horizontalController,
         scrollDirection: Axis.horizontal,
         physics: const NeverScrollableScrollPhysics(),
         itemCount: columns.length,
@@ -91,8 +96,8 @@ class _PlutoBodyColumnsState extends _PlutoBodyColumnsStateWithChange {
             column: columns[i],
             first: i == 0,
             last: i == columns.length - 1,
-            ascendingIconColor:widget.ascendingIconColor,
-            descendingIconColor:widget.descendingIconColor,
+            ascendingIconColor: widget.ascendingIconColor,
+            descendingIconColor: widget.descendingIconColor,
           );
         },
       ),

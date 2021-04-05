@@ -10,6 +10,7 @@ class PlutoBodyRows extends PlutoStatefulWidget {
   final Color dividerColor;
   final double rowRadius;
   final Function onCheck;
+  final ScrollController horizontalController;
 
   PlutoBodyRows(
     this.stateManager, {
@@ -18,6 +19,7 @@ class PlutoBodyRows extends PlutoStatefulWidget {
     this.dividerColor,
     this.rowRadius,
     this.onCheck,
+    this.horizontalController,
   });
 
   @override
@@ -113,7 +115,7 @@ class _PlutoBodyRowsState extends _PlutoBodyRowsStateWithChange {
       radiusWhileDragging: widget.stateManager.configuration.scrollbarConfig
           .scrollbarRadiusWhileDragging,
       child: SingleChildScrollView(
-        controller: horizontalScroll,
+        controller: widget.horizontalController,
         scrollDirection: Axis.horizontal,
         physics: const ClampingScrollPhysics(),
         child: SizedBox(
