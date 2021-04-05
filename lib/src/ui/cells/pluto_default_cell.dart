@@ -9,6 +9,7 @@ class PlutoDefaultCell extends PlutoStatefulWidget {
   final PlutoColumn column;
   final int rowIdx;
   final bool isLast;
+  final bool isFirst;
   final Color headerColor;
   final Color rowColor;
   final Color dividerColor;
@@ -21,6 +22,7 @@ class PlutoDefaultCell extends PlutoStatefulWidget {
     this.column,
     this.rowIdx,
     this.isLast,
+    this.isFirst,
     this.rowColor,
     this.headerColor,
     this.dividerColor,
@@ -137,7 +139,7 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
             decoration: BoxDecoration(
                 color: widget.rowColor,
                 borderRadius: (widget.rowRadius != null && widget.rowRadius > 0)
-                    ? widget.column.enableRowChecked
+                    ? (widget.column.enableRowChecked || widget.isFirst)
                         ? BorderRadius.only(
                             topRight: Radius.circular(widget.rowRadius),
                             bottomRight: Radius.circular(widget.rowRadius),

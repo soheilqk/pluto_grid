@@ -9,6 +9,7 @@ class PlutoBaseCell extends PlutoStatefulWidget {
   final PlutoColumn column;
   final int rowIdx;
   final bool isLast;
+  final bool isFirst;
   final Color headerColor;
   final Color rowColor;
   final Color dividerColor;
@@ -24,6 +25,7 @@ class PlutoBaseCell extends PlutoStatefulWidget {
     this.column,
     this.rowIdx,
     this.isLast,
+    this.isFirst,
     this.rowColor,
     this.headerColor,
     this.dividerColor,
@@ -141,6 +143,7 @@ class _PlutoBaseCellState extends _PlutoBaseCellStateWithChangeKeepAlive {
           dividerColor: widget.dividerColor,
           rowRadius: widget.rowRadius,
           isLast: widget.isLast,
+          isFirst: widget.isFirst,
           stateManager: widget.stateManager,
           rowIdx: widget.rowIdx,
           column: widget.column,
@@ -251,6 +254,7 @@ class _BuildCell extends StatelessWidget {
   final bool isCurrentCell;
   final bool isEditing;
   final bool isLast;
+  final bool isFirst;
   final Color headerColor;
   final Color rowColor;
   final Color dividerColor;
@@ -266,6 +270,7 @@ class _BuildCell extends StatelessWidget {
       this.isCurrentCell,
       this.isEditing,
       this.isLast,
+      this.isFirst,
       this.rowColor,
       this.headerColor,
       this.dividerColor,
@@ -314,6 +319,7 @@ class _BuildCell extends StatelessWidget {
       column: column,
       rowIdx: rowIdx,
       isLast: isLast,
+      isFirst: isFirst,
       rowColor: rowColor,
       headerColor: headerColor,
       dividerColor: dividerColor,

@@ -7,6 +7,7 @@ class PlutoBaseRow extends StatelessWidget {
   final PlutoRow row;
   final List<PlutoColumn> columns;
   final bool isLast;
+  final bool isFirst;
   final Color headerColor;
   final Color rowColor;
   final Color dividerColor;
@@ -20,6 +21,7 @@ class PlutoBaseRow extends StatelessWidget {
     this.row,
     this.columns,
     this.isLast,
+    this.isFirst,
     this.rowColor,
     this.headerColor,
     this.dividerColor,
@@ -44,6 +46,7 @@ class PlutoBaseRow extends StatelessWidget {
             height: stateManager.rowHeight,
             column: column,
             rowIdx: rowIdx,
+              isFirst:columns.indexOf(column) == 0,
             isLast: columns.indexOf(column) == columns.length - 1,
             rowColor: rowColor,
             headerColor: headerColor,

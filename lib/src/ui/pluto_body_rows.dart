@@ -121,6 +121,7 @@ class _PlutoBodyRowsState extends _PlutoBodyRowsStateWithChange {
                     rowIdx: i,
                     row: rows[i],
                     columns: columns,
+                    isFirst: i == 0,
                     isLast: rows.length == i - 1,
                     rowColor: widget.rowColor,
                     headerColor: widget.headerColor,
