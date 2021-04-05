@@ -17,14 +17,15 @@ class PlutoBodyRows extends PlutoStatefulWidget {
     this.headerColor,
     this.dividerColor,
     this.rowRadius,
-        this.onCheck,
+    this.onCheck,
   });
 
   @override
   _PlutoBodyRowsState createState() => _PlutoBodyRowsState();
 }
 
-abstract class _PlutoBodyRowsStateWithChange extends PlutoStateWithChange<PlutoBodyRows> {
+abstract class _PlutoBodyRowsStateWithChange
+    extends PlutoStateWithChange<PlutoBodyRows> {
   List<PlutoColumn> columns;
 
   List<PlutoRow> rows;
@@ -52,7 +53,9 @@ abstract class _PlutoBodyRowsStateWithChange extends PlutoStateWithChange<PlutoB
   }
 
   List<PlutoColumn> _getColumns() {
-    return widget.stateManager.showFrozenColumn == true ? widget.stateManager.bodyColumns : widget.stateManager.columns;
+    return widget.stateManager.showFrozenColumn == true
+        ? widget.stateManager.bodyColumns
+        : widget.stateManager.columns;
   }
 
   double _getWidth() {
@@ -92,14 +95,23 @@ class _PlutoBodyRowsState extends _PlutoBodyRowsStateWithChange {
   @override
   Widget build(BuildContext context) {
     return PlutoScrollbar(
-      verticalController: widget.stateManager.configuration.scrollbarConfig.draggableScrollbar ? verticalScroll : null,
+      verticalController:
+          widget.stateManager.configuration.scrollbarConfig.draggableScrollbar
+              ? verticalScroll
+              : null,
       horizontalController:
-          widget.stateManager.configuration.scrollbarConfig.draggableScrollbar ? horizontalScroll : null,
-      isAlwaysShown: widget.stateManager.configuration.scrollbarConfig.isAlwaysShown,
-      thickness: widget.stateManager.configuration.scrollbarConfig.scrollbarThickness,
-      thicknessWhileDragging: widget.stateManager.configuration.scrollbarConfig.scrollbarThicknessWhileDragging,
+          widget.stateManager.configuration.scrollbarConfig.draggableScrollbar
+              ? horizontalScroll
+              : null,
+      isAlwaysShown:
+          widget.stateManager.configuration.scrollbarConfig.isAlwaysShown,
+      thickness:
+          widget.stateManager.configuration.scrollbarConfig.scrollbarThickness,
+      thicknessWhileDragging: widget.stateManager.configuration.scrollbarConfig
+          .scrollbarThicknessWhileDragging,
       radius: widget.stateManager.configuration.scrollbarConfig.scrollbarRadius,
-      radiusWhileDragging: widget.stateManager.configuration.scrollbarConfig.scrollbarRadiusWhileDragging,
+      radiusWhileDragging: widget.stateManager.configuration.scrollbarConfig
+          .scrollbarRadiusWhileDragging,
       child: SingleChildScrollView(
         controller: horizontalScroll,
         scrollDirection: Axis.horizontal,
@@ -114,6 +126,7 @@ class _PlutoBodyRowsState extends _PlutoBodyRowsStateWithChange {
             itemExtent: widget.stateManager.rowTotalHeight,
             itemBuilder: (ctx, i) {
               return Container(
+                  width: columns[1].width,
                   margin: const EdgeInsets.only(top: 8),
                   child: PlutoBaseRow(
                     key: ValueKey('body_row_${rows[i].key}'),
