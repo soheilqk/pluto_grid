@@ -13,14 +13,14 @@ class PlutoBodyRows extends PlutoStatefulWidget {
   final ScrollController horizontalController;
 
   PlutoBodyRows(
-    this.stateManager, {
-    this.rowColor,
-    this.headerColor,
-    this.dividerColor,
-    this.rowRadius,
-    this.onCheck,
-    this.horizontalController,
-  });
+      this.stateManager, {
+        this.rowColor,
+        this.headerColor,
+        this.dividerColor,
+        this.rowRadius,
+        this.onCheck,
+        this.horizontalController,
+      });
 
   @override
   _PlutoBodyRowsState createState() => _PlutoBodyRowsState();
@@ -96,58 +96,57 @@ class _PlutoBodyRowsState extends _PlutoBodyRowsStateWithChange {
 
   @override
   Widget build(BuildContext context) {
-    // return PlutoScrollbar(
-    //   verticalController:
-    //       widget.stateManager.configuration.scrollbarConfig.draggableScrollbar
-    //           ? verticalScroll
-    //           : null,
-    //   horizontalController:
-    //       widget.stateManager.configuration.scrollbarConfig.draggableScrollbar
-    //           ? horizontalScroll
-    //           : null,
-    //   isAlwaysShown:
-    //       widget.stateManager.configuration.scrollbarConfig.isAlwaysShown,
-    //   thickness:
-    //       widget.stateManager.configuration.scrollbarConfig.scrollbarThickness,
-    //   thicknessWhileDragging: widget.stateManager.configuration.scrollbarConfig
-    //       .scrollbarThicknessWhileDragging,
-    //   radius: widget.stateManager.configuration.scrollbarConfig.scrollbarRadius,
-    //   radiusWhileDragging: widget.stateManager.configuration.scrollbarConfig
-    //       .scrollbarRadiusWhileDragging,
-    //   child:
-    return SingleChildScrollView(
-      // controller: widget.horizontalController,
-      // scrollDirection: Axis.horizontal,
-      // physics: const ClampingScrollPhysics(),
-      child: SizedBox(
-        width: width,
-        child: ListView.builder(
-          controller: verticalScroll,
-          scrollDirection: Axis.vertical,
-          physics: const ClampingScrollPhysics(),
-          itemCount: rows.length,
-          itemExtent: widget.stateManager.rowTotalHeight,
-          itemBuilder: (ctx, i) {
-            return Container(
-                margin: const EdgeInsets.only(top: 8),
-                child: PlutoBaseRow(
-                  key: ValueKey('body_row_${rows[i].key}'),
-                  stateManager: widget.stateManager,
-                  rowIdx: i,
-                  row: rows[i],
-                  columns: columns,
-                  isFirst: i == 0,
-                  isLast: rows.length == i - 1,
-                  rowColor: widget.rowColor,
-                  headerColor: widget.headerColor,
-                  dividerColor: widget.dividerColor,
-                  rowRadius: widget.rowRadius,
-                  onCheck: widget.onCheck,
-                ));
-          },
+    return PlutoScrollbar(
+      verticalController:
+      widget.stateManager.configuration.scrollbarConfig.draggableScrollbar
+          ? verticalScroll
+          : null,
+      horizontalController:
+      widget.stateManager.configuration.scrollbarConfig.draggableScrollbar
+          ? null
+          : null,
+      isAlwaysShown:
+      widget.stateManager.configuration.scrollbarConfig.isAlwaysShown,
+      thickness:
+      widget.stateManager.configuration.scrollbarConfig.scrollbarThickness,
+      thicknessWhileDragging: widget.stateManager.configuration.scrollbarConfig
+          .scrollbarThicknessWhileDragging,
+      radius: widget.stateManager.configuration.scrollbarConfig.scrollbarRadius,
+      radiusWhileDragging: widget.stateManager.configuration.scrollbarConfig
+          .scrollbarRadiusWhileDragging,
+      child: SingleChildScrollView(
+        // controller: widget.horizontalController,
+        // scrollDirection: Axis.horizontal,
+        // physics: const ClampingScrollPhysics(),
+        child: SizedBox(
+          width: width,
+          child: ListView.builder(
+            controller: verticalScroll,
+            scrollDirection: Axis.vertical,
+            physics: const ClampingScrollPhysics(),
+            itemCount: rows.length,
+            itemExtent: widget.stateManager.rowTotalHeight,
+            itemBuilder: (ctx, i) {
+              return Container(
+                  margin: const EdgeInsets.only(top: 8),
+                  child: PlutoBaseRow(
+                    key: ValueKey('body_row_${rows[i].key}'),
+                    stateManager: widget.stateManager,
+                    rowIdx: i,
+                    row: rows[i],
+                    columns: columns,
+                    isFirst: i == 0,
+                    isLast: rows.length == i - 1,
+                    rowColor: widget.rowColor,
+                    headerColor: widget.headerColor,
+                    dividerColor: widget.dividerColor,
+                    rowRadius: widget.rowRadius,
+                    onCheck: widget.onCheck,
+                  ));
+            },
+          ),
         ),
       ),
     );
-    //);
   }
 }
