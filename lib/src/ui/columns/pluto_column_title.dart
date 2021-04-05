@@ -120,8 +120,8 @@ class _PlutoColumnTitleState extends _PlutoColumnTitleStateWithChange {
         icon: PlutoGridColumnIcon(
           sort: widget.column.sort,
           color: widget.stateManager.configuration.iconColor,
-          ascendingIconColor:widget.ascendingIconColor,
-          descendingIconColor:widget.descendingIconColor,
+          ascendingIconColor: widget.ascendingIconColor,
+          descendingIconColor: widget.descendingIconColor,
         ),
         iconSize: widget.stateManager.configuration.iconSize,
         onPressed: null,
@@ -162,7 +162,6 @@ class PlutoGridColumnIcon extends StatelessWidget {
   final Color descendingIconColor;
   final Color ascendingIconColor;
 
-
   PlutoGridColumnIcon({
     this.sort,
     this.color,
@@ -175,10 +174,9 @@ class PlutoGridColumnIcon extends StatelessWidget {
     switch (sort) {
       case PlutoColumnSort.ascending:
         return Icon(
-            //Icons.sort,
-            Icons.arrow_downward_sharp,
-            color: ascendingIconColor,
-
+          //Icons.sort,
+          Icons.arrow_downward_sharp,
+          color: ascendingIconColor,
         );
       case PlutoColumnSort.descending:
         return Icon(
@@ -326,7 +324,10 @@ class _BuildColumnWidget extends StatelessWidget {
                                         topLeft: Radius.circular(headerRadius),
                                         bottomLeft: Radius.circular(headerRadius),
                                       )
-                                    : null
+                                    : BorderRadius.only(
+                                        topRight: Radius.circular(headerRadius),
+                                        bottomRight: Radius.circular(headerRadius),
+                                      )
                             : null,
                       ),
                       height: PlutoGridSettings.rowHeight,
