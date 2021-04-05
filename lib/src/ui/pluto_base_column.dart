@@ -81,6 +81,7 @@ class _PlutoBaseColumnState extends _PlutoBaseColumnStateWithChange {
           stateManager: widget.stateManager,
           column: widget.column,
           isLast: widget.last,
+          isFirst:widget.first,
           rowColor:widget.rowColor,
           headerColor:widget.headerColor,
           dividerColor:widget.dividerColor,

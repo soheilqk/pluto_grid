@@ -5,6 +5,7 @@ class PlutoColumnTitle extends PlutoStatefulWidget {
   final PlutoGridStateManager stateManager;
   final PlutoColumn column;
   final bool isLast;
+  final bool isFirst;
   final Color headerColor;
   final Color rowColor;
   final Color dividerColor;
@@ -16,6 +17,7 @@ class PlutoColumnTitle extends PlutoStatefulWidget {
     @required this.stateManager,
     @required this.column,
     this.isLast,
+    this.isFirst,
     this.headerColor,
     this.dividerColor,
     this.rowColor,
@@ -97,6 +99,7 @@ class _PlutoColumnTitleState extends _PlutoColumnTitleStateWithChange {
   Widget build(BuildContext context) {
     final _columnWidget = _BuildColumnWidget(
       isLast: widget.isLast,
+      isFirst: widget.isFirst,
       headerColor: widget.headerColor,
       dividerColor: widget.dividerColor,
       headerRadius: widget.headerRadius,
@@ -258,6 +261,7 @@ class _BuildColumnWidget extends StatelessWidget {
   final PlutoGridStateManager stateManager;
   final PlutoColumn column;
   final bool isLast;
+  final bool isFirst;
   final Color headerColor;
   final Color rowColor;
   final Color dividerColor;
@@ -268,6 +272,7 @@ class _BuildColumnWidget extends StatelessWidget {
     this.stateManager,
     this.column,
     this.isLast,
+    this.isFirst,
     this.headerColor,
     this.dividerColor,
     this.rowColor,
@@ -314,7 +319,7 @@ class _BuildColumnWidget extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: headerColor,
                         borderRadius: (headerRadius != null && headerRadius > 0)
-                            ? column.enableRowChecked
+                            ? (column.enableRowChecked || isFirst)
                                 ? BorderRadius.only(
                                     topRight: Radius.circular(headerRadius),
                                     bottomRight: Radius.circular(headerRadius),
@@ -324,10 +329,7 @@ class _BuildColumnWidget extends StatelessWidget {
                                         topLeft: Radius.circular(headerRadius),
                                         bottomLeft: Radius.circular(headerRadius),
                                       )
-                                    : BorderRadius.only(
-                                        topRight: Radius.circular(headerRadius),
-                                        bottomRight: Radius.circular(headerRadius),
-                                      )
+                                    :null
                             : null,
                       ),
                       height: PlutoGridSettings.rowHeight,
