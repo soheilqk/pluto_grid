@@ -103,7 +103,7 @@ class _PlutoBodyRowsState extends _PlutoBodyRowsStateWithChange {
           : null,
       horizontalController:
       widget.stateManager.configuration.scrollbarConfig.draggableScrollbar
-          ? null
+          ? horizontalScroll
           : null,
       isAlwaysShown:
       widget.stateManager.configuration.scrollbarConfig.isAlwaysShown,
