@@ -295,7 +295,7 @@ class _PlutoGridState extends State<PlutoGrid> {
                   ),
                   child: Stack(
                     children: [
-                      if (stateManager.showHeader) ...[
+                     // if (stateManager.showHeader) ...[
                         Positioned.fill(
                           top: 0,
                           bottom: stateManager.headerBottomOffset,
@@ -309,16 +309,16 @@ class _PlutoGridState extends State<PlutoGrid> {
                           ),
                         ),
 
-                        Positioned(
-                          top: stateManager.headerHeight,
-                          left: 0,
-                          right: 0,
-                          child: PlutoShadowLine(
-                            axis: Axis.horizontal,
-                            color: stateManager.configuration.gridBorderColor,
-                          ),
-                        ),
-                      ],
+                      //   Positioned(
+                      //     top: stateManager.headerHeight,
+                      //     left: 0,
+                      //     right: 0,
+                      //     child: PlutoShadowLine(
+                      //       axis: Axis.horizontal,
+                      //       color: stateManager.configuration.gridBorderColor,
+                      //     ),
+                      //   ),
+                      // ],
 
                       if (_showFrozenColumn && _hasLeftFrozenColumns) ...[
                         Positioned.fill(
