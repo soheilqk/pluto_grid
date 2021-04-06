@@ -118,9 +118,10 @@ class _PlutoBodyRowsState extends _PlutoBodyRowsStateWithChange {
     //     scrollDirection: Axis.horizontal,
     //     physics: const ClampingScrollPhysics(),
     //     child:
-        return SizedBox(
-          width: width,
-          child: ListView.builder(
+    //     return SizedBox(
+    //       width: width,
+    //       child:
+          return ListView.builder(
             controller: verticalScroll,
             scrollDirection: Axis.vertical,
             physics: const ClampingScrollPhysics(),
@@ -144,7 +145,7 @@ class _PlutoBodyRowsState extends _PlutoBodyRowsStateWithChange {
                     onCheck: widget.onCheck,
                   ));
             },
-          ),
+          //),
         //),
       //),
     );
