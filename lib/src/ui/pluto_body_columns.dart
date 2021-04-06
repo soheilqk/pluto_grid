@@ -80,7 +80,7 @@ class _PlutoBodyColumnsState extends _PlutoBodyColumnsStateWithChange {
         children: [
           Container(
             width: width,
-            height: widget.stateManager.rowHeight,
+            height: PlutoGridSettings.rowHeight,
             margin: const EdgeInsets.only(right: 34),
             decoration: BoxDecoration(color: widget.headerColor, borderRadius: BorderRadius.circular(4)),
           ),
