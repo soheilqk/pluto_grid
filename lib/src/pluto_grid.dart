@@ -117,7 +117,7 @@ class _PlutoGridState extends State<PlutoGrid> {
 
     initStateManager();
 
-    initKeyManager();
+   // initKeyManager();
 
     initEventManager();
 
