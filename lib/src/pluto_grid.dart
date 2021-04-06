@@ -307,7 +307,7 @@ class _PlutoGridState extends State<PlutoGrid> {
                             physics: const NeverScrollableScrollPhysics(),
                             children: [
                               Container(width:80,child: TextFormField(controller: myController,)),
-                              widget.createHeader(stateManager),
+                              widget.header,
                             ],
                           ),
                         ),
@@ -324,7 +324,6 @@ class _PlutoGridState extends State<PlutoGrid> {
                       ],
                       Positioned.fill(
                         top: 0,
-                        bottom: stateManager.headerBottomOffset,
                         child: ListView(
                           controller: scroll,
                           scrollDirection: Axis.horizontal,
