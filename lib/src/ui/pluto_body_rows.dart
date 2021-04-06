@@ -113,9 +113,9 @@ class _PlutoBodyRowsState extends _PlutoBodyRowsStateWithChange {
       radiusWhileDragging: widget.stateManager.configuration.scrollbarConfig
           .scrollbarRadiusWhileDragging,
       child: SingleChildScrollView(
-        // controller: widget.horizontalController,
-        // scrollDirection: Axis.horizontal,
-        // physics: const ClampingScrollPhysics(),
+        controller: horizontalScroll,
+        scrollDirection: Axis.horizontal,
+        physics: const ClampingScrollPhysics(),
         child: SizedBox(
           width: width,
           child: ListView.builder(
