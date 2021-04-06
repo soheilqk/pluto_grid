@@ -321,10 +321,10 @@ class _PlutoGridState extends State<PlutoGrid> {
                           ),
                         ),
                       ],
-                      Positioned.fill(
-                        top: 0,
-                        child: Container(
-                          height: stateManager.headerHeight,
+                      if (widget.header != null) ...[
+                        Positioned.fill(
+                          top: 0,
+                          bottom: stateManager.headerBottomOffset,
                           child: ListView(
                             controller: scroll,
                             scrollDirection: Axis.horizontal,
@@ -334,7 +334,18 @@ class _PlutoGridState extends State<PlutoGrid> {
                             ],
                           ),
                         ),
-                      ),
+
+                        Positioned(
+                          top: stateManager.headerHeight,
+                          left: 0,
+                          right: 0,
+                          child: PlutoShadowLine(
+                            axis: Axis.horizontal,
+                            color: stateManager.configuration.gridBorderColor,
+                          ),
+                        ),
+                      ],
+
                       if (_showFrozenColumn && _hasLeftFrozenColumns) ...[
                         Positioned.fill(
                           top: stateManager.headerHeight,
