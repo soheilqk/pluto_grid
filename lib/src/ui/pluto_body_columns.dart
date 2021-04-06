@@ -76,14 +76,7 @@ class _PlutoBodyColumnsState extends _PlutoBodyColumnsStateWithChange {
   Widget build(BuildContext context) {
     return SizedBox(
       width: width,
-      child: Stack(
-        children: [
-          Container(
-            width: width,
-            height: PlutoGridSettings.rowHeight,
-            margin: const EdgeInsets.only(right: 34),
-            decoration: BoxDecoration(color: widget.headerColor, borderRadius: BorderRadius.circular(4)),
-          ),
+      child:
           Row(
             children: columns.map((element) {
               var i = columns.indexOf(element);
@@ -107,8 +100,6 @@ class _PlutoBodyColumnsState extends _PlutoBodyColumnsStateWithChange {
                 );
               }
             }).toList(),
-          ),
-        ],
       ),
 
       // ListView.builder(
