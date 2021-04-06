@@ -311,7 +311,6 @@ class _BuildColumnWidget extends StatelessWidget {
                       const Text('همه', style: TextStyle(color: Colors.grey),),
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
-                        height: PlutoGridSettings.rowHeight,
                         child: _CheckboxAllSelectionWidget(
                           column: column,
                           stateManager: stateManager,
