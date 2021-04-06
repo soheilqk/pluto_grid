@@ -297,7 +297,7 @@ class _PlutoGridState extends State<PlutoGrid> {
                   ),
                   child: Stack(
                     children: [
-                      if (stateManager.showHeader) ...[
+                      if (stateManager.showHeader || widget.header !=null) ...[
                         Positioned.fill(
                           top: 0,
                           bottom: stateManager.headerBottomOffset,
