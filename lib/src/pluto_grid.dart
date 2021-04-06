@@ -321,7 +321,7 @@ class _PlutoGridState extends State<PlutoGrid> {
                           ),
                         ),
                       ],
-                      if (widget.header != null) ...[
+                       ...[
                         Positioned.fill(
                           top: 0,
                           bottom: stateManager.headerBottomOffset,
