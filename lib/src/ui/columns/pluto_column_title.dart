@@ -308,7 +308,7 @@ class _BuildColumnWidget extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                      const Text('همه', style: TextStyle(color: Colors.grey),),
+                      const Text('همه', style: TextStyle(color: Colors.grey,fontSize: 11),),
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: _CheckboxAllSelectionWidget(
