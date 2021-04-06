@@ -304,12 +304,20 @@ class _BuildColumnWidget extends StatelessWidget {
               children: [
                 if (column.enableRowChecked)
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    height: PlutoGridSettings.rowHeight,
-                    child: _CheckboxAllSelectionWidget(
-                      column: column,
-                      stateManager: stateManager,
-                    ),
+                   height: PlutoGridSettings.rowHeight,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                      const Text('همه', style: TextStyle(color: Colors.grey),),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        height: PlutoGridSettings.rowHeight,
+                        child: _CheckboxAllSelectionWidget(
+                          column: column,
+                          stateManager: stateManager,
+                        ),
+                      ),
+                    ],),
                   ),
                 Expanded(
                   child: _BuildSortableWidget(
