@@ -352,7 +352,6 @@ class _PlutoGridState extends State<PlutoGrid> {
                           dividerColor: widget.dividerColor,
                           rowRadius: widget.rowRadius,
                           onCheck: widget.onCheck,
-                          horizontalController: widget.horizontalController,
                         ),
                       ),
                       if (_showFrozenColumn && _hasRightFrozenColumns) ...[
