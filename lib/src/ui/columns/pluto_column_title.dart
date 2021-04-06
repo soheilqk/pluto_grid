@@ -304,19 +304,27 @@ class _BuildColumnWidget extends StatelessWidget {
               children: [
                 if (column.enableRowChecked)
                   Container(
-                   height: PlutoGridSettings.rowHeight,
+                    height: PlutoGridSettings.rowHeight,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                      const Text('همه', style: TextStyle(color: Colors.grey,fontSize: 11),),
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: _CheckboxAllSelectionWidget(
-                          column: column,
-                          stateManager: stateManager,
+                        const Text(
+                          'همه',
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 11,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                      ),
-                    ],),
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: _CheckboxAllSelectionWidget(
+                            column: column,
+                            stateManager: stateManager,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 Expanded(
                   child: _BuildSortableWidget(
@@ -336,7 +344,7 @@ class _BuildColumnWidget extends StatelessWidget {
                                         topLeft: Radius.circular(headerRadius),
                                         bottomLeft: Radius.circular(headerRadius),
                                       )
-                                    :null
+                                    : null
                             : null,
                       ),
                       height: PlutoGridSettings.rowHeight,
