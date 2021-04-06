@@ -101,6 +101,8 @@ class _PlutoGridState extends State<PlutoGrid> {
 
   List<Function()> disposeList = [];
 
+  ScrollController scroll;
+
   @override
   void dispose() {
     disposeList.forEach((dispose) {
@@ -125,6 +127,8 @@ class _PlutoGridState extends State<PlutoGrid> {
     initOnLoadedEvent();
 
     initSelectMode();
+
+    scroll = stateManager.scroll.horizontal.addAndGet();
   }
 
   void initProperties() {
@@ -267,6 +271,9 @@ class _PlutoGridState extends State<PlutoGrid> {
     _showLoading = stateManager.showLoading;
   }
 
+
+
+
   @override
   Widget build(BuildContext context) {
     return FocusScope(
@@ -301,7 +308,9 @@ class _PlutoGridState extends State<PlutoGrid> {
                         Positioned.fill(
                           top: 0,
                           bottom: stateManager.headerBottomOffset,
-                          child: widget.createHeader(stateManager),
+                          child: ListView(controller: scroll,
+                            scrollDirection: Axis.horizontal,
+                            physics: const NeverScrollableScrollPhysics(),children: [widget.createHeader(stateManager)],) ,
                         ),
                         Positioned(
                           top: stateManager.headerHeight,
