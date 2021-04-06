@@ -311,7 +311,7 @@ class _BuildColumnWidget extends StatelessWidget {
                         const Text(
                           'همه',
                           style: TextStyle(
-                            color: Colors.grey,
+                            color: Color(0xFF213468),
                             fontSize: 11,
                           ),
                           textAlign: TextAlign.center,
@@ -432,16 +432,14 @@ class __CheckboxAllSelectionWidgetState extends __CheckboxAllSelectionWidgetStat
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: PlutoScaledCheckbox(
-        value: checked,
-        handleOnChanged: _handleOnChanged,
-        tristate: true,
-        scale: 0.86,
-        unselectedColor: widget.stateManager.configuration.iconColor,
-        activeColor: widget.stateManager.configuration.activatedBorderColor,
-        checkColor: widget.stateManager.configuration.activatedColor,
-      ),
+    return PlutoScaledCheckbox(
+      value: checked,
+      handleOnChanged: _handleOnChanged,
+      tristate: true,
+      scale: 0.86,
+      unselectedColor: widget.stateManager.configuration.iconColor,
+      activeColor: widget.stateManager.configuration.activatedBorderColor,
+      checkColor: widget.stateManager.configuration.activatedColor,
     );
   }
 }
