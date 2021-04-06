@@ -26,8 +26,7 @@ class PlutoBodyColumns extends PlutoStatefulWidget {
   _PlutoBodyColumnsState createState() => _PlutoBodyColumnsState();
 }
 
-abstract class _PlutoBodyColumnsStateWithChange
-    extends PlutoStateWithChange<PlutoBodyColumns> {
+abstract class _PlutoBodyColumnsStateWithChange extends PlutoStateWithChange<PlutoBodyColumns> {
   List<PlutoColumn> columns;
 
   double width;
@@ -46,9 +45,7 @@ abstract class _PlutoBodyColumnsStateWithChange
   }
 
   List<PlutoColumn> _getColumns() {
-    return widget.stateManager.showFrozenColumn
-        ? widget.stateManager.bodyColumns
-        : widget.stateManager.columns;
+    return widget.stateManager.showFrozenColumn ? widget.stateManager.bodyColumns : widget.stateManager.columns;
   }
 
   double _getWidth() {
@@ -79,10 +76,10 @@ class _PlutoBodyColumnsState extends _PlutoBodyColumnsStateWithChange {
   Widget build(BuildContext context) {
     return SizedBox(
       width: width,
-      child: Row(children:
-        columns.map((element) {
+      child: Row(
+        children: columns.map((element) {
           var i = columns.indexOf(element);
-          return Expanded(child: PlutoBaseColumn(
+          var child = PlutoBaseColumn(
             rowColor: widget.rowColor,
             headerColor: widget.headerColor,
             dividerColor: widget.dividerColor,
@@ -93,9 +90,16 @@ class _PlutoBodyColumnsState extends _PlutoBodyColumnsStateWithChange {
             last: i == columns.length - 1,
             ascendingIconColor: widget.ascendingIconColor,
             descendingIconColor: widget.descendingIconColor,
-          ),);
-        }).toList()
-      ,),
+          );
+          if (element.field == 'rowNumber') {
+            return child;
+          } else {
+            return Expanded(
+              child: child,
+            );
+          }
+        }).toList(),
+      ),
 
       // ListView.builder(
       //   controller: scroll,
