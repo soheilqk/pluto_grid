@@ -79,13 +79,10 @@ class _PlutoBodyColumnsState extends _PlutoBodyColumnsStateWithChange {
   Widget build(BuildContext context) {
     return SizedBox(
       width: width,
-      child: ListView.builder(
-        controller: scroll,
-        scrollDirection: Axis.horizontal,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: columns.length,
-        itemBuilder: (ctx, i) {
-          return PlutoBaseColumn(
+      child: Row(children:
+        columns.map((element) {
+          var i = columns.indexOf(element);
+          return Expanded(child: PlutoBaseColumn(
             rowColor: widget.rowColor,
             headerColor: widget.headerColor,
             dividerColor: widget.dividerColor,
@@ -96,9 +93,30 @@ class _PlutoBodyColumnsState extends _PlutoBodyColumnsStateWithChange {
             last: i == columns.length - 1,
             ascendingIconColor: widget.ascendingIconColor,
             descendingIconColor: widget.descendingIconColor,
-          );
-        },
-      ),
+          ),);
+        }).toList()
+      ,),
+
+      // ListView.builder(
+      //   controller: scroll,
+      //   scrollDirection: Axis.horizontal,
+      //   physics: const NeverScrollableScrollPhysics(),
+      //   itemCount: columns.length,
+      //   itemBuilder: (ctx, i) {
+      //     return PlutoBaseColumn(
+      //       rowColor: widget.rowColor,
+      //       headerColor: widget.headerColor,
+      //       dividerColor: widget.dividerColor,
+      //       headerRadius: widget.headerRadius,
+      //       stateManager: widget.stateManager,
+      //       column: columns[i],
+      //       first: i == 0,
+      //       last: i == columns.length - 1,
+      //       ascendingIconColor: widget.ascendingIconColor,
+      //       descendingIconColor: widget.descendingIconColor,
+      //     );
+      //   },
+      // ),
     );
   }
 }
