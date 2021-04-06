@@ -114,7 +114,7 @@ class _PlutoBodyRowsState extends _PlutoBodyRowsStateWithChange {
             itemExtent: widget.stateManager.rowTotalHeight,
             itemBuilder: (ctx, i) {
               return Container(
-                  margin: const EdgeInsets.only(top: 8),
+                  margin: const EdgeInsets.only(top: 5),
                   child: PlutoBaseRow(
                     key: ValueKey('body_row_${rows[i].key}'),
                     stateManager: widget.stateManager,
