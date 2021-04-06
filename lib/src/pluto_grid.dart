@@ -123,7 +123,7 @@ class _PlutoGridState extends State<PlutoGrid> {
 
     initOnLoadedEvent();
 
-    initSelectMode();
+    //initSelectMode();
 
     scroll = stateManager.scroll.horizontal.addAndGet();
   }
