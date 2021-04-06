@@ -11,7 +11,6 @@ class PlutoBodyColumns extends PlutoStatefulWidget {
   final double headerRadius;
   final Color descendingIconColor;
   final Color ascendingIconColor;
-  final ScrollController horizontalController;
 
   PlutoBodyColumns(
     this.stateManager, {
@@ -21,7 +20,6 @@ class PlutoBodyColumns extends PlutoStatefulWidget {
     this.headerRadius,
     this.ascendingIconColor,
     this.descendingIconColor,
-    this.horizontalController,
   });
 
   @override

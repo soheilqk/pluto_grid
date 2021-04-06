@@ -10,7 +10,6 @@ class PlutoBodyRows extends PlutoStatefulWidget {
   final Color dividerColor;
   final double rowRadius;
   final Function onCheck;
-  final ScrollController horizontalController;
 
   PlutoBodyRows(
       this.stateManager, {
@@ -19,7 +18,6 @@ class PlutoBodyRows extends PlutoStatefulWidget {
         this.dividerColor,
         this.rowRadius,
         this.onCheck,
-        this.horizontalController,
       });
 
   @override

@@ -51,7 +51,6 @@ class PlutoGrid extends StatefulWidget {
   final double headerRadius;
   final Color descendingIconColor;
   final Color ascendingIconColor;
-  final ScrollController horizontalController;
 
   const PlutoGrid({
     Key key,
@@ -72,7 +71,6 @@ class PlutoGrid extends StatefulWidget {
     this.headerRadius,
     this.ascendingIconColor = Colors.green,
     this.descendingIconColor = Colors.red,
-    this.horizontalController,
   }) : super(key: key);
 
   @override
