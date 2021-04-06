@@ -299,14 +299,15 @@ class _PlutoGridState extends State<PlutoGrid> {
                         Positioned.fill(
                           top: 0,
                           bottom: stateManager.headerBottomOffset,
-                          child: ListView(
-                            controller: scroll,
-                            scrollDirection: Axis.horizontal,
-                            physics: const NeverScrollableScrollPhysics(),
-                            children: [
-                              widget.createHeader(stateManager),
-                            ],
-                          ),
+                           child: widget.createHeader(stateManager),
+                          // ListView(
+                          //   controller: scroll,
+                          //   scrollDirection: Axis.horizontal,
+                          //   physics: const NeverScrollableScrollPhysics(),
+                          //   children: [
+                          //     widget.createHeader(stateManager),
+                          //   ],
+                          // ),
                         ),
 
                       //   Positioned(
