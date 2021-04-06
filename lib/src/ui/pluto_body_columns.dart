@@ -75,8 +75,8 @@ class _PlutoBodyColumnsState extends _PlutoBodyColumnsStateWithChange {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: widget.headerColor,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(4)),
+
+      decoration: BoxDecoration(color: widget.headerColor,borderRadius: BorderRadius.circular(4)),
       width: width,
       child: Row(
         children: columns.map((element) {
