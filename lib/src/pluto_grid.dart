@@ -297,7 +297,7 @@ class _PlutoGridState extends State<PlutoGrid> {
                   ),
                   child: Stack(
                     children: [
-                      if (stateManager.showHeader || widget.header !=null) ...[
+                      if (stateManager.showHeader) ...[
                         Positioned.fill(
                           top: 0,
                           bottom: stateManager.headerBottomOffset,
@@ -306,8 +306,7 @@ class _PlutoGridState extends State<PlutoGrid> {
                             scrollDirection: Axis.horizontal,
                             physics: const NeverScrollableScrollPhysics(),
                             children: [
-                              Container(width:80,child: TextFormField(controller: myController,)),
-                              widget.header,
+                              widget.createHeader(stateManager),
                             ],
                           ),
                         ),
@@ -322,17 +321,20 @@ class _PlutoGridState extends State<PlutoGrid> {
                           ),
                         ),
                       ],
-                      // Positioned.fill(
-                      //   top: 0,
-                      //   child: ListView(
-                      //     controller: scroll,
-                      //     scrollDirection: Axis.horizontal,
-                      //     physics: const NeverScrollableScrollPhysics(),
-                      //     children: [
-                      //       widget.header,
-                      //     ],
-                      //   ),
-                      // ),
+                      Positioned.fill(
+                        top: 0,
+                        child: Container(
+                          height: stateManager.headerHeight,
+                          child: ListView(
+                            controller: scroll,
+                            scrollDirection: Axis.horizontal,
+                            physics: const NeverScrollableScrollPhysics(),
+                            children: [
+                              widget.header,
+                            ],
+                          ),
+                        ),
+                      ),
                       if (_showFrozenColumn && _hasLeftFrozenColumns) ...[
                         Positioned.fill(
                           top: stateManager.headerHeight,
