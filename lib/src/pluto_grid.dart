@@ -302,7 +302,7 @@ class _PlutoGridState extends State<PlutoGrid> {
                           top: 0,
                           bottom: stateManager.headerBottomOffset,
                           child: ListView(
-                            controller: scroll,
+                            //controller: scroll,
                             scrollDirection: Axis.horizontal,
                             physics: const NeverScrollableScrollPhysics(),
                             children: [
