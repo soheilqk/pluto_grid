@@ -74,33 +74,41 @@ class _PlutoBodyColumnsState extends _PlutoBodyColumnsStateWithChange {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-
-      decoration: BoxDecoration(color: widget.headerColor,borderRadius: BorderRadius.circular(4)),
+    return SizedBox(
       width: width,
-      child: Row(
-        children: columns.map((element) {
-          var i = columns.indexOf(element);
-          var child = PlutoBaseColumn(
-            rowColor: widget.rowColor,
-            headerColor: widget.headerColor,
-            dividerColor: widget.dividerColor,
-            headerRadius: widget.headerRadius,
-            stateManager: widget.stateManager,
-            column: columns[i],
-            first: i == 0,
-            last: i == columns.length - 1,
-            ascendingIconColor: widget.ascendingIconColor,
-            descendingIconColor: widget.descendingIconColor,
-          );
-          if (element.field == 'rowNumber') {
-            return child;
-          } else {
-            return Expanded(
-              child: child,
-            );
-          }
-        }).toList(),
+      child: Stack(
+        children: [
+          Container(
+            width: width,
+            height: widget.stateManager.rowHeight,
+            margin: const EdgeInsets.only(right: 34),
+            decoration: BoxDecoration(color: widget.headerColor, borderRadius: BorderRadius.circular(4)),
+          ),
+          Row(
+            children: columns.map((element) {
+              var i = columns.indexOf(element);
+              var child = PlutoBaseColumn(
+                rowColor: widget.rowColor,
+                headerColor: widget.headerColor,
+                dividerColor: widget.dividerColor,
+                headerRadius: widget.headerRadius,
+                stateManager: widget.stateManager,
+                column: columns[i],
+                first: i == 0,
+                last: i == columns.length - 1,
+                ascendingIconColor: widget.ascendingIconColor,
+                descendingIconColor: widget.descendingIconColor,
+              );
+              if (element.field == 'rowNumber') {
+                return child;
+              } else {
+                return Expanded(
+                  child: child,
+                );
+              }
+            }).toList(),
+          ),
+        ],
       ),
 
       // ListView.builder(
