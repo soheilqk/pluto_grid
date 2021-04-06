@@ -229,7 +229,7 @@ class _CellContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      //width: width,
+      width: width,
       height: height,
       decoration: _boxDecoration(),
       child: Container(
