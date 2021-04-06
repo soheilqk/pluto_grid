@@ -311,18 +311,7 @@ class _PlutoGridState extends State<PlutoGrid> {
                             ],
                           ),
                         ),
-                        Positioned.fill(
-                          top: 0,
-                          bottom: stateManager.headerBottomOffset,
-                          child: ListView(
-                            controller: scroll,
-                            scrollDirection: Axis.horizontal,
-                            physics: const NeverScrollableScrollPhysics(),
-                            children: [
-                              widget.header,
-                            ],
-                          ),
-                        ),
+
                         Positioned(
                           top: stateManager.headerHeight,
                           left: 0,
@@ -333,6 +322,18 @@ class _PlutoGridState extends State<PlutoGrid> {
                           ),
                         ),
                       ],
+                      Positioned.fill(
+                        top: 0,
+
+                        child: ListView(
+                          controller: scroll,
+                          scrollDirection: Axis.horizontal,
+                          physics: const NeverScrollableScrollPhysics(),
+                          children: [
+                            widget.header,
+                          ],
+                        ),
+                      ),
                       if (_showFrozenColumn && _hasLeftFrozenColumns) ...[
                         Positioned.fill(
                           top: stateManager.headerHeight,
