@@ -273,7 +273,7 @@ class _PlutoGridState extends State<PlutoGrid> {
       onFocusChange: (hasFocus) {
         stateManager.setKeepFocus(hasFocus);
       },
-      onKey: handleGridFocusOnKey,
+      //onKey: handleGridFocusOnKey,
       child: SafeArea(
         child: LayoutBuilder(
             key: stateManager.gridKey,
