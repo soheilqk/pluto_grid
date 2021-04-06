@@ -306,6 +306,7 @@ class _PlutoGridState extends State<PlutoGrid> {
                             scrollDirection: Axis.horizontal,
                             physics: const NeverScrollableScrollPhysics(),
                             children: [
+                              TextField(controller: myController,),
                               widget.createHeader(stateManager),
                             ],
                           ),
