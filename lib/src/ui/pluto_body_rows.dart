@@ -113,11 +113,12 @@ class _PlutoBodyRowsState extends _PlutoBodyRowsStateWithChange {
     //   radiusWhileDragging: widget.stateManager.configuration.scrollbarConfig
     //       .scrollbarRadiusWhileDragging,
     //   child:
-      return SingleChildScrollView(
-        controller: horizontalScroll,
-        scrollDirection: Axis.horizontal,
-        physics: const ClampingScrollPhysics(),
-        child: SizedBox(
+    //   return SingleChildScrollView(
+    //     controller: horizontalScroll,
+    //     scrollDirection: Axis.horizontal,
+    //     physics: const ClampingScrollPhysics(),
+    //     child:
+        SizedBox(
           width: width,
           child: ListView.builder(
             controller: verticalScroll,
@@ -144,7 +145,7 @@ class _PlutoBodyRowsState extends _PlutoBodyRowsStateWithChange {
                   ));
             },
           ),
-        ),
+        //),
       //),
     );
   }
