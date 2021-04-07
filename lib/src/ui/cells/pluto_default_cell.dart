@@ -125,7 +125,7 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
         if (widget.column.enableRowChecked)
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            height: PlutoGridSettings.rowHeight,
+            height: widget.stateManager.rowHeight ??PlutoGridSettings.rowHeight,
             child: _CheckboxSelectionWidget(
               onCheck: widget.onCheck,
               column: widget.column,
@@ -135,7 +135,7 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
           ),
         Expanded(
           child: Container(
-            height: PlutoGridSettings.rowHeight,
+            height: widget.stateManager.rowHeight ?? PlutoGridSettings.rowHeight,
             decoration: BoxDecoration(
                 color: widget.rowColor,
                 borderRadius: (widget.rowRadius != null && widget.rowRadius > 0)
@@ -157,11 +157,11 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
         if (!widget.isLast)
           Container(
             color: widget.rowColor,
-            height: PlutoGridSettings.rowHeight,
+            height: widget.stateManager.rowHeight ??PlutoGridSettings.rowHeight,
             child: Row(
               children: [
                 Container(
-                  height: PlutoGridSettings.rowHeight / 2,
+                  height: widget.stateManager.rowHeight / 2 ?? PlutoGridSettings.rowHeight / 2,
                   width: 1,
                   color: widget.dividerColor,
                 ),
