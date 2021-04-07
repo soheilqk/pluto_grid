@@ -46,36 +46,41 @@ class PlutoBaseRow extends StatelessWidget {
             height: stateManager.rowHeight,
             column: column,
             rowIdx: rowIdx,
-            isFirst:columns.indexOf(column) == 0,
+            isFirst: columns.indexOf(column) == 0,
             isLast: columns.indexOf(column) == columns.length - 1,
             rowColor: rowColor,
             headerColor: headerColor,
             dividerColor: dividerColor,
-            rowRadius:rowRadius,
+            rowRadius: rowRadius,
             onCheck: onCheck,
           );
-          if(column.field == 'rowNumber'){
+          if (column.field == 'rowNumber') {
             return child;
-          }else{
-            print('[Row]: ${column.width.toInt()}');
-            return Expanded(flex: column.width.toInt(),child: LayoutBuilder(builder: (context, constraints) {
-              return PlutoBaseCell(
-                key: row.cells[column.field].key,
-                stateManager: stateManager,
-                cell: row.cells[column.field],
-                width: constraints.maxWidth,
-                height: stateManager.rowHeight,
-                column: column,
-                rowIdx: rowIdx,
-                isFirst:columns.indexOf(column) == 0,
-                isLast: columns.indexOf(column) == columns.length - 1,
-                rowColor: rowColor,
-                headerColor: headerColor,
-                dividerColor: dividerColor,
-                rowRadius:rowRadius,
-                onCheck: onCheck,
-              );
-            },),);
+          } else {
+            //print('[Row]: ${column.width.toInt()}');
+            return Expanded(
+              //flex: column.width.toInt(),
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return PlutoBaseCell(
+                    key: row.cells[column.field].key,
+                    stateManager: stateManager,
+                    cell: row.cells[column.field],
+                    width: constraints.maxWidth,
+                    height: stateManager.rowHeight,
+                    column: column,
+                    rowIdx: rowIdx,
+                    isFirst: columns.indexOf(column) == 0,
+                    isLast: columns.indexOf(column) == columns.length - 1,
+                    rowColor: rowColor,
+                    headerColor: headerColor,
+                    dividerColor: dividerColor,
+                    rowRadius: rowRadius,
+                    onCheck: onCheck,
+                  );
+                },
+              ),
+            );
           }
         }).toList(growable: false),
       ),
