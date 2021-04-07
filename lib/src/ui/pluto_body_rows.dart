@@ -106,7 +106,8 @@ class _PlutoBodyRowsState extends _PlutoBodyRowsStateWithChange {
       //   scrollDirection: Axis.horizontal,
       //   physics: const ClampingScrollPhysics(),
       //   child:
-         SizedBox(
+         Container(
+           padding: const EdgeInsets.only(left: 5),
           width: width,
           child:ListView.builder(
             controller: verticalScroll,
