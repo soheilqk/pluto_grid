@@ -59,7 +59,7 @@ class PlutoBaseRow extends StatelessWidget {
           } else {
             //print('[Row]: ${column.width.toInt()}');
             return Expanded(
-              //flex: column.width.toInt(),
+              flex: column.flex,
               child: LayoutBuilder(
                 builder: (context, constraints) {
                   return PlutoBaseCell(

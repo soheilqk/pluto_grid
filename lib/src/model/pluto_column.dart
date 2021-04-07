@@ -73,10 +73,13 @@ class PlutoColumn {
   /// Hide the column.
   bool hide;
 
+  int flex;
+
   PlutoColumn({
     @required this.title,
     @required this.field,
     @required this.type,
+    @required this.flex,
     this.width = PlutoGridSettings.columnWidth,
     this.minWidth = PlutoGridSettings.minColumnWidth,
     this.textAlign = PlutoColumnTextAlign.left,
