@@ -96,6 +96,7 @@ class _PlutoBodyColumnsState extends _PlutoBodyColumnsStateWithChange {
                 return child;
               } else {
                 return Expanded(
+                  flex: element.width.toInt(),
                   child: child,
                 );
               }
