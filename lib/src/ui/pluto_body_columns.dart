@@ -95,6 +95,7 @@ class _PlutoBodyColumnsState extends _PlutoBodyColumnsStateWithChange {
               if (element.field == 'rowNumber') {
                 return child;
               } else {
+                print('[Column]: ${element.width.toInt()}');
                 return Expanded(
                   flex: element.width.toInt(),
                   child: child,
