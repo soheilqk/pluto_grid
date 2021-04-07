@@ -57,7 +57,6 @@ class PlutoBaseRow extends StatelessWidget {
           if (column.field == 'rowNumber') {
             return child;
           } else {
-            print('[Row]: ${column.flex}');
             return Expanded(
               flex: column.flex,
               child: LayoutBuilder(
