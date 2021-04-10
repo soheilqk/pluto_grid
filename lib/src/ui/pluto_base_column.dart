@@ -12,6 +12,7 @@ class PlutoBaseColumn extends PlutoStatefulWidget {
   final double headerRadius;
   final Color descendingIconColor;
   final Color ascendingIconColor;
+  final double columnHeight;
 
   PlutoBaseColumn({
     this.stateManager,
@@ -21,6 +22,7 @@ class PlutoBaseColumn extends PlutoStatefulWidget {
     this.headerColor,
     this.dividerColor,
     this.rowColor,
+    this.columnHeight,
     this.headerRadius,
     this.ascendingIconColor,
     this.descendingIconColor,
@@ -30,7 +32,8 @@ class PlutoBaseColumn extends PlutoStatefulWidget {
   _PlutoBaseColumnState createState() => _PlutoBaseColumnState();
 }
 
-abstract class _PlutoBaseColumnStateWithChange extends PlutoStateWithChange<PlutoBaseColumn> {
+abstract class _PlutoBaseColumnStateWithChange
+    extends PlutoStateWithChange<PlutoBaseColumn> {
   bool showColumnFilter;
 
   @override
@@ -56,18 +59,25 @@ class _PlutoBaseColumnState extends _PlutoBaseColumnStateWithChange {
         return Container(
             margin: EdgeInsets.symmetric(vertical: 4),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(5), bottomLeft: Radius.circular(5)),
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(5),
+                    bottomLeft: Radius.circular(5)),
                 color: Colors.grey[100]),
             child: child);
       } else if (widget.last) {
         return Container(
             margin: EdgeInsets.symmetric(vertical: 4),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(5), bottomLeft: Radius.circular(5)),
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(5),
+                    bottomLeft: Radius.circular(5)),
                 color: Colors.grey[100]),
             child: child);
       } else if (widget.first == false && widget.last == false) {
-        return Container(margin: EdgeInsets.symmetric(vertical: 4), color: Colors.grey[100], child: child);
+        return Container(
+            margin: EdgeInsets.symmetric(vertical: 4),
+            color: Colors.grey[100],
+            child: child);
       }
     } else {
       return Container();
@@ -80,14 +90,15 @@ class _PlutoBaseColumnState extends _PlutoBaseColumnStateWithChange {
         PlutoColumnTitle(
           stateManager: widget.stateManager,
           column: widget.column,
+          columnHeight: widget.columnHeight,
           isLast: widget.last,
-          isFirst:widget.first,
-          rowColor:widget.rowColor,
-          headerColor:widget.headerColor,
-          dividerColor:widget.dividerColor,
-          headerRadius:widget.headerRadius,
-          ascendingIconColor:widget.ascendingIconColor,
-          descendingIconColor:widget.descendingIconColor,
+          isFirst: widget.first,
+          rowColor: widget.rowColor,
+          headerColor: widget.headerColor,
+          dividerColor: widget.dividerColor,
+          headerRadius: widget.headerRadius,
+          ascendingIconColor: widget.ascendingIconColor,
+          descendingIconColor: widget.descendingIconColor,
         ),
         showFilter,
       ],
