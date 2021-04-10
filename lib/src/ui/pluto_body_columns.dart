@@ -81,6 +81,7 @@ class _PlutoBodyColumnsState extends _PlutoBodyColumnsStateWithChange {
   Widget build(BuildContext context) {
     return SizedBox(
       width: width,
+      height: widget.columnHeight,
       child: Row(
         children: columns.map((element) {
           var i = columns.indexOf(element);
