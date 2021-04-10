@@ -360,7 +360,7 @@ class _BuildColumnWidget extends StatelessWidget {
                                     : null
                             : null,
                       ),
-                      height: PlutoGridSettings.rowHeight,
+                      height: columnHeight,
                       child: Center(
                         child: _ColumnTextWidget(
                           column: column,
