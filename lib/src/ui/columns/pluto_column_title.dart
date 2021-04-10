@@ -112,6 +112,7 @@ class _PlutoColumnTitleState extends _PlutoColumnTitleStateWithChange {
       headerRadius: widget.headerRadius,
       stateManager: widget.stateManager,
       column: widget.column,
+      columnHeight: widget.columnHeight,
     );
     //final _columnWidget = _BuildSortableWidget(
     //   stateManager: widget.stateManager,
@@ -124,7 +125,7 @@ class _PlutoColumnTitleState extends _PlutoColumnTitleStateWithChange {
     // );
 
     final _contextMenuIcon = Container(
-      height: widget.columnHeight ?? widget.stateManager.columnHeight,
+      height: widget.stateManager.columnHeight,
       alignment: Alignment.center,
       child: IconButton(
         icon: PlutoGridColumnIcon(
@@ -275,6 +276,7 @@ class _BuildColumnWidget extends StatelessWidget {
   final Color rowColor;
   final Color dividerColor;
   final double headerRadius;
+  final double columnHeight;
 
   const _BuildColumnWidget({
     Key key,
@@ -282,6 +284,7 @@ class _BuildColumnWidget extends StatelessWidget {
     this.column,
     this.isLast,
     this.isFirst,
+    this.columnHeight,
     this.headerColor,
     this.dividerColor,
     this.rowColor,
@@ -292,7 +295,7 @@ class _BuildColumnWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: column.width,
-      height: PlutoGridSettings.rowHeight,
+      height: columnHeight ?? PlutoGridSettings.rowHeight,
       //padding: const EdgeInsets.symmetric(horizontal: PlutoGridSettings.cellPadding),
       decoration: stateManager.configuration.enableColumnBorder
           ? BoxDecoration(
