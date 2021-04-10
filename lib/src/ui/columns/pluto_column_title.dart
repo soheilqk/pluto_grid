@@ -12,6 +12,7 @@ class PlutoColumnTitle extends PlutoStatefulWidget {
   final double headerRadius;
   final Color descendingIconColor;
   final Color ascendingIconColor;
+  final double columnHeight;
 
   PlutoColumnTitle({
     @required this.stateManager,
@@ -21,6 +22,7 @@ class PlutoColumnTitle extends PlutoStatefulWidget {
     this.headerColor,
     this.dividerColor,
     this.rowColor,
+    this.columnHeight,
     this.headerRadius,
     this.ascendingIconColor,
     this.descendingIconColor,
@@ -30,7 +32,8 @@ class PlutoColumnTitle extends PlutoStatefulWidget {
   _PlutoColumnTitleState createState() => _PlutoColumnTitleState();
 }
 
-abstract class _PlutoColumnTitleStateWithChange extends PlutoStateWithChange<PlutoColumnTitle> {
+abstract class _PlutoColumnTitleStateWithChange
+    extends PlutoStateWithChange<PlutoColumnTitle> {
   PlutoColumnSort sort;
 
   @override
@@ -54,13 +57,16 @@ class _PlutoColumnTitleState extends _PlutoColumnTitleStateWithChange {
 
     switch (selectedMenu) {
       case PlutoGridColumnMenuItem.unfreeze:
-        widget.stateManager.toggleFrozenColumn(widget.column.key, PlutoColumnFrozen.none);
+        widget.stateManager
+            .toggleFrozenColumn(widget.column.key, PlutoColumnFrozen.none);
         break;
       case PlutoGridColumnMenuItem.freezeToLeft:
-        widget.stateManager.toggleFrozenColumn(widget.column.key, PlutoColumnFrozen.left);
+        widget.stateManager
+            .toggleFrozenColumn(widget.column.key, PlutoColumnFrozen.left);
         break;
       case PlutoGridColumnMenuItem.freezeToRight:
-        widget.stateManager.toggleFrozenColumn(widget.column.key, PlutoColumnFrozen.right);
+        widget.stateManager
+            .toggleFrozenColumn(widget.column.key, PlutoColumnFrozen.right);
         break;
       case PlutoGridColumnMenuItem.autoFit:
         widget.stateManager.autoFitColumn(context, widget.column);
@@ -92,7 +98,8 @@ class _PlutoColumnTitleState extends _PlutoColumnTitleStateWithChange {
   }
 
   void _handleOnHorizontalDragEndContextMenu(DragEndDetails details) {
-    widget.stateManager.resizeColumn(widget.column.key, _currentPosition.dx - 20);
+    widget.stateManager
+        .resizeColumn(widget.column.key, _currentPosition.dx - 20);
   }
 
   @override
@@ -105,6 +112,7 @@ class _PlutoColumnTitleState extends _PlutoColumnTitleStateWithChange {
       headerRadius: widget.headerRadius,
       stateManager: widget.stateManager,
       column: widget.column,
+      columnHeight: widget.columnHeight,
     );
     //final _columnWidget = _BuildSortableWidget(
     //   stateManager: widget.stateManager,
@@ -148,7 +156,8 @@ class _PlutoColumnTitleState extends _PlutoColumnTitleStateWithChange {
             child: widget.column.enableContextMenu
                 ? GestureDetector(
                     onTapUp: _handleOnTapUpContextMenu,
-                    onHorizontalDragUpdate: _handleOnHorizontalDragUpdateContextMenu,
+                    onHorizontalDragUpdate:
+                        _handleOnHorizontalDragUpdateContextMenu,
                     onHorizontalDragEnd: _handleOnHorizontalDragEndContextMenu,
                     child: _contextMenuIcon,
                   )
@@ -212,7 +221,8 @@ class _BuildDraggableWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Draggable(
       onDragEnd: (dragDetails) {
-        stateManager.moveColumn(column.key, dragDetails.offset.dx + (column.width / 2));
+        stateManager.moveColumn(
+            column.key, dragDetails.offset.dx + (column.width / 2));
       },
       feedback: PlutoShadowContainer(
         width: column.width,
@@ -266,6 +276,7 @@ class _BuildColumnWidget extends StatelessWidget {
   final Color rowColor;
   final Color dividerColor;
   final double headerRadius;
+  final double columnHeight;
 
   const _BuildColumnWidget({
     Key key,
@@ -273,6 +284,7 @@ class _BuildColumnWidget extends StatelessWidget {
     this.column,
     this.isLast,
     this.isFirst,
+    this.columnHeight,
     this.headerColor,
     this.dividerColor,
     this.rowColor,
@@ -283,7 +295,7 @@ class _BuildColumnWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: column.width,
-      height: PlutoGridSettings.rowHeight,
+      height: columnHeight ?? PlutoGridSettings.rowHeight,
       //padding: const EdgeInsets.symmetric(horizontal: PlutoGridSettings.cellPadding),
       decoration: stateManager.configuration.enableColumnBorder
           ? BoxDecoration(
@@ -342,12 +354,13 @@ class _BuildColumnWidget extends StatelessWidget {
                                 : isLast
                                     ? BorderRadius.only(
                                         topLeft: Radius.circular(headerRadius),
-                                        bottomLeft: Radius.circular(headerRadius),
+                                        bottomLeft:
+                                            Radius.circular(headerRadius),
                                       )
                                     : null
                             : null,
                       ),
-                      height: PlutoGridSettings.rowHeight,
+                      height: columnHeight,
                       child: Center(
                         child: _ColumnTextWidget(
                           column: column,
@@ -390,10 +403,12 @@ class _CheckboxAllSelectionWidget extends PlutoStatefulWidget {
   });
 
   @override
-  __CheckboxAllSelectionWidgetState createState() => __CheckboxAllSelectionWidgetState();
+  __CheckboxAllSelectionWidgetState createState() =>
+      __CheckboxAllSelectionWidgetState();
 }
 
-abstract class __CheckboxAllSelectionWidgetStateWithChange extends PlutoStateWithChange<_CheckboxAllSelectionWidget> {
+abstract class __CheckboxAllSelectionWidgetStateWithChange
+    extends PlutoStateWithChange<_CheckboxAllSelectionWidget> {
   bool checked;
 
   bool get hasCheckedRow => widget.stateManager.hasCheckedRow;
@@ -411,7 +426,8 @@ abstract class __CheckboxAllSelectionWidgetStateWithChange extends PlutoStateWit
   }
 }
 
-class __CheckboxAllSelectionWidgetState extends __CheckboxAllSelectionWidgetStateWithChange {
+class __CheckboxAllSelectionWidgetState
+    extends __CheckboxAllSelectionWidgetStateWithChange {
   void _handleOnChanged(bool changed) {
     if (changed == checked) {
       return;
@@ -457,7 +473,8 @@ class _ColumnTextWidget extends PlutoStatefulWidget {
   __ColumnTextWidgetState createState() => __ColumnTextWidgetState();
 }
 
-abstract class __ColumnTextWidgetStateWithChange extends PlutoStateWithChange<_ColumnTextWidget> {
+abstract class __ColumnTextWidgetStateWithChange
+    extends PlutoStateWithChange<_ColumnTextWidget> {
   bool isFilteredList;
 
   @override

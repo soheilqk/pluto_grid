@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:linked_scroll_controller/linked_scroll_controller.dart';
 import 'package:pluto_grid/pluto_grid.dart';
 
-//[Soheil.Q.K]
-
 typedef PlutoOnLoadedEventCallback = void Function(
     PlutoGridOnLoadedEvent event);
 
@@ -50,6 +48,7 @@ class PlutoGrid extends StatefulWidget {
   final Color rowColor;
   final Color dividerColor;
   final double rowRadius;
+  final double columnHeight;
   final double headerRadius;
   final Color descendingIconColor;
   final Color ascendingIconColor;
@@ -73,6 +72,7 @@ class PlutoGrid extends StatefulWidget {
     this.headerRadius,
     this.ascendingIconColor = Colors.green,
     this.descendingIconColor = Colors.red,
+    this.columnHeight,
   }) : super(key: key);
 
   @override
@@ -351,6 +351,7 @@ class _PlutoGridState extends State<PlutoGrid> {
                         child: PlutoBodyColumns(
                           stateManager,
                           headerColor: widget.headerColor,
+                          columnHeight: widget.columnHeight,
                           rowColor: widget.rowColor,
                           dividerColor: widget.dividerColor,
                           headerRadius: widget.headerRadius,
