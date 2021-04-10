@@ -11,7 +11,6 @@ class PlutoBodyColumns extends PlutoStatefulWidget {
   final double headerRadius;
   final Color descendingIconColor;
   final Color ascendingIconColor;
-  final double columnHeight;
 
   PlutoBodyColumns(
     this.stateManager, {
@@ -19,7 +18,6 @@ class PlutoBodyColumns extends PlutoStatefulWidget {
     this.headerColor,
     this.dividerColor,
     this.headerRadius,
-    this.columnHeight,
     this.ascendingIconColor,
     this.descendingIconColor,
   });
@@ -81,7 +79,6 @@ class _PlutoBodyColumnsState extends _PlutoBodyColumnsStateWithChange {
   Widget build(BuildContext context) {
     return SizedBox(
       width: width,
-      height: widget.columnHeight,
       child: Row(
         children: columns.map((element) {
           var i = columns.indexOf(element);
@@ -96,7 +93,6 @@ class _PlutoBodyColumnsState extends _PlutoBodyColumnsStateWithChange {
             last: i == columns.length - 1,
             ascendingIconColor: widget.ascendingIconColor,
             descendingIconColor: widget.descendingIconColor,
-            columnHeight: widget.columnHeight,
           );
           if (element.field == 'rowNumber') {
             return child;
