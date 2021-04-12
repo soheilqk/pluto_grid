@@ -80,6 +80,8 @@ class PlutoBaseRow extends StatelessWidget {
                     dividerColor: dividerColor,
                     rowRadius: rowRadius,
                     onCheck: onCheck,
+                    onRowClick:onRowClick,
+                    row:row,
                   );
                 },
               ),
