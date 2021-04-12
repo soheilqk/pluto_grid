@@ -129,11 +129,11 @@ class _PlutoBaseCellState extends _PlutoBaseCellStateWithChangeKeepAlive {
     return MouseRegion(
       cursor:SystemMouseCursors.click ,
       child: GestureDetector(
-
         onTap: () {
-          widget.onRowClick(widget.row.key);
+          if(widget.onRowClick != null ){
+            widget.onRowClick(widget.row.key);
+          }
         },
-
         behavior: HitTestBehavior.translucent,
         onTapUp: _handleOnTapUp,
         onLongPressStart: _handleOnLongPressStart,
