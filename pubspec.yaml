@@ -3,7 +3,7 @@ description: PlutoGrid is a dataGrid that can be controlled by the keyboard on d
 version: 1.2.0
 homepage: https://bosskmk.github.io
 repository: https://github.com/soheilqk/pluto_grid
-#publish_to: 'none'
+publish_to: 'none'
 
 environment:
   sdk: ">=2.11.0 <3.0.0"
