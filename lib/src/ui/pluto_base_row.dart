@@ -33,19 +33,19 @@ class PlutoBaseRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        print('fuck');
-        onRowClick(row.key);
-      },
-      child: _RowContainerWidget(
-        stateManager: stateManager,
-        rowIdx: rowIdx,
-        row: row,
-        columns: columns,
-        child: Row(
-          children: columns.map((column) {
-            var child = PlutoBaseCell(
+    return _RowContainerWidget(
+      stateManager: stateManager,
+      rowIdx: rowIdx,
+      row: row,
+      columns: columns,
+      child: Row(
+        children: columns.map((column) {
+          var child = InkWell(
+            onTap: () {
+              print('fuck');
+              onRowClick(row.key);
+            },
+            child: PlutoBaseCell(
               key: row.cells[column.field].key,
               stateManager: stateManager,
               cell: row.cells[column.field],
@@ -60,36 +60,36 @@ class PlutoBaseRow extends StatelessWidget {
               dividerColor: dividerColor,
               rowRadius: rowRadius,
               onCheck: onCheck,
+            ),
+          );
+          if (column.field == 'rowNumber') {
+            return child;
+          } else {
+            return Expanded(
+              flex: column.flex,
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return PlutoBaseCell(
+                    key: row.cells[column.field].key,
+                    stateManager: stateManager,
+                    cell: row.cells[column.field],
+                    width: constraints.maxWidth,
+                    height: stateManager.rowHeight,
+                    column: column,
+                    rowIdx: rowIdx,
+                    isFirst: columns.indexOf(column) == 0,
+                    isLast: columns.indexOf(column) == columns.length - 1,
+                    rowColor: rowColor,
+                    headerColor: headerColor,
+                    dividerColor: dividerColor,
+                    rowRadius: rowRadius,
+                    onCheck: onCheck,
+                  );
+                },
+              ),
             );
-            if (column.field == 'rowNumber') {
-              return child;
-            } else {
-              return Expanded(
-                flex: column.flex,
-                child: LayoutBuilder(
-                  builder: (context, constraints) {
-                    return PlutoBaseCell(
-                      key: row.cells[column.field].key,
-                      stateManager: stateManager,
-                      cell: row.cells[column.field],
-                      width: constraints.maxWidth,
-                      height: stateManager.rowHeight,
-                      column: column,
-                      rowIdx: rowIdx,
-                      isFirst: columns.indexOf(column) == 0,
-                      isLast: columns.indexOf(column) == columns.length - 1,
-                      rowColor: rowColor,
-                      headerColor: headerColor,
-                      dividerColor: dividerColor,
-                      rowRadius: rowRadius,
-                      onCheck: onCheck,
-                    );
-                  },
-                ),
-              );
-            }
-          }).toList(growable: false),
-        ),
+          }
+        }).toList(growable: false),
       ),
     );
   }
