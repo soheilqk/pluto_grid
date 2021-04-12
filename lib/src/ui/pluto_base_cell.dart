@@ -15,6 +15,8 @@ class PlutoBaseCell extends PlutoStatefulWidget {
   final Color dividerColor;
   final double rowRadius;
   final Function onCheck;
+  final void Function(Key key) onRowClick;
+  final PlutoRow row;
 
   PlutoBaseCell({
     Key key,
@@ -31,6 +33,8 @@ class PlutoBaseCell extends PlutoStatefulWidget {
     this.dividerColor,
     this.rowRadius,
     this.onCheck,
+    this.onRowClick,
+    this.row,
   }) : super(key: key);
 
   @override
@@ -123,7 +127,7 @@ class _PlutoBaseCellState extends _PlutoBaseCellStateWithChangeKeepAlive {
 
     return GestureDetector(
       onTap: () {
-        print('fuck2');
+        widget.onRowClick(widget.row.key);
       },
       behavior: HitTestBehavior.translucent,
       onTapUp: _handleOnTapUp,
