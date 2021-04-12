@@ -35,6 +35,7 @@ class PlutoBaseRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        print('fuck');
         onRowClick(row.key);
       },
       child: _RowContainerWidget(
