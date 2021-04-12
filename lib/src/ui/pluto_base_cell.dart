@@ -122,6 +122,9 @@ class _PlutoBaseCellState extends _PlutoBaseCellStateWithChangeKeepAlive {
     super.build(context);
 
     return GestureDetector(
+      onTap: () {
+        print('fuck2');
+      },
       behavior: HitTestBehavior.translucent,
       onTapUp: _handleOnTapUp,
       onLongPressStart: _handleOnLongPressStart,
