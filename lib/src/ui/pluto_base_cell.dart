@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:pluto_grid/pluto_grid.dart';
 
 class PlutoBaseCell extends PlutoStatefulWidget {
@@ -125,40 +126,45 @@ class _PlutoBaseCellState extends _PlutoBaseCellStateWithChangeKeepAlive {
   Widget build(BuildContext context) {
     super.build(context);
 
-    return GestureDetector(
-      onTap: () {
-        widget.onRowClick(widget.row.key);
-      },
-      behavior: HitTestBehavior.translucent,
-      onTapUp: _handleOnTapUp,
-      onLongPressStart: _handleOnLongPressStart,
-      onLongPressMoveUpdate: _handleOnLongPressMoveUpdate,
-      onLongPressEnd: _handleOnLongPressEnd,
-      child: _CellContainer(
-        readOnly: widget.column.type.readOnly,
-        width: widget.width,
-        height: widget.height,
-        hasFocus: widget.stateManager.hasFocus,
-        isCurrentCell: isCurrentCell,
-        isEditing: isEditing,
-        selectingMode: selectingMode,
-        isSelectedCell: isSelectedCell,
-        configuration: widget.stateManager.configuration,
-        child: _BuildCell(
-          rowColor: widget.rowColor,
-          headerColor: widget.headerColor,
-          dividerColor: widget.dividerColor,
-          rowRadius: widget.rowRadius,
-          isLast: widget.isLast,
-          isFirst: widget.isFirst,
-          stateManager: widget.stateManager,
-          rowIdx: widget.rowIdx,
-          column: widget.column,
-          cell: widget.cell,
+    return MouseRegion(
+      cursor:SystemMouseCursors.click ,
+      child: GestureDetector(
+
+        onTap: () {
+          widget.onRowClick(widget.row.key);
+        },
+
+        behavior: HitTestBehavior.translucent,
+        onTapUp: _handleOnTapUp,
+        onLongPressStart: _handleOnLongPressStart,
+        onLongPressMoveUpdate: _handleOnLongPressMoveUpdate,
+        onLongPressEnd: _handleOnLongPressEnd,
+        child: _CellContainer(
+          readOnly: widget.column.type.readOnly,
+          width: widget.width,
+          height: widget.height,
+          hasFocus: widget.stateManager.hasFocus,
           isCurrentCell: isCurrentCell,
           isEditing: isEditing,
-          onCheck: widget.onCheck,
+          selectingMode: selectingMode,
+          isSelectedCell: isSelectedCell,
+          configuration: widget.stateManager.configuration,
+          child: _BuildCell(
+            rowColor: widget.rowColor,
+            headerColor: widget.headerColor,
+            dividerColor: widget.dividerColor,
+            rowRadius: widget.rowRadius,
+            isLast: widget.isLast,
+            isFirst: widget.isFirst,
+            stateManager: widget.stateManager,
+            rowIdx: widget.rowIdx,
+            column: widget.column,
+            cell: widget.cell,
+            isCurrentCell: isCurrentCell,
+            isEditing: isEditing,
+            onCheck: widget.onCheck,
 
+          ),
         ),
       ),
     );
