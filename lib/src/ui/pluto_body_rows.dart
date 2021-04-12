@@ -120,28 +120,26 @@ class _PlutoBodyRowsState extends _PlutoBodyRowsStateWithChange {
           itemBuilder: (ctx, i) {
             return Container(
               margin: const EdgeInsets.only(top: 5),
-              child: InkWell(
-                onTap: () => widget.onRowClick(rows[i].key),
-                child: PlutoBaseRow(
-                  key: ValueKey('body_row_${rows[i].key}'),
-                  stateManager: widget.stateManager,
-                  rowIdx: i,
-                  row: rows[i],
-                  columns: columns,
-                  isFirst: i == 0,
-                  isLast: rows.length == i - 1,
-                  rowColor: widget.rowColor,
-                  headerColor: widget.headerColor,
-                  dividerColor: widget.dividerColor,
-                  rowRadius: widget.rowRadius,
-                  onCheck: widget.onCheck,
-                ),
+              child: PlutoBaseRow(
+                key: ValueKey('body_row_${rows[i].key}'),
+                stateManager: widget.stateManager,
+                rowIdx: i,
+                row: rows[i],
+                columns: columns,
+                isFirst: i == 0,
+                isLast: rows.length == i - 1,
+                rowColor: widget.rowColor,
+                headerColor: widget.headerColor,
+                dividerColor: widget.dividerColor,
+                rowRadius: widget.rowRadius,
+                onCheck: widget.onCheck,
+                onRowClick: widget.onRowClick,
               ),
             );
           },
         ),
-        //),
       ),
+      //),
     );
   }
 }
