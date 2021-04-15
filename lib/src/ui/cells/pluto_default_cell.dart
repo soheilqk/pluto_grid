@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:pluto_grid/pluto_grid.dart';
 
@@ -16,25 +17,25 @@ class PlutoDefaultCell extends PlutoStatefulWidget {
   final double rowRadius;
   final Function onCheck;
 
-  PlutoDefaultCell({
-    this.stateManager,
-    this.cell,
-    this.column,
-    this.rowIdx,
-    this.isLast,
-    this.isFirst,
-    this.rowColor,
-    this.headerColor,
-    this.dividerColor,
-    this.rowRadius,
-    this.onCheck
-  });
+  PlutoDefaultCell(
+      {this.stateManager,
+      this.cell,
+      this.column,
+      this.rowIdx,
+      this.isLast,
+      this.isFirst,
+      this.rowColor,
+      this.headerColor,
+      this.dividerColor,
+      this.rowRadius,
+      this.onCheck});
 
   @override
   _PlutoDefaultCellState createState() => _PlutoDefaultCellState();
 }
 
-abstract class _PlutoDefaultCellStateWithChange extends PlutoStateWithChange<PlutoDefaultCell> {
+abstract class _PlutoDefaultCellStateWithChange
+    extends PlutoStateWithChange<PlutoDefaultCell> {
   bool canRowDrag;
 
   @override
@@ -67,7 +68,9 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
       PlutoGridDragRowsEvent(
         offset: offset,
         dragType: type,
-        rows: isCurrentRowSelected ? widget.stateManager.currentSelectingRows : [thisRow],
+        rows: isCurrentRowSelected
+            ? widget.stateManager.currentSelectingRows
+            : [thisRow],
       ),
     );
   }
@@ -124,8 +127,10 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
           ),
         if (widget.column.enableRowChecked)
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            height: widget.stateManager.rowHeight ??PlutoGridSettings.rowHeight,
+            padding:
+                EdgeInsets.symmetric(horizontal: Platform.isWindows ? 10 : 5),
+            height:
+                widget.stateManager.rowHeight ?? PlutoGridSettings.rowHeight,
             child: _CheckboxSelectionWidget(
               onCheck: widget.onCheck,
               column: widget.column,
@@ -135,7 +140,8 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
           ),
         Expanded(
           child: Container(
-            height: widget.stateManager.rowHeight ?? PlutoGridSettings.rowHeight,
+            height:
+                widget.stateManager.rowHeight ?? PlutoGridSettings.rowHeight,
             decoration: BoxDecoration(
                 color: widget.rowColor,
                 borderRadius: (widget.rowRadius != null && widget.rowRadius > 0)
@@ -157,11 +163,13 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
         if (!widget.isLast)
           Container(
             color: widget.rowColor,
-            height: widget.stateManager.rowHeight ??PlutoGridSettings.rowHeight,
+            height:
+                widget.stateManager.rowHeight ?? PlutoGridSettings.rowHeight,
             child: Row(
               children: [
                 Container(
-                  height: widget.stateManager.rowHeight / 2 ?? PlutoGridSettings.rowHeight / 2,
+                  height: widget.stateManager.rowHeight / 2 ??
+                      PlutoGridSettings.rowHeight / 2,
                   width: 1,
                   color: widget.dividerColor,
                 ),
@@ -209,7 +217,8 @@ class __RowDragIconWidgetState extends State<_RowDragIconWidget> {
       return null;
     }
 
-    final RenderBox renderBoxRed = _feedbackKey.currentContext.findRenderObject() as RenderBox;
+    final RenderBox renderBoxRed =
+        _feedbackKey.currentContext.findRenderObject() as RenderBox;
 
     return renderBoxRed.localToGlobal(Offset.zero);
   }
@@ -244,7 +253,8 @@ class __RowDragIconWidgetState extends State<_RowDragIconWidget> {
           child: PlutoShadowContainer(
             width: widget.column.width,
             height: widget.stateManager.rowHeight,
-            backgroundColor: widget.stateManager.configuration.gridBackgroundColor,
+            backgroundColor:
+                widget.stateManager.configuration.gridBackgroundColor,
             borderColor: widget.stateManager.configuration.activatedBorderColor,
             child: Row(
               children: [
@@ -276,10 +286,12 @@ class _CheckboxSelectionWidget extends PlutoStatefulWidget {
   });
 
   @override
-  __CheckboxSelectionWidgetState createState() => __CheckboxSelectionWidgetState();
+  __CheckboxSelectionWidgetState createState() =>
+      __CheckboxSelectionWidgetState();
 }
 
-abstract class __CheckboxSelectionWidgetStateWithChange extends PlutoStateWithChange<_CheckboxSelectionWidget> {
+abstract class __CheckboxSelectionWidgetStateWithChange
+    extends PlutoStateWithChange<_CheckboxSelectionWidget> {
   bool checked;
 
   @override
@@ -290,7 +302,8 @@ abstract class __CheckboxSelectionWidgetStateWithChange extends PlutoStateWithCh
   }
 }
 
-class __CheckboxSelectionWidgetState extends __CheckboxSelectionWidgetStateWithChange {
+class __CheckboxSelectionWidgetState
+    extends __CheckboxSelectionWidgetStateWithChange {
   void _handleOnChanged(bool changed) {
     if (changed == checked) {
       return;
