@@ -284,12 +284,16 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
         ),
         if (!widget.isLast)
           Container(
-            decoration: BoxDecoration(
-              color: widget.rowColor,
-              border: widget.row.checked
-                  ? Border(bottom: borderSide, top: borderSide)
-                  : null,
-            ),
+            decoration: ShapeDecoration(
+                color: widget.rowColor,
+                shape: CustomRoundedRectangleBorder(
+                  bottomSide: borderSide,
+                  topSide: borderSide,
+                )
+                // border: widget.row.checked
+                //     ? Border(bottom: borderSide, top: borderSide)
+                //     : null,
+                ),
             height:
                 widget.stateManager.rowHeight ?? PlutoGridSettings.rowHeight,
             child: Row(
