@@ -230,10 +230,14 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
                                 )
                               : BorderRadius.zero
                       : BorderRadius.zero,
-                  leftSide: widget.isLast ? borderSide : BorderSide.none,
+                  leftSide: widget.isLast
+                      ? borderSide
+                      : const BorderSide(color: Colors.transparent),
                   topSide: borderSide,
                   bottomSide: borderSide,
-                  rightSide: widget.isFirst ? borderSide : BorderSide.none,
+                  rightSide: widget.isFirst
+                      ? borderSide
+                      : const BorderSide(color: Colors.transparent),
                   topRightCornerSide:
                       widget.isFirst ? borderSide : BorderSide.none,
                   bottomRightCornerSide:
