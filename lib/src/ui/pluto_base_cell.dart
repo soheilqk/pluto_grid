@@ -42,7 +42,8 @@ class PlutoBaseCell extends PlutoStatefulWidget {
   _PlutoBaseCellState createState() => _PlutoBaseCellState();
 }
 
-abstract class _PlutoBaseCellStateWithChangeKeepAlive extends PlutoStateWithChangeKeepAlive<PlutoBaseCell> {
+abstract class _PlutoBaseCellStateWithChangeKeepAlive
+    extends PlutoStateWithChangeKeepAlive<PlutoBaseCell> {
   dynamic cellValue;
 
   bool isCurrentCell;
@@ -111,15 +112,18 @@ class _PlutoBaseCellState extends _PlutoBaseCellStateWithChangeKeepAlive {
   }
 
   void _handleOnLongPressStart(LongPressStartDetails details) {
-    _addGestureEvent(PlutoGridGestureType.onLongPressStart, details.globalPosition);
+    _addGestureEvent(
+        PlutoGridGestureType.onLongPressStart, details.globalPosition);
   }
 
   void _handleOnLongPressMoveUpdate(LongPressMoveUpdateDetails details) {
-    _addGestureEvent(PlutoGridGestureType.onLongPressMoveUpdate, details.globalPosition);
+    _addGestureEvent(
+        PlutoGridGestureType.onLongPressMoveUpdate, details.globalPosition);
   }
 
   void _handleOnLongPressEnd(LongPressEndDetails details) {
-    _addGestureEvent(PlutoGridGestureType.onLongPressEnd, details.globalPosition);
+    _addGestureEvent(
+        PlutoGridGestureType.onLongPressEnd, details.globalPosition);
   }
 
   @override
@@ -127,10 +131,10 @@ class _PlutoBaseCellState extends _PlutoBaseCellStateWithChangeKeepAlive {
     super.build(context);
 
     return MouseRegion(
-      cursor:SystemMouseCursors.click ,
+      cursor: SystemMouseCursors.click,
       child: GestureDetector(
         onTap: () {
-          if(widget.onRowClick != null ){
+          if (widget.onRowClick != null) {
             widget.onRowClick(widget.row.key);
           }
         },
@@ -163,7 +167,7 @@ class _PlutoBaseCellState extends _PlutoBaseCellStateWithChangeKeepAlive {
             isCurrentCell: isCurrentCell,
             isEditing: isEditing,
             onCheck: widget.onCheck,
-
+            row: widget.row,
           ),
         ),
       ),
@@ -205,25 +209,31 @@ class _CellContainer extends StatelessWidget {
       return selectingMode.isRow ? configuration.activatedColor : null;
     }
 
-    return readOnly == true ? configuration.cellColorInReadOnlyState : configuration.cellColorInEditState;
+    return readOnly == true
+        ? configuration.cellColorInReadOnlyState
+        : configuration.cellColorInEditState;
   }
 
   BoxDecoration _boxDecoration() {
     if (isCurrentCell) {
       return BoxDecoration(
         color: _currentCellColor(),
-        border:configuration.activatedBorderColor != null ? Border.all(
-          color: configuration.activatedBorderColor,
-          width: 1,
-        ): null,
+        border: configuration.activatedBorderColor != null
+            ? Border.all(
+                color: configuration.activatedBorderColor,
+                width: 1,
+              )
+            : null,
       );
     } else if (isSelectedCell) {
       return BoxDecoration(
         color: configuration.activatedColor,
-        border:configuration.activatedBorderColor != null ? Border.all(
-          color: configuration.activatedBorderColor,
-          width: 1,
-        ): null,
+        border: configuration.activatedBorderColor != null
+            ? Border.all(
+                color: configuration.activatedBorderColor,
+                width: 1,
+              )
+            : null,
       );
     } else {
       return configuration.enableColumnBorder
@@ -273,22 +283,25 @@ class _BuildCell extends StatelessWidget {
   final Color dividerColor;
   final double rowRadius;
   final Function onCheck;
+  final PlutoRow row;
 
-  const _BuildCell(
-      {Key key,
-      this.stateManager,
-      this.rowIdx,
-      this.column,
-      this.cell,
-      this.isCurrentCell,
-      this.isEditing,
-      this.isLast,
-      this.isFirst,
-      this.rowColor,
-      this.headerColor,
-      this.dividerColor,
-      this.rowRadius,this.onCheck,})
-      : super(key: key);
+  const _BuildCell({
+    Key key,
+    this.stateManager,
+    this.rowIdx,
+    this.column,
+    this.cell,
+    this.isCurrentCell,
+    this.isEditing,
+    this.isLast,
+    this.isFirst,
+    this.rowColor,
+    this.headerColor,
+    this.dividerColor,
+    this.rowRadius,
+    this.onCheck,
+    this.row,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -338,6 +351,7 @@ class _BuildCell extends StatelessWidget {
       dividerColor: dividerColor,
       rowRadius: rowRadius,
       onCheck: onCheck,
+      row: row,
     );
   }
 }

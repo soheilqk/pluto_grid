@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:pluto_grid/pluto_grid.dart';
 
@@ -16,19 +15,22 @@ class PlutoDefaultCell extends PlutoStatefulWidget {
   final Color dividerColor;
   final double rowRadius;
   final Function onCheck;
+  final PlutoRow row;
 
-  PlutoDefaultCell(
-      {this.stateManager,
-      this.cell,
-      this.column,
-      this.rowIdx,
-      this.isLast,
-      this.isFirst,
-      this.rowColor,
-      this.headerColor,
-      this.dividerColor,
-      this.rowRadius,
-      this.onCheck});
+  PlutoDefaultCell({
+    this.stateManager,
+    this.cell,
+    this.column,
+    this.rowIdx,
+    this.isLast,
+    this.isFirst,
+    this.rowColor,
+    this.headerColor,
+    this.dividerColor,
+    this.rowRadius,
+    this.onCheck,
+    this.row,
+  });
 
   @override
   _PlutoDefaultCellState createState() => _PlutoDefaultCellState();
@@ -139,34 +141,55 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
             ),
           ),
         Expanded(
-          child: Container(
-            height:
-                widget.stateManager.rowHeight ?? PlutoGridSettings.rowHeight,
-            decoration: BoxDecoration(
-              color: widget.rowColor,
-              borderRadius: (widget.rowRadius != null && widget.rowRadius > 0)
-                  ? (widget.column.enableRowChecked || widget.isFirst)
-                      ? BorderRadius.only(
-                          topRight: Radius.circular(widget.rowRadius),
-                          bottomRight: Radius.circular(widget.rowRadius),
-                        )
-                      : widget.isLast
-                          ? BorderRadius.only(
-                              topLeft: Radius.circular(widget.rowRadius),
-                              bottomLeft: Radius.circular(widget.rowRadius),
-                            )
-                          : null
-                  : null,
-              border: (widget.column.enableRowChecked || widget.isFirst)
-                  ? Border(
-                      top: borderSide, bottom: borderSide, right: borderSide)
-                  : widget.isLast
-                      ? Border(
-                          top: borderSide, bottom: borderSide, left: borderSide)
-                      : Border(top: borderSide, bottom: borderSide),
+          child: ClipRRect(
+            borderRadius: (widget.rowRadius != null && widget.rowRadius > 0)
+                ? (widget.column.enableRowChecked || widget.isFirst)
+                    ? BorderRadius.only(
+                        topRight: Radius.circular(widget.rowRadius),
+                        bottomRight: Radius.circular(widget.rowRadius),
+                      )
+                    : widget.isLast
+                        ? BorderRadius.only(
+                            topLeft: Radius.circular(widget.rowRadius),
+                            bottomLeft: Radius.circular(widget.rowRadius),
+                          )
+                        : null
+                : null,
+            child: Container(
+              height:
+                  widget.stateManager.rowHeight ?? PlutoGridSettings.rowHeight,
+              decoration: BoxDecoration(
+                color: widget.rowColor,
+                // borderRadius: (widget.rowRadius != null && widget.rowRadius > 0)
+                //     ? (widget.column.enableRowChecked || widget.isFirst)
+                //         ? BorderRadius.only(
+                //             topRight: Radius.circular(widget.rowRadius),
+                //             bottomRight: Radius.circular(widget.rowRadius),
+                //           )
+                //         : widget.isLast
+                //             ? BorderRadius.only(
+                //                 topLeft: Radius.circular(widget.rowRadius),
+                //                 bottomLeft: Radius.circular(widget.rowRadius),
+                //               )
+                //             : null
+                //     : null,
+                border: widget.row.checked
+                    ? (widget.column.enableRowChecked || widget.isFirst)
+                        ? Border(
+                            top: borderSide,
+                            bottom: borderSide,
+                            right: borderSide)
+                        : widget.isLast
+                            ? Border(
+                                top: borderSide,
+                                bottom: borderSide,
+                                left: borderSide)
+                            : Border(top: borderSide, bottom: borderSide)
+                    : null,
+              ),
+              // Border.all(width: 1, color: const Color(0xff028a99))
+              child: Center(child: cellWidget),
             ),
-            // Border.all(width: 1, color: const Color(0xff028a99))
-            child: Center(child: cellWidget),
           ),
         ),
         if (!widget.isLast)
