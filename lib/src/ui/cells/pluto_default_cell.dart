@@ -350,8 +350,8 @@ class __CheckboxSelectionWidgetState
     setState(() {
       checked = changed;
     });
+    widget.stateManager.notifyListeners();
     widget.onCheck();
-    setState(() {});
   }
 
   @override
