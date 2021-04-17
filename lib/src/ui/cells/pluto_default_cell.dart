@@ -198,106 +198,90 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
         //   ),
         // ),
         Expanded(
-          child: ClipRRect(
-            clipBehavior: Clip.antiAliasWithSaveLayer,
-            borderRadius: (widget.rowRadius != null && widget.rowRadius > 0)
-                ? (widget.column.enableRowChecked || widget.isFirst)
-                    ? BorderRadius.only(
-                        topRight: Radius.circular(widget.rowRadius),
-                        bottomRight: Radius.circular(widget.rowRadius),
-                      )
-                    : widget.isLast
+          child: Container(
+            height:
+                widget.stateManager.rowHeight ?? PlutoGridSettings.rowHeight,
+            decoration: ShapeDecoration(
+              color: widget.rowColor,
+              shape: CustomRoundedRectangleBorder(
+                borderRadius: (widget.rowRadius != null && widget.rowRadius > 0)
+                    ? (widget.column.enableRowChecked || widget.isFirst)
                         ? BorderRadius.only(
-                            topLeft: Radius.circular(widget.rowRadius),
-                            bottomLeft: Radius.circular(widget.rowRadius),
+                            topRight: Radius.circular(widget.rowRadius),
+                            bottomRight: Radius.circular(widget.rowRadius),
                           )
-                        : BorderRadius.zero
-                : BorderRadius.zero,
-            child: Container(
-              height:
-                  widget.stateManager.rowHeight ?? PlutoGridSettings.rowHeight,
-              decoration: ShapeDecoration(
-                shape: CustomRoundedRectangleBorder(
-                  borderRadius: (widget.rowRadius != null &&
-                          widget.rowRadius > 0)
-                      ? (widget.column.enableRowChecked || widget.isFirst)
-                          ? BorderRadius.only(
-                              topRight: Radius.circular(widget.rowRadius),
-                              bottomRight: Radius.circular(widget.rowRadius),
-                            )
-                          : widget.isLast
-                              ? BorderRadius.only(
-                                  topLeft: Radius.circular(widget.rowRadius),
-                                  bottomLeft: Radius.circular(widget.rowRadius),
-                                )
-                              : BorderRadius.zero
-                      : BorderRadius.zero,
-                  leftSide: widget.row.checked
-                      ? widget.isLast
-                          ? borderSide
-                          : noneBorder
-                      : noneBorder,
-                  topSide: widget.row.checked ? borderSide : noneBorder,
-                  bottomSide: widget.row.checked ? borderSide : noneBorder,
-                  rightSide: widget.row.checked
-                      ? widget.isFirst
-                          ? borderSide
-                          : noneBorder
-                      : noneBorder,
-                  topRightCornerSide: widget.row.checked
-                      ? widget.isFirst
-                          ? borderSide
-                          : noneBorder
-                      : noneBorder,
-                  bottomRightCornerSide: widget.row.checked
-                      ? widget.isFirst
-                          ? borderSide
-                          : noneBorder
-                      : noneBorder,
-                  topLeftCornerSide: widget.row.checked
-                      ? widget.isLast
-                          ? borderSide
-                          : noneBorder
-                      : noneBorder,
-                  bottomLeftCornerSide: widget.row.checked
-                      ? widget.isLast
-                          ? borderSide
-                          : noneBorder
-                      : noneBorder,
-                ),
+                        : widget.isLast
+                            ? BorderRadius.only(
+                                topLeft: Radius.circular(widget.rowRadius),
+                                bottomLeft: Radius.circular(widget.rowRadius),
+                              )
+                            : BorderRadius.zero
+                    : BorderRadius.zero,
+                leftSide: widget.row.checked
+                    ? widget.isLast
+                        ? borderSide
+                        : noneBorder
+                    : noneBorder,
+                topSide: widget.row.checked ? borderSide : noneBorder,
+                bottomSide: widget.row.checked ? borderSide : noneBorder,
+                rightSide: widget.row.checked
+                    ? widget.isFirst
+                        ? borderSide
+                        : noneBorder
+                    : noneBorder,
+                topRightCornerSide: widget.row.checked
+                    ? widget.isFirst
+                        ? borderSide
+                        : noneBorder
+                    : noneBorder,
+                bottomRightCornerSide: widget.row.checked
+                    ? widget.isFirst
+                        ? borderSide
+                        : noneBorder
+                    : noneBorder,
+                topLeftCornerSide: widget.row.checked
+                    ? widget.isLast
+                        ? borderSide
+                        : noneBorder
+                    : noneBorder,
+                bottomLeftCornerSide: widget.row.checked
+                    ? widget.isLast
+                        ? borderSide
+                        : noneBorder
+                    : noneBorder,
               ),
-              // BoxDecoration(
-              //   color: widget.rowColor,
-              //   // borderRadius: (widget.rowRadius != null && widget.rowRadius > 0)
-              //   //     ? (widget.column.enableRowChecked || widget.isFirst)
-              //   //         ? BorderRadius.only(
-              //   //             topRight: Radius.circular(widget.rowRadius),
-              //   //             bottomRight: Radius.circular(widget.rowRadius),
-              //   //           )
-              //   //         : widget.isLast
-              //   //             ? BorderRadius.only(
-              //   //                 topLeft: Radius.circular(widget.rowRadius),
-              //   //                 bottomLeft: Radius.circular(widget.rowRadius),
-              //   //               )
-              //   //             : null
-              //   //     : null,
-              //   border: widget.row.checked
-              //       ? (widget.column.enableRowChecked || widget.isFirst)
-              //           ? Border(
-              //               top: borderSide,
-              //               bottom: borderSide,
-              //               right: borderSide)
-              //           : widget.isLast
-              //               ? Border(
-              //                   top: borderSide,
-              //                   bottom: borderSide,
-              //                   left: borderSide)
-              //               : Border(top: borderSide, bottom: borderSide)
-              //       : null,
-              // ),
-              // Border.all(width: 1, color: const Color(0xff028a99))
-              child: Center(child: cellWidget),
             ),
+            // BoxDecoration(
+            //   color: widget.rowColor,
+            //   // borderRadius: (widget.rowRadius != null && widget.rowRadius > 0)
+            //   //     ? (widget.column.enableRowChecked || widget.isFirst)
+            //   //         ? BorderRadius.only(
+            //   //             topRight: Radius.circular(widget.rowRadius),
+            //   //             bottomRight: Radius.circular(widget.rowRadius),
+            //   //           )
+            //   //         : widget.isLast
+            //   //             ? BorderRadius.only(
+            //   //                 topLeft: Radius.circular(widget.rowRadius),
+            //   //                 bottomLeft: Radius.circular(widget.rowRadius),
+            //   //               )
+            //   //             : null
+            //   //     : null,
+            //   border: widget.row.checked
+            //       ? (widget.column.enableRowChecked || widget.isFirst)
+            //           ? Border(
+            //               top: borderSide,
+            //               bottom: borderSide,
+            //               right: borderSide)
+            //           : widget.isLast
+            //               ? Border(
+            //                   top: borderSide,
+            //                   bottom: borderSide,
+            //                   left: borderSide)
+            //               : Border(top: borderSide, bottom: borderSide)
+            //       : null,
+            // ),
+            // Border.all(width: 1, color: const Color(0xff028a99))
+            child: Center(child: cellWidget),
           ),
         ),
         if (!widget.isLast)
