@@ -230,14 +230,18 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
                                 )
                               : null
                       : null,
-                  leftSide: widget.isFirst ? borderSide : null,
+                  leftSide: widget.isLast ? borderSide : BorderSide.none,
                   topSide: borderSide,
                   bottomSide: borderSide,
-                  rightSide: widget.isLast ? borderSide : null,
-                  topRightCornerSide: widget.isFirst ? borderSide : null,
-                  bottomRightCornerSide: widget.isFirst ? borderSide : null,
-                  topLeftCornerSide: widget.isLast ? borderSide : null,
-                  bottomLeftCornerSide: widget.isLast ? borderSide : null,
+                  rightSide: widget.isFirst ? borderSide : BorderSide.none,
+                  topRightCornerSide:
+                      widget.isFirst ? borderSide : BorderSide.none,
+                  bottomRightCornerSide:
+                      widget.isFirst ? borderSide : BorderSide.none,
+                  topLeftCornerSide:
+                      widget.isLast ? borderSide : BorderSide.none,
+                  bottomLeftCornerSide:
+                      widget.isLast ? borderSide : BorderSide.none,
                 ),
               ),
               // BoxDecoration(
