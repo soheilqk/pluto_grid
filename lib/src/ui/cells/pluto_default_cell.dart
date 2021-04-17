@@ -144,59 +144,6 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
               stateManager: widget.stateManager,
             ),
           ),
-        // Expanded(
-        //   child: ClipRRect(
-        //     clipBehavior: Clip.antiAliasWithSaveLayer,
-        //     borderRadius: (widget.rowRadius != null && widget.rowRadius > 0)
-        //         ? (widget.column.enableRowChecked || widget.isFirst)
-        //             ? BorderRadius.only(
-        //                 topRight: Radius.circular(widget.rowRadius),
-        //                 bottomRight: Radius.circular(widget.rowRadius),
-        //               )
-        //             : widget.isLast
-        //                 ? BorderRadius.only(
-        //                     topLeft: Radius.circular(widget.rowRadius),
-        //                     bottomLeft: Radius.circular(widget.rowRadius),
-        //                   )
-        //                 : BorderRadius.zero
-        //         : BorderRadius.zero,
-        //     child: Container(
-        //       height:
-        //           widget.stateManager.rowHeight ?? PlutoGridSettings.rowHeight,
-        //       decoration: BoxDecoration(
-        //         color: widget.rowColor,
-        //         // borderRadius: (widget.rowRadius != null && widget.rowRadius > 0)
-        //         //     ? (widget.column.enableRowChecked || widget.isFirst)
-        //         //         ? BorderRadius.only(
-        //         //             topRight: Radius.circular(widget.rowRadius),
-        //         //             bottomRight: Radius.circular(widget.rowRadius),
-        //         //           )
-        //         //         : widget.isLast
-        //         //             ? BorderRadius.only(
-        //         //                 topLeft: Radius.circular(widget.rowRadius),
-        //         //                 bottomLeft: Radius.circular(widget.rowRadius),
-        //         //               )
-        //         //             : null
-        //         //     : null,
-        //         border: widget.row.checked
-        //             ? (widget.column.enableRowChecked || widget.isFirst)
-        //                 ? Border(
-        //                     top: borderSide,
-        //                     bottom: borderSide,
-        //                     right: borderSide)
-        //                 : widget.isLast
-        //                     ? Border(
-        //                         top: borderSide,
-        //                         bottom: borderSide,
-        //                         left: borderSide)
-        //                     : Border(top: borderSide, bottom: borderSide)
-        //             : null,
-        //       ),
-        //       // Border.all(width: 1, color: const Color(0xff028a99))
-        //       child: Center(child: cellWidget),
-        //     ),
-        //   ),
-        // ),
         Expanded(
           child: Container(
             height:
@@ -251,36 +198,6 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
                     : noneBorder,
               ),
             ),
-            // BoxDecoration(
-            //   color: widget.rowColor,
-            //   // borderRadius: (widget.rowRadius != null && widget.rowRadius > 0)
-            //   //     ? (widget.column.enableRowChecked || widget.isFirst)
-            //   //         ? BorderRadius.only(
-            //   //             topRight: Radius.circular(widget.rowRadius),
-            //   //             bottomRight: Radius.circular(widget.rowRadius),
-            //   //           )
-            //   //         : widget.isLast
-            //   //             ? BorderRadius.only(
-            //   //                 topLeft: Radius.circular(widget.rowRadius),
-            //   //                 bottomLeft: Radius.circular(widget.rowRadius),
-            //   //               )
-            //   //             : null
-            //   //     : null,
-            //   border: widget.row.checked
-            //       ? (widget.column.enableRowChecked || widget.isFirst)
-            //           ? Border(
-            //               top: borderSide,
-            //               bottom: borderSide,
-            //               right: borderSide)
-            //           : widget.isLast
-            //               ? Border(
-            //                   top: borderSide,
-            //                   bottom: borderSide,
-            //                   left: borderSide)
-            //               : Border(top: borderSide, bottom: borderSide)
-            //       : null,
-            // ),
-            // Border.all(width: 1, color: const Color(0xff028a99))
             child: Center(child: cellWidget),
           ),
         ),
@@ -291,6 +208,8 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
                 shape: CustomRoundedRectangleBorder(
                   bottomSide: widget.row.checked ? borderSide : noneBorder,
                   topSide: widget.row.checked ? borderSide : noneBorder,
+                  rightSide: noneBorder,
+                  leftSide: noneBorder,
                 )
                 // border: widget.row.checked
                 //     ? Border(bottom: borderSide, top: borderSide)
