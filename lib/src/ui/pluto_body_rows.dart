@@ -97,23 +97,23 @@ class _PlutoBodyRowsState extends _PlutoBodyRowsStateWithChange {
   @override
   Widget build(BuildContext context) {
     return PlutoScrollbar(
-      verticalController:
-          widget.stateManager.configuration.scrollbarConfig.draggableScrollbar
-              ? verticalScroll
-              : null,
-      horizontalController:
-          widget.stateManager.configuration.scrollbarConfig.draggableScrollbar
-              ? horizontalScroll
-              : null,
-      isAlwaysShown:
-          widget.stateManager.configuration.scrollbarConfig.isAlwaysShown,
-      thickness:
-          widget.stateManager.configuration.scrollbarConfig.scrollbarThickness,
-      thicknessWhileDragging: widget.stateManager.configuration.scrollbarConfig
-          .scrollbarThicknessWhileDragging,
-      radius: widget.stateManager.configuration.scrollbarConfig.scrollbarRadius,
-      radiusWhileDragging: widget.stateManager.configuration.scrollbarConfig
-          .scrollbarRadiusWhileDragging,
+      // verticalController:
+      //     widget.stateManager.configuration.scrollbarConfig.draggableScrollbar
+      //         ? verticalScroll
+      //         : null,
+      // horizontalController:
+      //     widget.stateManager.configuration.scrollbarConfig.draggableScrollbar
+      //         ? horizontalScroll
+      //         : null,
+      // isAlwaysShown:
+      //     widget.stateManager.configuration.scrollbarConfig.isAlwaysShown,
+      // thickness:
+      //     widget.stateManager.configuration.scrollbarConfig.scrollbarThickness,
+      // thicknessWhileDragging: widget.stateManager.configuration.scrollbarConfig
+      //     .scrollbarThicknessWhileDragging,
+      // radius: widget.stateManager.configuration.scrollbarConfig.scrollbarRadius,
+      // radiusWhileDragging: widget.stateManager.configuration.scrollbarConfig
+      //     .scrollbarRadiusWhileDragging,
       child:
           // SingleChildScrollView(
           //   controller: horizontalScroll,
