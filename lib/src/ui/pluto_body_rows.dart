@@ -131,11 +131,6 @@ class _PlutoBodyRowsState extends _PlutoBodyRowsStateWithChange {
           itemExtent: widget.stateManager.rowTotalHeight,
           itemBuilder: (ctx, i) {
             return Container(
-              decoration: BoxDecoration(
-                border: rows[i].checked
-                    ? Border.all(color: const Color(0xff028A99), width: 1)
-                    : null,
-              ),
               margin: const EdgeInsets.only(top: 5),
               child: PlutoBaseRow(
                 key: ValueKey('body_row_${rows[i].key}'),

@@ -106,7 +106,8 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
       column: widget.column,
       cell: widget.cell,
     );
-
+    BorderSide borderSide =
+        const BorderSide(width: 1, color: Color(0xff028a99));
     return Row(
       children: [
         // todo : When onDragUpdated is added to the Draggable, remove the listener.
@@ -142,20 +143,29 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
             height:
                 widget.stateManager.rowHeight ?? PlutoGridSettings.rowHeight,
             decoration: BoxDecoration(
-                color: widget.rowColor,
-                borderRadius: (widget.rowRadius != null && widget.rowRadius > 0)
-                    ? (widget.column.enableRowChecked || widget.isFirst)
-                        ? BorderRadius.only(
-                            topRight: Radius.circular(widget.rowRadius),
-                            bottomRight: Radius.circular(widget.rowRadius),
-                          )
-                        : widget.isLast
-                            ? BorderRadius.only(
-                                topLeft: Radius.circular(widget.rowRadius),
-                                bottomLeft: Radius.circular(widget.rowRadius),
-                              )
-                            : null
-                    : null),
+              color: widget.rowColor,
+              borderRadius: (widget.rowRadius != null && widget.rowRadius > 0)
+                  ? (widget.column.enableRowChecked || widget.isFirst)
+                      ? BorderRadius.only(
+                          topRight: Radius.circular(widget.rowRadius),
+                          bottomRight: Radius.circular(widget.rowRadius),
+                        )
+                      : widget.isLast
+                          ? BorderRadius.only(
+                              topLeft: Radius.circular(widget.rowRadius),
+                              bottomLeft: Radius.circular(widget.rowRadius),
+                            )
+                          : null
+                  : null,
+              border: (widget.column.enableRowChecked || widget.isFirst)
+                  ? Border(
+                      top: borderSide, bottom: borderSide, right: borderSide)
+                  : widget.isLast
+                      ? Border(
+                          top: borderSide, bottom: borderSide, left: borderSide)
+                      : Border(top: borderSide, bottom: borderSide),
+            ),
+            // Border.all(width: 1, color: const Color(0xff028a99))
             child: Center(child: cellWidget),
           ),
         ),
