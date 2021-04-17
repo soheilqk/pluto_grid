@@ -113,6 +113,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1"
+  custom_rounded_rectangle_border:
+    dependency: "direct main"
+    description:
+      name: custom_rounded_rectangle_border
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1"
   dart_style:
     dependency: transitive
     description:
