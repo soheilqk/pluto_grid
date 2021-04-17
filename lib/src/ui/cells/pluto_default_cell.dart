@@ -113,7 +113,7 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
     BorderSide borderSide =
         const BorderSide(width: 1, color: Color(0xff028a99));
     BorderSide noneBorder =
-        const BorderSide(color: Colors.transparent, width: 0);
+        const BorderSide(color: Colors.transparent, width: 1);
     return Row(
       children: [
         // todo : When onDragUpdated is added to the Draggable, remove the listener.
