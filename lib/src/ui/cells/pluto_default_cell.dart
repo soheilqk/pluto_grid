@@ -154,7 +154,7 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
                             bottomLeft: Radius.circular(widget.rowRadius),
                           )
                         : null
-                : null,
+                : BorderRadius.zero,
             child: Container(
               height:
                   widget.stateManager.rowHeight ?? PlutoGridSettings.rowHeight,
