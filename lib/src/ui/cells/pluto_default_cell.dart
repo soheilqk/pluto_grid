@@ -208,8 +208,6 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
                 shape: CustomRoundedRectangleBorder(
                   bottomSide: widget.row.checked ? borderSide : noneBorder,
                   topSide: widget.row.checked ? borderSide : noneBorder,
-                  rightSide: noneBorder,
-                  leftSide: noneBorder,
                 )
                 // border: widget.row.checked
                 //     ? Border(bottom: borderSide, top: borderSide)
