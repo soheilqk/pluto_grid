@@ -179,22 +179,22 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
                 topRightCornerSide: widget.row.checked
                     ? widget.isFirst
                         ? borderSide
-                        : noneBorder
+                        : borderSide
                     : noneBorder,
                 bottomRightCornerSide: widget.row.checked
                     ? widget.isFirst
                         ? borderSide
-                        : noneBorder
+                        : borderSide
                     : noneBorder,
                 topLeftCornerSide: widget.row.checked
                     ? widget.isLast
                         ? borderSide
-                        : noneBorder
+                        : borderSide
                     : noneBorder,
                 bottomLeftCornerSide: widget.row.checked
                     ? widget.isLast
                         ? borderSide
-                        : noneBorder
+                        : borderSide
                     : noneBorder,
               ),
             ),
