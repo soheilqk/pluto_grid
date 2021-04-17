@@ -184,14 +184,12 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
                 bottomRightCornerSide: widget.row.checked
                     ? widget.isFirst
                         ? borderSide
-                        //
-                        : borderSide
+                        : noneBorder
                     : noneBorder,
                 topLeftCornerSide: widget.row.checked
                     ? widget.isLast
                         ? borderSide
-                        //
-                        : borderSide
+                        : noneBorder
                     : noneBorder,
                 bottomLeftCornerSide: widget.row.checked
                     ? widget.isLast
@@ -210,8 +208,8 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
                 shape: CustomRoundedRectangleBorder(
                   bottomSide: widget.row.checked ? borderSide : noneBorder,
                   topSide: widget.row.checked ? borderSide : noneBorder,
-                  rightSide: BorderSide(color: Colors.transparent, width: 0),
-                  leftSide: BorderSide(color: Colors.transparent, width: 0),
+                  // rightSide: BorderSide(color: Colors.transparent, width: 0),
+                  // leftSide: BorderSide(color: Colors.transparent, width: 0),
                 )
                 // border: widget.row.checked
                 //     ? Border(bottom: borderSide, top: borderSide)
