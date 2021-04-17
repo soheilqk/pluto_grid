@@ -351,6 +351,7 @@ class __CheckboxSelectionWidgetState
       checked = changed;
     });
     widget.onCheck();
+    setState(() {});
   }
 
   @override
