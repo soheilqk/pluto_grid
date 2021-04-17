@@ -229,7 +229,7 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
                                   bottomLeft: Radius.circular(widget.rowRadius),
                                 )
                               : BorderRadius.zero
-                      : null,
+                      : BorderRadius.zero,
                   leftSide: widget.isLast ? borderSide : BorderSide.none,
                   topSide: borderSide,
                   bottomSide: borderSide,
