@@ -12,6 +12,7 @@ class PlutoColumnTitle extends PlutoStatefulWidget {
   final double headerRadius;
   final Color descendingIconColor;
   final Color ascendingIconColor;
+  final Function onCheck;
 
   PlutoColumnTitle({
     @required this.stateManager,
@@ -24,6 +25,7 @@ class PlutoColumnTitle extends PlutoStatefulWidget {
     this.headerRadius,
     this.ascendingIconColor,
     this.descendingIconColor,
+    this.onCheck,
   }) : super(key: column.key);
 
   @override
@@ -110,6 +112,7 @@ class _PlutoColumnTitleState extends _PlutoColumnTitleStateWithChange {
       headerRadius: widget.headerRadius,
       stateManager: widget.stateManager,
       column: widget.column,
+      onCheck: widget.onCheck,
     );
     //final _columnWidget = _BuildSortableWidget(
     //   stateManager: widget.stateManager,
@@ -273,6 +276,7 @@ class _BuildColumnWidget extends StatelessWidget {
   final Color rowColor;
   final Color dividerColor;
   final double headerRadius;
+  final Function onCheck;
 
   const _BuildColumnWidget({
     Key key,
@@ -284,6 +288,7 @@ class _BuildColumnWidget extends StatelessWidget {
     this.dividerColor,
     this.rowColor,
     this.headerRadius,
+    this.onCheck,
   }) : super(key: key);
 
   @override
@@ -328,6 +333,7 @@ class _BuildColumnWidget extends StatelessWidget {
                           child: _CheckboxAllSelectionWidget(
                             column: column,
                             stateManager: stateManager,
+                            onCheck: onCheck,
                           ),
                         ),
                       ],
@@ -391,10 +397,12 @@ class _BuildColumnWidget extends StatelessWidget {
 class _CheckboxAllSelectionWidget extends PlutoStatefulWidget {
   final PlutoColumn column;
   final PlutoGridStateManager stateManager;
+  final Function onCheck;
 
   _CheckboxAllSelectionWidget({
     this.column,
     this.stateManager,
+    this.onCheck,
   });
 
   @override
@@ -439,6 +447,7 @@ class __CheckboxAllSelectionWidgetState
     setState(() {
       checked = changed;
     });
+    widget.onCheck();
   }
 
   @override

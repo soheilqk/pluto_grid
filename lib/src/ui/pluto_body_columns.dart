@@ -11,6 +11,7 @@ class PlutoBodyColumns extends PlutoStatefulWidget {
   final double headerRadius;
   final Color descendingIconColor;
   final Color ascendingIconColor;
+  final Function onCheck;
 
   PlutoBodyColumns(
     this.stateManager, {
@@ -20,6 +21,7 @@ class PlutoBodyColumns extends PlutoStatefulWidget {
     this.headerRadius,
     this.ascendingIconColor,
     this.descendingIconColor,
+    this.onCheck,
   });
 
   @override
@@ -93,6 +95,7 @@ class _PlutoBodyColumnsState extends _PlutoBodyColumnsStateWithChange {
             last: i == columns.length - 1,
             ascendingIconColor: widget.ascendingIconColor,
             descendingIconColor: widget.descendingIconColor,
+            onCheck: widget.onCheck,
           );
           if (element.field == 'rowNumber') {
             return child;

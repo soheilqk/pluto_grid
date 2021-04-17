@@ -357,6 +357,7 @@ class _PlutoGridState extends State<PlutoGrid> {
                           headerRadius: widget.headerRadius,
                           ascendingIconColor: widget.ascendingIconColor,
                           descendingIconColor: widget.descendingIconColor,
+                          onCheck: widget.onCheck,
                         ),
                       ),
                       Positioned.fill(

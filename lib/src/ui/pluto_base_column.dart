@@ -12,6 +12,7 @@ class PlutoBaseColumn extends PlutoStatefulWidget {
   final double headerRadius;
   final Color descendingIconColor;
   final Color ascendingIconColor;
+  final Function onCheck;
 
   PlutoBaseColumn({
     this.stateManager,
@@ -24,6 +25,7 @@ class PlutoBaseColumn extends PlutoStatefulWidget {
     this.headerRadius,
     this.ascendingIconColor,
     this.descendingIconColor,
+    this.onCheck,
   }) : super(key: column.key);
 
   @override
@@ -55,25 +57,25 @@ class _PlutoBaseColumnState extends _PlutoBaseColumnStateWithChange {
     if (showColumnFilter) {
       if (widget.first) {
         return Container(
-            margin: EdgeInsets.symmetric(vertical: 4),
+            margin: const EdgeInsets.symmetric(vertical: 4),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(5),
                     bottomLeft: Radius.circular(5)),
                 color: Colors.grey[100]),
             child: child);
       } else if (widget.last) {
         return Container(
-            margin: EdgeInsets.symmetric(vertical: 4),
+            margin: const EdgeInsets.symmetric(vertical: 4),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(5),
                     bottomLeft: Radius.circular(5)),
                 color: Colors.grey[100]),
             child: child);
       } else if (widget.first == false && widget.last == false) {
         return Container(
-            margin: EdgeInsets.symmetric(vertical: 4),
+            margin: const EdgeInsets.symmetric(vertical: 4),
             color: Colors.grey[100],
             child: child);
       }
@@ -96,6 +98,7 @@ class _PlutoBaseColumnState extends _PlutoBaseColumnStateWithChange {
           headerRadius: widget.headerRadius,
           ascendingIconColor: widget.ascendingIconColor,
           descendingIconColor: widget.descendingIconColor,
+          onCheck: widget.onCheck,
         ),
         showFilter,
       ],
