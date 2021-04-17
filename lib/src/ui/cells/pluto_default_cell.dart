@@ -153,7 +153,7 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
                             topLeft: Radius.circular(widget.rowRadius),
                             bottomLeft: Radius.circular(widget.rowRadius),
                           )
-                        : null
+                        : BorderRadius.zero
                 : BorderRadius.zero,
             child: Container(
               height:
