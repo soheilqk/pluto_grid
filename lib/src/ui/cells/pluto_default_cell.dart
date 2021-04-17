@@ -112,6 +112,8 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
     );
     BorderSide borderSide =
         const BorderSide(width: 1, color: Color(0xff028a99));
+    BorderSide noneBorder =
+        const BorderSide(color: Colors.transparent, width: 0);
     return Row(
       children: [
         // todo : When onDragUpdated is added to the Draggable, remove the listener.
@@ -230,22 +232,38 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
                                 )
                               : BorderRadius.zero
                       : BorderRadius.zero,
-                  leftSide: widget.isLast
-                      ? borderSide
-                      : const BorderSide(color: Colors.transparent, width: 0),
-                  topSide: borderSide,
-                  bottomSide: borderSide,
-                  rightSide: widget.isFirst
-                      ? borderSide
-                      : const BorderSide(color: Colors.transparent, width: 0),
-                  topRightCornerSide:
-                      widget.isFirst ? borderSide : BorderSide.none,
-                  bottomRightCornerSide:
-                      widget.isFirst ? borderSide : BorderSide.none,
-                  topLeftCornerSide:
-                      widget.isLast ? borderSide : BorderSide.none,
-                  bottomLeftCornerSide:
-                      widget.isLast ? borderSide : BorderSide.none,
+                  leftSide: widget.row.checked
+                      ? widget.isLast
+                          ? borderSide
+                          : noneBorder
+                      : noneBorder,
+                  topSide: widget.row.checked ? borderSide : noneBorder,
+                  bottomSide: widget.row.checked ? borderSide : noneBorder,
+                  rightSide: widget.row.checked
+                      ? widget.isFirst
+                          ? borderSide
+                          : noneBorder
+                      : noneBorder,
+                  topRightCornerSide: widget.row.checked
+                      ? widget.isFirst
+                          ? borderSide
+                          : noneBorder
+                      : noneBorder,
+                  bottomRightCornerSide: widget.row.checked
+                      ? widget.isFirst
+                          ? borderSide
+                          : noneBorder
+                      : noneBorder,
+                  topLeftCornerSide: widget.row.checked
+                      ? widget.isLast
+                          ? borderSide
+                          : noneBorder
+                      : noneBorder,
+                  bottomLeftCornerSide: widget.row.checked
+                      ? widget.isLast
+                          ? borderSide
+                          : noneBorder
+                      : noneBorder,
                 ),
               ),
               // BoxDecoration(
@@ -287,8 +305,8 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
             decoration: ShapeDecoration(
                 color: widget.rowColor,
                 shape: CustomRoundedRectangleBorder(
-                  bottomSide: borderSide,
-                  topSide: borderSide,
+                  bottomSide: widget.row.checked ? borderSide : noneBorder,
+                  topSide: widget.row.checked ? borderSide : noneBorder,
                 )
                 // border: widget.row.checked
                 //     ? Border(bottom: borderSide, top: borderSide)
