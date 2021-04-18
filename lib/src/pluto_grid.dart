@@ -439,15 +439,11 @@ class _PlutoGridState extends State<PlutoGrid> {
                         //     color: stateManager.configuration.gridBorderColor,
                         //   ),
                         // ),
-                        // Positioned.fill(
-                        //   //top: stateManager.footerTopOffset,
-                        //   bottom: 0,
-                        //   child: widget.createFooter(stateManager),
-                        // ),
-                        Container(
-                            height: 0,
-                            width: 0,
-                            child: widget.createFooter(stateManager)),
+                        Positioned.fill(
+                          //top: stateManager.footerTopOffset,
+                          bottom: 0,
+                          child: widget.createFooter(stateManager),
+                        ),
                       ],
                       if (_showColumnFilter)
                         Positioned(
