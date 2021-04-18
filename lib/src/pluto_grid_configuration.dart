@@ -66,6 +66,10 @@ class PlutoGridConfiguration {
   /// Customise filter of columns
   final PlutoGridColumnFilterConfig columnFilterConfig;
 
+  /// checked rows has border or not
+  /// default is set to `false`
+  final bool checkedHasBorder;
+
   PlutoGridConfiguration({
     this.enableColumnBorder = false,
     this.gridBackgroundColor = Colors.white,
@@ -95,6 +99,7 @@ class PlutoGridConfiguration {
     this.localeText = const PlutoGridLocaleText(),
     this.scrollbarConfig = const PlutoGridScrollbarConfig(),
     this.columnFilterConfig = const PlutoGridColumnFilterConfig(),
+    this.checkedHasBorder = false,
   }) {
     _init();
   }
@@ -128,6 +133,7 @@ class PlutoGridConfiguration {
     this.localeText = const PlutoGridLocaleText(),
     this.scrollbarConfig = const PlutoGridScrollbarConfig(),
     this.columnFilterConfig = const PlutoGridColumnFilterConfig(),
+    this.checkedHasBorder = false,
   }) {
     _init();
   }

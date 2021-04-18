@@ -369,7 +369,11 @@ class _PlutoGridState extends State<PlutoGrid> {
                         bottom: stateManager.footerHeight,
                         child: widget.isLoading
                             ? const Center(
-                                child: CircularProgressIndicator(),
+                                child: CircularProgressIndicator(
+                                  backgroundColor: Colors.transparent,
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      Color(0xff03c7c3)),
+                                ),
                               )
                             : PlutoBodyRows(
                                 stateManager,
