@@ -130,7 +130,7 @@ mixin LayoutState implements IPlutoGridState {
 
   bool get showHeader => headerHeight > 0;
 
-  bool get showFooter => footerHeight > 0;
+  bool get showFooter => footerHeight > -1;
 
   bool get showLoading => _showLoading == true;
 
