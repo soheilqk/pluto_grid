@@ -9,11 +9,14 @@ class PlutoRow {
   /// If there is no value, it is automatically set when loading the grid.
   int sortIdx;
 
+  final String id;
+
   PlutoRow({
     @required this.cells,
     this.sortIdx,
     bool checked = false,
     Key key,
+    this.id,
   })  : _checked = checked,
         _state = PlutoRowState.none,
         _key = key ?? UniqueKey();
