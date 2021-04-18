@@ -52,6 +52,7 @@ class PlutoGrid extends StatefulWidget {
   final Color descendingIconColor;
   final Color ascendingIconColor;
   final void Function(Key key) onRowClick;
+  final bool isLoading;
 
   const PlutoGrid({
     Key key,
@@ -73,6 +74,7 @@ class PlutoGrid extends StatefulWidget {
     this.ascendingIconColor = Colors.green,
     this.descendingIconColor = Colors.red,
     this.onRowClick,
+    this.isLoading = true,
   }) : super(key: key);
 
   @override
@@ -365,15 +367,19 @@ class _PlutoGridState extends State<PlutoGrid> {
                         left: _bodyLeftOffset,
                         right: _bodyRightOffset,
                         bottom: stateManager.footerHeight,
-                        child: PlutoBodyRows(
-                          stateManager,
-                          headerColor: widget.headerColor,
-                          rowColor: widget.rowColor,
-                          dividerColor: widget.dividerColor,
-                          rowRadius: widget.rowRadius,
-                          onCheck: widget.onCheck,
-                          onRowClick: widget.onRowClick,
-                        ),
+                        child: widget.isLoading
+                            ? const Center(
+                                child: CircularProgressIndicator(),
+                              )
+                            : PlutoBodyRows(
+                                stateManager,
+                                headerColor: widget.headerColor,
+                                rowColor: widget.rowColor,
+                                dividerColor: widget.dividerColor,
+                                rowRadius: widget.rowRadius,
+                                onCheck: widget.onCheck,
+                                onRowClick: widget.onRowClick,
+                              ),
                       ),
                       if (_showFrozenColumn && _hasRightFrozenColumns) ...[
                         Positioned.fill(
