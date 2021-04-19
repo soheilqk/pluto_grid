@@ -280,9 +280,9 @@ class _PlutoGridState extends State<PlutoGrid> {
   @override
   Widget build(BuildContext context) {
     return FocusScope(
-      onFocusChange: (hasFocus) {
-        stateManager.setKeepFocus(hasFocus);
-      },
+      // onFocusChange: (hasFocus) {
+      //   stateManager.setKeepFocus(hasFocus);
+      // },
       //onKey: handleGridFocusOnKey,
       child: SafeArea(
         child: LayoutBuilder(
