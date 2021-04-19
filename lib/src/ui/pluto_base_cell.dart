@@ -136,13 +136,14 @@ class _PlutoBaseCellState extends _PlutoBaseCellStateWithChangeKeepAlive {
         onTap: () {
           if (widget.onRowClick != null) {
             widget.onRowClick(widget.row.key);
+            widget.stateManager.toggleSelectingRow(widget.rowIdx);
           }
         },
-        behavior: HitTestBehavior.translucent,
-        onTapUp: _handleOnTapUp,
-        onLongPressStart: _handleOnLongPressStart,
-        onLongPressMoveUpdate: _handleOnLongPressMoveUpdate,
-        onLongPressEnd: _handleOnLongPressEnd,
+        //behavior: HitTestBehavior.translucent,
+        //onTapUp: _handleOnTapUp,
+        //onLongPressStart: _handleOnLongPressStart,
+        //onLongPressMoveUpdate: _handleOnLongPressMoveUpdate,
+        //onLongPressEnd: _handleOnLongPressEnd,
         child: _CellContainer(
           readOnly: widget.column.type.readOnly,
           width: widget.width,
