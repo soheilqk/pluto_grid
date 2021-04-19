@@ -109,6 +109,8 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
     BorderSide borderSide = const BorderSide(width: 1, color: Color(0xff028a99));
     BorderSide noneBorder = const BorderSide(color: Colors.transparent, width: 0);
     var checkedHasBorder = widget.stateManager.configuration.checkedHasBorder;
+    var modeSelect = widget.stateManager.mode == PlutoGridMode.select;
+    var rowIsSelected = widget.stateManager.isSelectedRow(widget.row.key);
     return Row(
       children: [
         // todo : When onDragUpdated is added to the Draggable, remove the listener.
@@ -157,34 +159,34 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
                               )
                             : BorderRadius.zero
                     : BorderRadius.zero,
-                leftSide: (widget.row.checked && checkedHasBorder)
+                leftSide: modeSelect? rowIsSelected? borderSide:noneBorder : (widget.row.checked && checkedHasBorder)
                     ? widget.isLast
                         ? borderSide
                         : noneBorder
                     : noneBorder,
-                topSide: (widget.row.checked && checkedHasBorder) ? borderSide : noneBorder,
-                bottomSide: (widget.row.checked && checkedHasBorder) ? borderSide : noneBorder,
-                rightSide: (widget.row.checked && checkedHasBorder)
+                topSide:  modeSelect? rowIsSelected? borderSide:noneBorder : (widget.row.checked && checkedHasBorder) ? borderSide : noneBorder,
+                bottomSide:  modeSelect? rowIsSelected? borderSide:noneBorder : (widget.row.checked && checkedHasBorder) ? borderSide : noneBorder,
+                rightSide:  modeSelect? rowIsSelected? borderSide:noneBorder : (widget.row.checked && checkedHasBorder)
                     ? widget.isFirst
                         ? borderSide
                         : noneBorder
                     : noneBorder,
-                topRightCornerSide: (widget.row.checked && checkedHasBorder)
+                topRightCornerSide: modeSelect? rowIsSelected? borderSide:noneBorder :  (widget.row.checked && checkedHasBorder)
                     ? widget.isFirst
                         ? borderSide
                         : borderSide
                     : noneBorder,
-                bottomRightCornerSide: (widget.row.checked && checkedHasBorder)
+                bottomRightCornerSide:  modeSelect? rowIsSelected? borderSide:noneBorder : (widget.row.checked && checkedHasBorder)
                     ? widget.isFirst
                         ? borderSide
                         : borderSide
                     : noneBorder,
-                topLeftCornerSide: (widget.row.checked && checkedHasBorder)
+                topLeftCornerSide: modeSelect? rowIsSelected? borderSide:noneBorder :  (widget.row.checked && checkedHasBorder)
                     ? widget.isLast
                         ? borderSide
                         : borderSide
                     : noneBorder,
-                bottomLeftCornerSide: (widget.row.checked && checkedHasBorder)
+                bottomLeftCornerSide: modeSelect? rowIsSelected? borderSide:noneBorder :  (widget.row.checked && checkedHasBorder)
                     ? widget.isLast
                         ? borderSide
                         : borderSide
@@ -199,8 +201,8 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
             decoration: ShapeDecoration(
                 color: widget.rowColor,
                 shape: CustomRoundedRectangleBorder(
-                  bottomSide: (widget.row.checked && checkedHasBorder) ? borderSide : noneBorder,
-                  topSide: (widget.row.checked && checkedHasBorder) ? borderSide : noneBorder,
+                  bottomSide:  modeSelect? rowIsSelected? borderSide:noneBorder : (widget.row.checked && checkedHasBorder) ? borderSide : noneBorder,
+                  topSide: modeSelect? rowIsSelected? borderSide:noneBorder :  (widget.row.checked && checkedHasBorder) ? borderSide : noneBorder,
                   // rightSide: BorderSide(color: Colors.transparent, width: 0),
                   // leftSide: BorderSide(color: Colors.transparent, width: 0),
                 )
