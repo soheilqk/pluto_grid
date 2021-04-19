@@ -136,6 +136,7 @@ class _PlutoBaseCellState extends _PlutoBaseCellStateWithChangeKeepAlive {
         onTap: () {
           if (widget.onRowClick != null) {
             widget.onRowClick(widget.row.key);
+            widget.stateManager.clearCurrentSelectingRows();
             widget.stateManager.toggleSelectingRow(widget.rowIdx);
           }
         },
