@@ -279,12 +279,14 @@ class _PlutoGridState extends State<PlutoGrid> {
 
   @override
   Widget build(BuildContext context) {
-    return FocusScope(
+    return
+      //FocusScope(
       // onFocusChange: (hasFocus) {
       //   stateManager.setKeepFocus(hasFocus);
       // },
       //onKey: handleGridFocusOnKey,
-      child: SafeArea(
+    //  child:
+      SafeArea(
         child: LayoutBuilder(
             key: stateManager.gridKey,
             builder: (ctx, size) {
@@ -294,9 +296,10 @@ class _PlutoGridState extends State<PlutoGrid> {
               //   FocusScope.of(ctx).requestFocus(gridFocusNode);
               // }
 
-              return Focus(
+              //return Focus(
                 //focusNode: stateManager.gridFocusNode,
-                child: Container(
+               // child:
+              return Container(
                   padding: const EdgeInsets.all(PlutoGridSettings.gridPadding),
                   decoration: BoxDecoration(
                     color: stateManager.configuration.gridBackgroundColor,
@@ -473,10 +476,10 @@ class _PlutoGridState extends State<PlutoGrid> {
                         ),
                     ],
                   ),
-                ),
+               // ),
               );
             }),
-      ),
+     // ),
     );
   }
 }
