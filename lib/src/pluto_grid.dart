@@ -295,7 +295,7 @@ class _PlutoGridState extends State<PlutoGrid> {
               // }
 
               return Focus(
-                focusNode: stateManager.gridFocusNode,
+                //focusNode: stateManager.gridFocusNode,
                 child: Container(
                   padding: const EdgeInsets.all(PlutoGridSettings.gridPadding),
                   decoration: BoxDecoration(
