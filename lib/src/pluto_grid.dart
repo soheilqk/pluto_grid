@@ -429,18 +429,18 @@ class _PlutoGridState extends State<PlutoGrid> {
                       //   ),
                       // ),
                       if (stateManager.showFooter) ...[
-                        // Positioned(
-                        //   top: stateManager.footerTopOffset,
-                        //   left: 0,
-                        //   right: 0,
-                        //   child: PlutoShadowLine(
-                        //     axis: Axis.horizontal,
-                        //     reverse: true,
-                        //     color: stateManager.configuration.gridBorderColor,
-                        //   ),
-                        // ),
+                        Positioned(
+                          top: stateManager.footerTopOffset,
+                          left: 0,
+                          right: 0,
+                          child: PlutoShadowLine(
+                            axis: Axis.horizontal,
+                            reverse: true,
+                            color: stateManager.configuration.gridBorderColor,
+                          ),
+                        ),
                         Positioned.fill(
-                          //top: stateManager.footerTopOffset,
+                          top: stateManager.footerTopOffset,
                           bottom: 0,
                           child: widget.createFooter(stateManager),
                         ),

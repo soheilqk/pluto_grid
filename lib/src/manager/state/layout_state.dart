@@ -96,8 +96,8 @@ mixin LayoutState implements IPlutoGridState {
       createHeader == null ? 0 : PlutoGridSettings.rowTotalHeight;
 
   double get footerHeight =>
-      // createFooter == null ? 0 : PlutoGridSettings.rowTotalHeight;
-      createFooter == null ? 0 : 0;
+       createFooter == null ? 0 : PlutoGridSettings.rowTotalHeight;
+
 
   double get offsetHeight => maxHeight - headerHeight - footerHeight;
 
@@ -130,7 +130,7 @@ mixin LayoutState implements IPlutoGridState {
 
   bool get showHeader => headerHeight > 0;
 
-  bool get showFooter => footerHeight > -1;
+  bool get showFooter => footerHeight > 0;
 
   bool get showLoading => _showLoading == true;
 
