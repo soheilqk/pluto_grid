@@ -149,7 +149,7 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
             height:
                 widget.stateManager.rowHeight ?? PlutoGridSettings.rowHeight,
             decoration: ShapeDecoration(
-              color: widget.stateManager.currentSelectingRows[0] == widget.row ? Colors.blue : widget.rowColor,
+              color: widget.stateManager.currentSelectingRows?.first == widget.row ? Colors.blue : widget.rowColor,
               shape: CustomRoundedRectangleBorder(
                 borderRadius: (widget.rowRadius != null && widget.rowRadius > 0)
                     ? (widget.column.enableRowChecked || widget.isFirst)
