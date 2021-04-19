@@ -37,8 +37,7 @@ class PlutoDefaultCell extends PlutoStatefulWidget {
   _PlutoDefaultCellState createState() => _PlutoDefaultCellState();
 }
 
-abstract class _PlutoDefaultCellStateWithChange
-    extends PlutoStateWithChange<PlutoDefaultCell> {
+abstract class _PlutoDefaultCellStateWithChange extends PlutoStateWithChange<PlutoDefaultCell> {
   bool canRowDrag;
 
   @override
@@ -71,9 +70,7 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
       PlutoGridDragRowsEvent(
         offset: offset,
         dragType: type,
-        rows: isCurrentRowSelected
-            ? widget.stateManager.currentSelectingRows
-            : [thisRow],
+        rows: isCurrentRowSelected ? widget.stateManager.currentSelectingRows : [thisRow],
       ),
     );
   }
@@ -109,10 +106,8 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
       column: widget.column,
       cell: widget.cell,
     );
-    BorderSide borderSide =
-        const BorderSide(width: 1, color: Color(0xff028a99));
-    BorderSide noneBorder =
-        const BorderSide(color: Colors.transparent, width: 0);
+    BorderSide borderSide = const BorderSide(width: 1, color: Color(0xff028a99));
+    BorderSide noneBorder = const BorderSide(color: Colors.transparent, width: 0);
     var checkedHasBorder = widget.stateManager.configuration.checkedHasBorder;
     return Row(
       children: [
@@ -135,8 +130,7 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
         if (widget.column.enableRowChecked)
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            height:
-                widget.stateManager.rowHeight ?? PlutoGridSettings.rowHeight,
+            height: widget.stateManager.rowHeight ?? PlutoGridSettings.rowHeight,
             child: _CheckboxSelectionWidget(
               onCheck: widget.onCheck,
               column: widget.column,
@@ -146,10 +140,13 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
           ),
         Expanded(
           child: Container(
-            height:
-                widget.stateManager.rowHeight ?? PlutoGridSettings.rowHeight,
+            height: widget.stateManager.rowHeight ?? PlutoGridSettings.rowHeight,
             decoration: ShapeDecoration(
-              color: widget.stateManager.currentSelectingRows?.first == widget.row ? Colors.blue : widget.rowColor,
+              color: widget.stateManager.currentSelectingRows.isEmpty
+                  ? widget.rowColor
+                  : widget.stateManager.currentSelectingRows?.first == widget.row
+                      ? Colors.blue
+                      : widget.rowColor,
               shape: CustomRoundedRectangleBorder(
                 borderRadius: (widget.rowRadius != null && widget.rowRadius > 0)
                     ? (widget.column.enableRowChecked || widget.isFirst)
@@ -169,12 +166,8 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
                         ? borderSide
                         : noneBorder
                     : noneBorder,
-                topSide: (widget.row.checked && checkedHasBorder)
-                    ? borderSide
-                    : noneBorder,
-                bottomSide: (widget.row.checked && checkedHasBorder)
-                    ? borderSide
-                    : noneBorder,
+                topSide: (widget.row.checked && checkedHasBorder) ? borderSide : noneBorder,
+                bottomSide: (widget.row.checked && checkedHasBorder) ? borderSide : noneBorder,
                 rightSide: (widget.row.checked && checkedHasBorder)
                     ? widget.isFirst
                         ? borderSide
@@ -210,12 +203,8 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
             decoration: ShapeDecoration(
                 color: widget.rowColor,
                 shape: CustomRoundedRectangleBorder(
-                  bottomSide: (widget.row.checked && checkedHasBorder)
-                      ? borderSide
-                      : noneBorder,
-                  topSide: (widget.row.checked && checkedHasBorder)
-                      ? borderSide
-                      : noneBorder,
+                  bottomSide: (widget.row.checked && checkedHasBorder) ? borderSide : noneBorder,
+                  topSide: (widget.row.checked && checkedHasBorder) ? borderSide : noneBorder,
                   // rightSide: BorderSide(color: Colors.transparent, width: 0),
                   // leftSide: BorderSide(color: Colors.transparent, width: 0),
                 )
@@ -223,13 +212,11 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
                 //     ? Border(bottom: borderSide, top: borderSide)
                 //     : null,
                 ),
-            height:
-                widget.stateManager.rowHeight ?? PlutoGridSettings.rowHeight,
+            height: widget.stateManager.rowHeight ?? PlutoGridSettings.rowHeight,
             child: Row(
               children: [
                 Container(
-                  height: widget.stateManager.rowHeight / 2 ??
-                      PlutoGridSettings.rowHeight / 2,
+                  height: widget.stateManager.rowHeight / 2 ?? PlutoGridSettings.rowHeight / 2,
                   width: 1,
                   color: widget.dividerColor,
                 ),
@@ -277,8 +264,7 @@ class __RowDragIconWidgetState extends State<_RowDragIconWidget> {
       return null;
     }
 
-    final RenderBox renderBoxRed =
-        _feedbackKey.currentContext.findRenderObject() as RenderBox;
+    final RenderBox renderBoxRed = _feedbackKey.currentContext.findRenderObject() as RenderBox;
 
     return renderBoxRed.localToGlobal(Offset.zero);
   }
@@ -313,8 +299,7 @@ class __RowDragIconWidgetState extends State<_RowDragIconWidget> {
           child: PlutoShadowContainer(
             width: widget.column.width,
             height: widget.stateManager.rowHeight,
-            backgroundColor:
-                widget.stateManager.configuration.gridBackgroundColor,
+            backgroundColor: widget.stateManager.configuration.gridBackgroundColor,
             borderColor: widget.stateManager.configuration.activatedBorderColor,
             child: Row(
               children: [
@@ -346,12 +331,10 @@ class _CheckboxSelectionWidget extends PlutoStatefulWidget {
   });
 
   @override
-  __CheckboxSelectionWidgetState createState() =>
-      __CheckboxSelectionWidgetState();
+  __CheckboxSelectionWidgetState createState() => __CheckboxSelectionWidgetState();
 }
 
-abstract class __CheckboxSelectionWidgetStateWithChange
-    extends PlutoStateWithChange<_CheckboxSelectionWidget> {
+abstract class __CheckboxSelectionWidgetStateWithChange extends PlutoStateWithChange<_CheckboxSelectionWidget> {
   bool checked;
 
   @override
@@ -362,8 +345,7 @@ abstract class __CheckboxSelectionWidgetStateWithChange
   }
 }
 
-class __CheckboxSelectionWidgetState
-    extends __CheckboxSelectionWidgetStateWithChange {
+class __CheckboxSelectionWidgetState extends __CheckboxSelectionWidgetStateWithChange {
   void _handleOnChanged(bool changed) {
     if (changed == checked) {
       return;
