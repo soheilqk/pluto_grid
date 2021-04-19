@@ -79,7 +79,8 @@ class _PlutoBodyColumnsState extends _PlutoBodyColumnsStateWithChange {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      padding: const EdgeInsets.only(left: 8),
       width: width,
       child: Row(
         children: columns.map((element) {
