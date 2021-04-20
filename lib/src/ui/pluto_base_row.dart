@@ -210,7 +210,7 @@ class __RowContainerWidgetState extends __RowContainerWidgetStateWithChangeKeepA
     return Container(
       decoration: BoxDecoration(
         //color: isCheckedRow ? Color.alphaBlend(const Color(0x11757575), rowColor()) : rowColor(),
-        border: Border(
+        border:widget.stateManager.isSelectedRow(widget.row.key)?Border.all(color: Colors.red,width: 1): Border(
           top: isDragTarget && isTopDragTarget
               ? BorderSide(
                   width: PlutoGridSettings.rowBorderWidth,
