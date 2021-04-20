@@ -136,7 +136,7 @@ class _PlutoBaseCellState extends _PlutoBaseCellStateWithChangeKeepAlive {
             widget.onRowClick(widget.row.key);
           }
           if (widget.stateManager.mode == PlutoGridMode.select) {
-            if (widget.stateManager.currentSelectingRows?.first?.id != widget.row.id) {
+            if (widget.stateManager.currentSelectingRows.isNotEmpty && widget.stateManager.currentSelectingRows.first.id != widget.row.id) {
               widget.stateManager.clearCurrentSelectingRows();
             }
             widget.stateManager.toggleSelectingRow(widget.rowIdx);
