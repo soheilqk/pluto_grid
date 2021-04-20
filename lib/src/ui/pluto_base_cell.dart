@@ -146,10 +146,12 @@ class _PlutoBaseCellState extends _PlutoBaseCellStateWithChangeKeepAlive {
             widget.onRowClick(widget.row.key);
           }
           if(widget.stateManager.mode== PlutoGridMode.select){
-            widget.stateManager.clearCurrentSelectingRows();
-            widget.stateManager.toggleSelectingRow(widget.rowIdx);
+
             //widget.stateManager.notifyListeners();
-            setState(() {});
+            setState(() {
+              widget.stateManager.clearCurrentSelectingRows();
+              widget.stateManager.toggleSelectingRow(widget.rowIdx);
+            });
           }
         },
         //behavior: HitTestBehavior.translucent,
