@@ -213,20 +213,21 @@ class __RowContainerWidgetState extends __RowContainerWidgetStateWithChangeKeepA
         borderRadius: BorderRadius.circular(4),
         border: (widget.stateManager.mode == PlutoGridMode.select && isSelectedRow)
             ? Border.all(color: const Color(0xff028a99), width: 1)
-            : Border(
-                top: isDragTarget && isTopDragTarget
-                    ? BorderSide(
-                        width: PlutoGridSettings.rowBorderWidth,
-                        color: widget.stateManager.configuration.activatedBorderColor,
-                      )
-                    : BorderSide.none,
-                bottom: BorderSide(
-                  width: PlutoGridSettings.rowBorderWidth,
-                  color: isDragTarget && isBottomDragTarget
-                      ? widget.stateManager.configuration.activatedBorderColor
-                      : widget.stateManager.configuration.borderColor,
-                ),
-              ),
+            : null,
+        // Border(
+        //         top: isDragTarget && isTopDragTarget
+        //             ? BorderSide(
+        //                 width: PlutoGridSettings.rowBorderWidth,
+        //                 color: widget.stateManager.configuration.activatedBorderColor,
+        //               )
+        //             : BorderSide.none,
+        //         bottom: BorderSide(
+        //           width: PlutoGridSettings.rowBorderWidth,
+        //           color: isDragTarget && isBottomDragTarget
+        //               ? widget.stateManager.configuration.activatedBorderColor
+        //               : widget.stateManager.configuration.borderColor,
+        //         ),
+        //       ),
       ),
       child: widget.child,
     );
