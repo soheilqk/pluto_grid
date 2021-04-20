@@ -143,60 +143,60 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
         Expanded(
           child: Container(
             height: widget.stateManager.rowHeight ?? PlutoGridSettings.rowHeight,
-            decoration: ShapeDecoration(
-              color: widget.rowColor,
-              shape: CustomRoundedRectangleBorder(
-                borderRadius: (widget.rowRadius != null && widget.rowRadius > 0)
-                    ? (widget.column.enableRowChecked || widget.isFirst)
-                        ? BorderRadius.only(
-                            topRight: Radius.circular(widget.rowRadius),
-                            bottomRight: Radius.circular(widget.rowRadius),
-                          )
-                        : widget.isLast
-                            ? BorderRadius.only(
-                                topLeft: Radius.circular(widget.rowRadius),
-                                bottomLeft: Radius.circular(widget.rowRadius),
-                              )
-                            : BorderRadius.zero
-                    : BorderRadius.zero,
-                leftSide: modeSelect? rowIsSelected? widget.isLast
-                    ? borderSide
-                    : noneBorder:noneBorder : (widget.row.checked && checkedHasBorder)
-                    ? widget.isLast
-                        ? borderSide
-                        : noneBorder
-                    : noneBorder,
-                topSide:  modeSelect? rowIsSelected? borderSide:noneBorder : (widget.row.checked && checkedHasBorder) ? borderSide : noneBorder,
-                bottomSide:  modeSelect? rowIsSelected? borderSide:noneBorder : (widget.row.checked && checkedHasBorder) ? borderSide : noneBorder,
-                rightSide:  modeSelect? rowIsSelected? widget.isFirst
-                    ? borderSide
-                    : noneBorder:noneBorder : (widget.row.checked && checkedHasBorder)
-                    ? widget.isFirst
-                        ? borderSide
-                        : noneBorder
-                    : noneBorder,
-                topRightCornerSide: modeSelect? rowIsSelected? borderSide:noneBorder :  (widget.row.checked && checkedHasBorder)
-                    ? widget.isFirst
-                        ? borderSide
-                        : borderSide
-                    : noneBorder,
-                bottomRightCornerSide:  modeSelect? rowIsSelected? borderSide:noneBorder : (widget.row.checked && checkedHasBorder)
-                    ? widget.isFirst
-                        ? borderSide
-                        : borderSide
-                    : noneBorder,
-                topLeftCornerSide: modeSelect? rowIsSelected? borderSide:noneBorder :  (widget.row.checked && checkedHasBorder)
-                    ? widget.isLast
-                        ? borderSide
-                        : borderSide
-                    : noneBorder,
-                bottomLeftCornerSide: modeSelect? rowIsSelected? borderSide:noneBorder :  (widget.row.checked && checkedHasBorder)
-                    ? widget.isLast
-                        ? borderSide
-                        : borderSide
-                    : noneBorder,
-              ),
-            ),
+            // decoration: ShapeDecoration(
+            //   color: widget.rowColor,
+            //   shape: CustomRoundedRectangleBorder(
+            //     borderRadius: (widget.rowRadius != null && widget.rowRadius > 0)
+            //         ? (widget.column.enableRowChecked || widget.isFirst)
+            //             ? BorderRadius.only(
+            //                 topRight: Radius.circular(widget.rowRadius),
+            //                 bottomRight: Radius.circular(widget.rowRadius),
+            //               )
+            //             : widget.isLast
+            //                 ? BorderRadius.only(
+            //                     topLeft: Radius.circular(widget.rowRadius),
+            //                     bottomLeft: Radius.circular(widget.rowRadius),
+            //                   )
+            //                 : BorderRadius.zero
+            //         : BorderRadius.zero,
+            //     leftSide: modeSelect? rowIsSelected? widget.isLast
+            //         ? borderSide
+            //         : noneBorder:noneBorder : (widget.row.checked && checkedHasBorder)
+            //         ? widget.isLast
+            //             ? borderSide
+            //             : noneBorder
+            //         : noneBorder,
+            //     topSide:  modeSelect? rowIsSelected? borderSide:noneBorder : (widget.row.checked && checkedHasBorder) ? borderSide : noneBorder,
+            //     bottomSide:  modeSelect? rowIsSelected? borderSide:noneBorder : (widget.row.checked && checkedHasBorder) ? borderSide : noneBorder,
+            //     rightSide:  modeSelect? rowIsSelected? widget.isFirst
+            //         ? borderSide
+            //         : noneBorder:noneBorder : (widget.row.checked && checkedHasBorder)
+            //         ? widget.isFirst
+            //             ? borderSide
+            //             : noneBorder
+            //         : noneBorder,
+            //     topRightCornerSide: modeSelect? rowIsSelected? borderSide:noneBorder :  (widget.row.checked && checkedHasBorder)
+            //         ? widget.isFirst
+            //             ? borderSide
+            //             : borderSide
+            //         : noneBorder,
+            //     bottomRightCornerSide:  modeSelect? rowIsSelected? borderSide:noneBorder : (widget.row.checked && checkedHasBorder)
+            //         ? widget.isFirst
+            //             ? borderSide
+            //             : borderSide
+            //         : noneBorder,
+            //     topLeftCornerSide: modeSelect? rowIsSelected? borderSide:noneBorder :  (widget.row.checked && checkedHasBorder)
+            //         ? widget.isLast
+            //             ? borderSide
+            //             : borderSide
+            //         : noneBorder,
+            //     bottomLeftCornerSide: modeSelect? rowIsSelected? borderSide:noneBorder :  (widget.row.checked && checkedHasBorder)
+            //         ? widget.isLast
+            //             ? borderSide
+            //             : borderSide
+            //         : noneBorder,
+            //   ),
+            // ),
             child: Center(child: cellWidget),
           ),
         ),
