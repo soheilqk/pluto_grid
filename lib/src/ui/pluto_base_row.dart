@@ -14,6 +14,7 @@ class PlutoBaseRow extends StatelessWidget {
   final double rowRadius;
   final Function onCheck;
   final void Function(Key key) onRowClick;
+  final void Function(PlutoRow selectedRow) onRowSelected;
 
   PlutoBaseRow({
     Key key,
@@ -29,6 +30,7 @@ class PlutoBaseRow extends StatelessWidget {
     this.rowRadius,
     this.onCheck,
     this.onRowClick,
+    this.onRowSelected,
   }) : super(key: key);
 
   @override
@@ -56,6 +58,7 @@ class PlutoBaseRow extends StatelessWidget {
             rowRadius: rowRadius,
             onCheck: onCheck,
             onRowClick: onRowClick,
+            onRowSelected: onRowSelected,
             row: row,
           );
           if (column.field == 'rowNumber') {
@@ -81,6 +84,7 @@ class PlutoBaseRow extends StatelessWidget {
                     rowRadius: rowRadius,
                     onCheck: onCheck,
                     onRowClick: onRowClick,
+                    onRowSelected: onRowSelected,
                     row: row,
                   );
                 },

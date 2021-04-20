@@ -1,4 +1,3 @@
-import 'package:custom_rounded_rectangle_border/custom_rounded_rectangle_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pluto_grid/pluto_grid.dart';
@@ -18,6 +17,7 @@ class PlutoBaseCell extends PlutoStatefulWidget {
   final double rowRadius;
   final Function onCheck;
   final void Function(Key key) onRowClick;
+  final void Function(PlutoRow selectedRow) onRowSelected;
   final PlutoRow row;
 
   PlutoBaseCell({
@@ -36,6 +36,7 @@ class PlutoBaseCell extends PlutoStatefulWidget {
     this.rowRadius,
     this.onCheck,
     this.onRowClick,
+    this.onRowSelected,
     this.row,
   }) : super(key: key);
 
@@ -95,33 +96,33 @@ abstract class _PlutoBaseCellStateWithChangeKeepAlive extends PlutoStateWithChan
 }
 
 class _PlutoBaseCellState extends _PlutoBaseCellStateWithChangeKeepAlive {
-  void _addGestureEvent(PlutoGridGestureType gestureType, Offset offset) {
-    widget.stateManager.eventManager.addEvent(
-      PlutoGridCellGestureEvent(
-        gestureType: gestureType,
-        offset: offset,
-        cell: widget.cell,
-        column: widget.column,
-        rowIdx: widget.rowIdx,
-      ),
-    );
-  }
+  // void _addGestureEvent(PlutoGridGestureType gestureType, Offset offset) {
+  //   widget.stateManager.eventManager.addEvent(
+  //     PlutoGridCellGestureEvent(
+  //       gestureType: gestureType,
+  //       offset: offset,
+  //       cell: widget.cell,
+  //       column: widget.column,
+  //       rowIdx: widget.rowIdx,
+  //     ),
+  //   );
+  // }
 
-  void _handleOnTapUp(TapUpDetails details) {
-    _addGestureEvent(PlutoGridGestureType.onTapUp, details.globalPosition);
-  }
-
-  void _handleOnLongPressStart(LongPressStartDetails details) {
-    _addGestureEvent(PlutoGridGestureType.onLongPressStart, details.globalPosition);
-  }
-
-  void _handleOnLongPressMoveUpdate(LongPressMoveUpdateDetails details) {
-    _addGestureEvent(PlutoGridGestureType.onLongPressMoveUpdate, details.globalPosition);
-  }
-
-  void _handleOnLongPressEnd(LongPressEndDetails details) {
-    _addGestureEvent(PlutoGridGestureType.onLongPressEnd, details.globalPosition);
-  }
+  // void _handleOnTapUp(TapUpDetails details) {
+  //   _addGestureEvent(PlutoGridGestureType.onTapUp, details.globalPosition);
+  // }
+  //
+  // void _handleOnLongPressStart(LongPressStartDetails details) {
+  //   _addGestureEvent(PlutoGridGestureType.onLongPressStart, details.globalPosition);
+  // }
+  //
+  // void _handleOnLongPressMoveUpdate(LongPressMoveUpdateDetails details) {
+  //   _addGestureEvent(PlutoGridGestureType.onLongPressMoveUpdate, details.globalPosition);
+  // }
+  //
+  // void _handleOnLongPressEnd(LongPressEndDetails details) {
+  //   _addGestureEvent(PlutoGridGestureType.onLongPressEnd, details.globalPosition);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -135,10 +136,12 @@ class _PlutoBaseCellState extends _PlutoBaseCellStateWithChangeKeepAlive {
             widget.onRowClick(widget.row.key);
           }
           if (widget.stateManager.mode == PlutoGridMode.select) {
-            widget.stateManager.clearCurrentSelectingRows();
+            if (widget.stateManager.currentSelectingRows.first.id != widget.row.id) {
+              widget.stateManager.clearCurrentSelectingRows();
+            }
             widget.stateManager.toggleSelectingRow(widget.rowIdx);
-            print('[selecteds] ${widget.stateManager.currentSelectingRows.first}');
-            widget.stateManager.notifyListeners();
+            widget.onRowSelected(widget.stateManager.currentSelectingRows.first);
+            //widget.stateManager.notifyListeners();
             //setState(() {});
           }
         },

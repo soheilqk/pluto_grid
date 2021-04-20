@@ -2,20 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:linked_scroll_controller/linked_scroll_controller.dart';
 import 'package:pluto_grid/pluto_grid.dart';
 
-typedef PlutoOnLoadedEventCallback = void Function(
-    PlutoGridOnLoadedEvent event);
+typedef PlutoOnLoadedEventCallback = void Function(PlutoGridOnLoadedEvent event);
 
-typedef PlutoOnChangedEventCallback = void Function(
-    PlutoGridOnChangedEvent event);
+typedef PlutoOnChangedEventCallback = void Function(PlutoGridOnChangedEvent event);
 
-typedef PlutoOnSelectedEventCallback = void Function(
-    PlutoGridOnSelectedEvent event);
+typedef PlutoOnSelectedEventCallback = void Function(PlutoGridOnSelectedEvent event);
 
-typedef CreateHeaderCallBack = Widget Function(
-    PlutoGridStateManager stateManager);
+typedef CreateHeaderCallBack = Widget Function(PlutoGridStateManager stateManager);
 
-typedef CreateFooterCallBack = Widget Function(
-    PlutoGridStateManager stateManager);
+typedef CreateFooterCallBack = Widget Function(PlutoGridStateManager stateManager);
 
 class PlutoGrid extends StatefulWidget {
   final List<PlutoColumn> columns;
@@ -52,6 +47,7 @@ class PlutoGrid extends StatefulWidget {
   final Color descendingIconColor;
   final Color ascendingIconColor;
   final void Function(Key key) onRowClick;
+  final void Function(PlutoRow selectedRow) onRowSelected;
   final bool isLoading;
 
   const PlutoGrid({
@@ -75,6 +71,7 @@ class PlutoGrid extends StatefulWidget {
     this.descendingIconColor = Colors.red,
     this.onRowClick,
     this.isLoading = true,
+    this.onRowSelected,
   }) : super(key: key);
 
   @override
@@ -219,8 +216,7 @@ class _PlutoGridState extends State<PlutoGrid> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (stateManager.currentCell == null && widget.rows.isNotEmpty) {
-        stateManager.setCurrentCell(
-            widget.rows.first.cells.entries.first.value, 0);
+        stateManager.setCurrentCell(widget.rows.first.cells.entries.first.value, 0);
       }
 
       stateManager.gridFocusNode.requestFocus();
@@ -246,9 +242,7 @@ class _PlutoGridState extends State<PlutoGrid> {
       event: event,
     ));
 
-    return stateManager.isEditing
-        ? KeyEventResult.skipRemainingHandlers
-        : KeyEventResult.handled;
+    return stateManager.isEditing ? KeyEventResult.skipRemainingHandlers : KeyEventResult.handled;
   }
 
   void setLayout(BoxConstraints size) {
@@ -280,206 +274,201 @@ class _PlutoGridState extends State<PlutoGrid> {
   @override
   Widget build(BuildContext context) {
     return
-      //FocusScope(
-      // onFocusChange: (hasFocus) {
-      //   stateManager.setKeepFocus(hasFocus);
-      // },
-      //onKey: handleGridFocusOnKey,
-    //  child:
-      SafeArea(
-        child: LayoutBuilder(
-            key: stateManager.gridKey,
-            builder: (ctx, size) {
-              setLayout(size);
+        //FocusScope(
+        // onFocusChange: (hasFocus) {
+        //   stateManager.setKeepFocus(hasFocus);
+        // },
+        //onKey: handleGridFocusOnKey,
+        //  child:
+        SafeArea(
+      child: LayoutBuilder(
+          key: stateManager.gridKey,
+          builder: (ctx, size) {
+            setLayout(size);
 
-              // if (stateManager.keepFocus) {
-              //   FocusScope.of(ctx).requestFocus(gridFocusNode);
-              // }
+            // if (stateManager.keepFocus) {
+            //   FocusScope.of(ctx).requestFocus(gridFocusNode);
+            // }
 
-              //return Focus(
-                //focusNode: stateManager.gridFocusNode,
-               // child:
-              return Container(
-                  padding: const EdgeInsets.all(PlutoGridSettings.gridPadding),
-                  decoration: BoxDecoration(
-                    color: stateManager.configuration.gridBackgroundColor,
-                    border: Border.all(
-                      color: stateManager.configuration.gridBorderColor,
-                      width: PlutoGridSettings.gridBorderWidth,
+            //return Focus(
+            //focusNode: stateManager.gridFocusNode,
+            // child:
+            return Container(
+              padding: const EdgeInsets.all(PlutoGridSettings.gridPadding),
+              decoration: BoxDecoration(
+                color: stateManager.configuration.gridBackgroundColor,
+                border: Border.all(
+                  color: stateManager.configuration.gridBorderColor,
+                  width: PlutoGridSettings.gridBorderWidth,
+                ),
+              ),
+              child: Stack(
+                children: [
+                  if (stateManager.showHeader)
+                    //...[
+                    Positioned.fill(
+                      top: 0,
+                      bottom: stateManager.headerBottomOffset,
+                      child: widget.createHeader(stateManager),
+                      // ListView(
+                      //   controller: scroll,
+                      //   scrollDirection: Axis.horizontal,
+                      //   physics: const NeverScrollableScrollPhysics(),
+                      //   children: [
+                      //     widget.createHeader(stateManager),
+                      //   ],
+                      // ),
+                    ),
+
+                  //   Positioned(
+                  //     top: stateManager.headerHeight,
+                  //     left: 0,
+                  //     right: 0,
+                  //     child: PlutoShadowLine(
+                  //       axis: Axis.horizontal,
+                  //       color: stateManager.configuration.gridBorderColor,
+                  //     ),
+                  //   ),
+                  // ],
+
+                  if (_showFrozenColumn && _hasLeftFrozenColumns) ...[
+                    Positioned.fill(
+                      top: stateManager.headerHeight,
+                      left: 0,
+                      child: PlutoLeftFrozenColumns(stateManager),
+                    ),
+                    Positioned.fill(
+                      top: stateManager.rowsTopOffset,
+                      left: 0,
+                      bottom: stateManager.footerHeight,
+                      child: PlutoLeftFrozenRows(stateManager),
+                    ),
+                  ],
+                  Positioned.fill(
+                    top: stateManager.headerHeight,
+                    left: _bodyLeftOffset,
+                    right: _bodyRightOffset,
+                    child: PlutoBodyColumns(
+                      stateManager,
+                      headerColor: widget.headerColor,
+                      rowColor: widget.rowColor,
+                      dividerColor: widget.dividerColor,
+                      headerRadius: widget.headerRadius,
+                      ascendingIconColor: widget.ascendingIconColor,
+                      descendingIconColor: widget.descendingIconColor,
+                      onCheck: widget.onCheck,
                     ),
                   ),
-                  child: Stack(
-                    children: [
-                      if (stateManager.showHeader)
-                        //...[
-                        Positioned.fill(
-                          top: 0,
-                          bottom: stateManager.headerBottomOffset,
-                          child: widget.createHeader(stateManager),
-                          // ListView(
-                          //   controller: scroll,
-                          //   scrollDirection: Axis.horizontal,
-                          //   physics: const NeverScrollableScrollPhysics(),
-                          //   children: [
-                          //     widget.createHeader(stateManager),
-                          //   ],
-                          // ),
-                        ),
-
-                      //   Positioned(
-                      //     top: stateManager.headerHeight,
-                      //     left: 0,
-                      //     right: 0,
-                      //     child: PlutoShadowLine(
-                      //       axis: Axis.horizontal,
-                      //       color: stateManager.configuration.gridBorderColor,
-                      //     ),
-                      //   ),
-                      // ],
-
-                      if (_showFrozenColumn && _hasLeftFrozenColumns) ...[
-                        Positioned.fill(
-                          top: stateManager.headerHeight,
-                          left: 0,
-                          child: PlutoLeftFrozenColumns(stateManager),
-                        ),
-                        Positioned.fill(
-                          top: stateManager.rowsTopOffset,
-                          left: 0,
-                          bottom: stateManager.footerHeight,
-                          child: PlutoLeftFrozenRows(stateManager),
-                        ),
-                      ],
-                      Positioned.fill(
-                        top: stateManager.headerHeight,
-                        left: _bodyLeftOffset,
-                        right: _bodyRightOffset,
-                        child: PlutoBodyColumns(
-                          stateManager,
-                          headerColor: widget.headerColor,
-                          rowColor: widget.rowColor,
-                          dividerColor: widget.dividerColor,
-                          headerRadius: widget.headerRadius,
-                          ascendingIconColor: widget.ascendingIconColor,
-                          descendingIconColor: widget.descendingIconColor,
-                          onCheck: widget.onCheck,
-                        ),
-                      ),
-                      Positioned.fill(
-                        top: stateManager.rowsTopOffset,
-                        left: _bodyLeftOffset,
-                        right: _bodyRightOffset,
-                        bottom: stateManager.footerHeight,
-                        child: widget.isLoading
-                            ? const Center(
-                                child: CircularProgressIndicator(
-                                  backgroundColor: Colors.transparent,
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                      Color(0xff03c7c3)),
-                                ),
-                              )
-                            : PlutoBodyRows(
-                                stateManager,
-                                headerColor: widget.headerColor,
-                                rowColor: widget.rowColor,
-                                dividerColor: widget.dividerColor,
-                                rowRadius: widget.rowRadius,
-                                onCheck: widget.onCheck,
-                                onRowClick: widget.onRowClick,
-                              ),
-                      ),
-                      if (_showFrozenColumn && _hasRightFrozenColumns) ...[
-                        Positioned.fill(
-                          top: stateManager.headerHeight,
-                          left: _rightFrozenLeftOffset,
-                          child: PlutoRightFrozenColumns(stateManager),
-                        ),
-                        Positioned.fill(
-                          top: stateManager.rowsTopOffset,
-                          left: _rightFrozenLeftOffset,
-                          bottom: stateManager.footerHeight,
-                          child: PlutoRightFrozenRows(stateManager),
-                        ),
-                      ],
-                      if (_showFrozenColumn && _hasLeftFrozenColumns)
-                        Positioned(
-                          top: stateManager.headerHeight,
-                          left: _bodyLeftOffset - 1,
-                          bottom: stateManager.footerHeight,
-                          child: PlutoShadowLine(
-                            axis: Axis.vertical,
-                            color: stateManager.configuration.gridBorderColor,
-                          ),
-                        ),
-                      if (_showFrozenColumn && _hasRightFrozenColumns)
-                        Positioned(
-                          top: stateManager.headerHeight,
-                          left: _rightFrozenLeftOffset - 1,
-                          bottom: stateManager.footerHeight,
-                          child: PlutoShadowLine(
-                            axis: Axis.vertical,
-                            reverse: true,
-                            color: stateManager.configuration.gridBorderColor,
-                          ),
-                        ),
-                      // Positioned(
-                      //   top: stateManager.rowsTopOffset - 1,
-                      //   left: 0,
-                      //   right: 0,
-                      //   child: PlutoShadowLine(
-                      //     axis: Axis.horizontal,
-                      //     color: stateManager.configuration.gridBorderColor,
-                      //   ),
-                      // ),
-                      if (stateManager.showFooter) ...[
-                        Positioned(
-                          top: stateManager.footerTopOffset,
-                          left: 0,
-                          right: 0,
-                          child: PlutoShadowLine(
-                            axis: Axis.horizontal,
-                            reverse: true,
-                            color: stateManager.configuration.gridBorderColor,
-                          ),
-                        ),
-                        Positioned.fill(
-                          top: stateManager.footerTopOffset,
-                          bottom: 0,
-                          child: widget.createFooter(stateManager),
-                        ),
-                      ],
-                      if (_showColumnFilter)
-                        Positioned(
-                          top: stateManager.headerHeight +
-                              stateManager.columnHeight,
-                          left: 0,
-                          right: 0,
-                          child: Container(
-                            height: 1,
-                            decoration: BoxDecoration(
-                              color: stateManager.configuration.gridBorderColor,
+                  Positioned.fill(
+                    top: stateManager.rowsTopOffset,
+                    left: _bodyLeftOffset,
+                    right: _bodyRightOffset,
+                    bottom: stateManager.footerHeight,
+                    child: widget.isLoading
+                        ? const Center(
+                            child: CircularProgressIndicator(
+                              backgroundColor: Colors.transparent,
+                              valueColor: AlwaysStoppedAnimation<Color>(Color(0xff03c7c3)),
                             ),
+                          )
+                        : PlutoBodyRows(
+                            stateManager,
+                            headerColor: widget.headerColor,
+                            rowColor: widget.rowColor,
+                            dividerColor: widget.dividerColor,
+                            rowRadius: widget.rowRadius,
+                            onCheck: widget.onCheck,
+                            onRowClick: widget.onRowClick,
+                            onRowSelected: widget.onRowSelected,
                           ),
-                        ),
-                      if (stateManager.showLoading)
-                        Positioned.fill(
-                          child: PlutoLoading(
-                            backgroundColor:
-                                stateManager.configuration.gridBackgroundColor,
-                            indicatorColor:
-                                stateManager.configuration.cellTextStyle.color,
-                            indicatorText: stateManager
-                                .configuration.localeText.loadingText,
-                            indicatorSize: stateManager
-                                .configuration.cellTextStyle.fontSize,
-                          ),
-                        ),
-                    ],
                   ),
-               // ),
-              );
-            }),
-     // ),
+                  if (_showFrozenColumn && _hasRightFrozenColumns) ...[
+                    Positioned.fill(
+                      top: stateManager.headerHeight,
+                      left: _rightFrozenLeftOffset,
+                      child: PlutoRightFrozenColumns(stateManager),
+                    ),
+                    Positioned.fill(
+                      top: stateManager.rowsTopOffset,
+                      left: _rightFrozenLeftOffset,
+                      bottom: stateManager.footerHeight,
+                      child: PlutoRightFrozenRows(stateManager),
+                    ),
+                  ],
+                  if (_showFrozenColumn && _hasLeftFrozenColumns)
+                    Positioned(
+                      top: stateManager.headerHeight,
+                      left: _bodyLeftOffset - 1,
+                      bottom: stateManager.footerHeight,
+                      child: PlutoShadowLine(
+                        axis: Axis.vertical,
+                        color: stateManager.configuration.gridBorderColor,
+                      ),
+                    ),
+                  if (_showFrozenColumn && _hasRightFrozenColumns)
+                    Positioned(
+                      top: stateManager.headerHeight,
+                      left: _rightFrozenLeftOffset - 1,
+                      bottom: stateManager.footerHeight,
+                      child: PlutoShadowLine(
+                        axis: Axis.vertical,
+                        reverse: true,
+                        color: stateManager.configuration.gridBorderColor,
+                      ),
+                    ),
+                  // Positioned(
+                  //   top: stateManager.rowsTopOffset - 1,
+                  //   left: 0,
+                  //   right: 0,
+                  //   child: PlutoShadowLine(
+                  //     axis: Axis.horizontal,
+                  //     color: stateManager.configuration.gridBorderColor,
+                  //   ),
+                  // ),
+                  if (stateManager.showFooter) ...[
+                    Positioned(
+                      top: stateManager.footerTopOffset,
+                      left: 0,
+                      right: 0,
+                      child: PlutoShadowLine(
+                        axis: Axis.horizontal,
+                        reverse: true,
+                        color: stateManager.configuration.gridBorderColor,
+                      ),
+                    ),
+                    Positioned.fill(
+                      top: stateManager.footerTopOffset,
+                      bottom: 0,
+                      child: widget.createFooter(stateManager),
+                    ),
+                  ],
+                  if (_showColumnFilter)
+                    Positioned(
+                      top: stateManager.headerHeight + stateManager.columnHeight,
+                      left: 0,
+                      right: 0,
+                      child: Container(
+                        height: 1,
+                        decoration: BoxDecoration(
+                          color: stateManager.configuration.gridBorderColor,
+                        ),
+                      ),
+                    ),
+                  if (stateManager.showLoading)
+                    Positioned.fill(
+                      child: PlutoLoading(
+                        backgroundColor: stateManager.configuration.gridBackgroundColor,
+                        indicatorColor: stateManager.configuration.cellTextStyle.color,
+                        indicatorText: stateManager.configuration.localeText.loadingText,
+                        indicatorSize: stateManager.configuration.cellTextStyle.fontSize,
+                      ),
+                    ),
+                ],
+              ),
+              // ),
+            );
+          }),
+      // ),
     );
   }
 }
@@ -547,8 +536,7 @@ class PlutoGridSettings {
   static const double shadowLineSize = 3.0;
 
   /// Sum of frozen column division line width
-  static const double totalShadowLineWidth =
-      PlutoGridSettings.shadowLineSize * 2;
+  static const double totalShadowLineWidth = PlutoGridSettings.shadowLineSize * 2;
 
   /// Grid - padding
   static const double gridPadding = 2.0;
@@ -556,8 +544,7 @@ class PlutoGridSettings {
   /// Grid - border width
   static const double gridBorderWidth = 1.0;
 
-  static const double gridInnerSpacing =
-      (gridPadding * 2) + (gridBorderWidth * 2);
+  static const double gridInnerSpacing = (gridPadding * 2) + (gridBorderWidth * 2);
 
   /// Row - Default row height
   static const double rowHeight = 45.0;
@@ -575,12 +562,10 @@ class PlutoGridSettings {
   static const double cellFontSize = 14;
 
   /// Scroll when multi-selection is as close as that value from the edge
-  static const double offsetScrollingFromEdge =
-      PlutoSetting.offsetScrollingFromEdge;
+  static const double offsetScrollingFromEdge = PlutoSetting.offsetScrollingFromEdge;
 
   /// Size that scrolls from the edge at once when selecting multiple
-  static const double offsetScrollingFromEdgeAtOnce =
-      PlutoSetting.offsetScrollingFromEdgeAtOnce;
+  static const double offsetScrollingFromEdgeAtOnce = PlutoSetting.offsetScrollingFromEdgeAtOnce;
 }
 
 enum PlutoGridMode {
