@@ -159,14 +159,18 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
                               )
                             : BorderRadius.zero
                     : BorderRadius.zero,
-                leftSide: modeSelect? rowIsSelected? borderSide:noneBorder : (widget.row.checked && checkedHasBorder)
+                leftSide: modeSelect? rowIsSelected? widget.isLast
+                    ? borderSide
+                    : noneBorder:noneBorder : (widget.row.checked && checkedHasBorder)
                     ? widget.isLast
                         ? borderSide
                         : noneBorder
                     : noneBorder,
                 topSide:  modeSelect? rowIsSelected? borderSide:noneBorder : (widget.row.checked && checkedHasBorder) ? borderSide : noneBorder,
                 bottomSide:  modeSelect? rowIsSelected? borderSide:noneBorder : (widget.row.checked && checkedHasBorder) ? borderSide : noneBorder,
-                rightSide:  modeSelect? rowIsSelected? borderSide:noneBorder : (widget.row.checked && checkedHasBorder)
+                rightSide:  modeSelect? rowIsSelected? widget.isFirst
+                    ? borderSide
+                    : noneBorder:noneBorder : (widget.row.checked && checkedHasBorder)
                     ? widget.isFirst
                         ? borderSide
                         : noneBorder
