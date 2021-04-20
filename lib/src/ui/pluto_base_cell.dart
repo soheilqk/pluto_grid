@@ -123,16 +123,9 @@ class _PlutoBaseCellState extends _PlutoBaseCellStateWithChangeKeepAlive {
     _addGestureEvent(PlutoGridGestureType.onLongPressEnd, details.globalPosition);
   }
 
-  BorderSide borderSide = const BorderSide(width: 1, color: Color(0xff028a99));
-  BorderSide noneBorder = const BorderSide(color: Colors.transparent, width: 0);
-
   @override
   Widget build(BuildContext context) {
     super.build(context);
-
-    var checkedHasBorder = widget.stateManager.configuration.checkedHasBorder;
-    var modeSelect = widget.stateManager.mode == PlutoGridMode.select;
-    var rowIsSelected = widget.stateManager.isSelectedRow(widget.row.key);
 
     return MouseRegion(
       cursor: SystemMouseCursors.click,
@@ -154,123 +147,31 @@ class _PlutoBaseCellState extends _PlutoBaseCellStateWithChangeKeepAlive {
         //onLongPressStart: _handleOnLongPressStart,
         //onLongPressMoveUpdate: _handleOnLongPressMoveUpdate,
         //onLongPressEnd: _handleOnLongPressEnd,
-        child: Container(
-          decoration: ShapeDecoration(
-            color: widget.rowColor,
-            shape: CustomRoundedRectangleBorder(
-              borderRadius: (widget.rowRadius != null && widget.rowRadius > 0)
-                  ? (widget.column.enableRowChecked || widget.isFirst)
-                      ? BorderRadius.only(
-                          topRight: Radius.circular(widget.rowRadius),
-                          bottomRight: Radius.circular(widget.rowRadius),
-                        )
-                      : widget.isLast
-                          ? BorderRadius.only(
-                              topLeft: Radius.circular(widget.rowRadius),
-                              bottomLeft: Radius.circular(widget.rowRadius),
-                            )
-                          : BorderRadius.zero
-                  : BorderRadius.zero,
-              leftSide: modeSelect
-                  ? rowIsSelected
-                      ? widget.isLast
-                          ? borderSide
-                          : noneBorder
-                      : noneBorder
-                  : (widget.row.checked && checkedHasBorder)
-                      ? widget.isLast
-                          ? borderSide
-                          : noneBorder
-                      : noneBorder,
-              topSide: modeSelect
-                  ? rowIsSelected
-                      ? borderSide
-                      : noneBorder
-                  : (widget.row.checked && checkedHasBorder)
-                      ? borderSide
-                      : noneBorder,
-              bottomSide: modeSelect
-                  ? rowIsSelected
-                      ? borderSide
-                      : noneBorder
-                  : (widget.row.checked && checkedHasBorder)
-                      ? borderSide
-                      : noneBorder,
-              rightSide: modeSelect
-                  ? rowIsSelected
-                      ? widget.isFirst
-                          ? borderSide
-                          : noneBorder
-                      : noneBorder
-                  : (widget.row.checked && checkedHasBorder)
-                      ? widget.isFirst
-                          ? borderSide
-                          : noneBorder
-                      : noneBorder,
-              topRightCornerSide: modeSelect
-                  ? rowIsSelected
-                      ? borderSide
-                      : noneBorder
-                  : (widget.row.checked && checkedHasBorder)
-                      ? widget.isFirst
-                          ? borderSide
-                          : borderSide
-                      : noneBorder,
-              bottomRightCornerSide: modeSelect
-                  ? rowIsSelected
-                      ? borderSide
-                      : noneBorder
-                  : (widget.row.checked && checkedHasBorder)
-                      ? widget.isFirst
-                          ? borderSide
-                          : borderSide
-                      : noneBorder,
-              topLeftCornerSide: modeSelect
-                  ? rowIsSelected
-                      ? borderSide
-                      : noneBorder
-                  : (widget.row.checked && checkedHasBorder)
-                      ? widget.isLast
-                          ? borderSide
-                          : borderSide
-                      : noneBorder,
-              bottomLeftCornerSide: modeSelect
-                  ? rowIsSelected
-                      ? borderSide
-                      : noneBorder
-                  : (widget.row.checked && checkedHasBorder)
-                      ? widget.isLast
-                          ? borderSide
-                          : borderSide
-                      : noneBorder,
-            ),
-          ),
-          child: _CellContainer(
-            readOnly: widget.column.type.readOnly,
-            width: widget.width,
-            height: widget.height,
-            hasFocus: widget.stateManager.hasFocus,
+        child: _CellContainer(
+          readOnly: widget.column.type.readOnly,
+          width: widget.width,
+          height: widget.height,
+          hasFocus: widget.stateManager.hasFocus,
+          isCurrentCell: isCurrentCell,
+          isEditing: isEditing,
+          selectingMode: selectingMode,
+          isSelectedCell: isSelectedCell,
+          configuration: widget.stateManager.configuration,
+          child: _BuildCell(
+            rowColor: widget.rowColor,
+            headerColor: widget.headerColor,
+            dividerColor: widget.dividerColor,
+            rowRadius: widget.rowRadius,
+            isLast: widget.isLast,
+            isFirst: widget.isFirst,
+            stateManager: widget.stateManager,
+            rowIdx: widget.rowIdx,
+            column: widget.column,
+            cell: widget.cell,
             isCurrentCell: isCurrentCell,
             isEditing: isEditing,
-            selectingMode: selectingMode,
-            isSelectedCell: isSelectedCell,
-            configuration: widget.stateManager.configuration,
-            child: _BuildCell(
-              rowColor: widget.rowColor,
-              headerColor: widget.headerColor,
-              dividerColor: widget.dividerColor,
-              rowRadius: widget.rowRadius,
-              isLast: widget.isLast,
-              isFirst: widget.isFirst,
-              stateManager: widget.stateManager,
-              rowIdx: widget.rowIdx,
-              column: widget.column,
-              cell: widget.cell,
-              isCurrentCell: isCurrentCell,
-              isEditing: isEditing,
-              onCheck: widget.onCheck,
-              row: widget.row,
-            ),
+            onCheck: widget.onCheck,
+            row: widget.row,
           ),
         ),
       ),
