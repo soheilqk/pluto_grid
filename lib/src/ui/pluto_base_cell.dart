@@ -136,11 +136,10 @@ class _PlutoBaseCellState extends _PlutoBaseCellStateWithChangeKeepAlive {
         onTap: () {
           if (widget.onRowClick != null) {
             widget.onRowClick(widget.row.key);
+          }
+          if(widget.stateManager.mode== PlutoGridMode.select){
             widget.stateManager.clearCurrentSelectingRows();
             widget.stateManager.toggleSelectingRow(widget.rowIdx);
-            setState(() {
-
-            });
           }
         },
         //behavior: HitTestBehavior.translucent,
