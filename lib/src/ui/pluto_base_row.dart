@@ -55,8 +55,8 @@ class PlutoBaseRow extends StatelessWidget {
             dividerColor: dividerColor,
             rowRadius: rowRadius,
             onCheck: onCheck,
-            onRowClick:onRowClick,
-            row:row,
+            onRowClick: onRowClick,
+            row: row,
           );
           if (column.field == 'rowNumber') {
             return child;
@@ -80,8 +80,8 @@ class PlutoBaseRow extends StatelessWidget {
                     dividerColor: dividerColor,
                     rowRadius: rowRadius,
                     onCheck: onCheck,
-                    onRowClick:onRowClick,
-                    row:row,
+                    onRowClick: onRowClick,
+                    row: row,
                   );
                 },
               ),
@@ -210,20 +210,23 @@ class __RowContainerWidgetState extends __RowContainerWidgetStateWithChangeKeepA
     return Container(
       decoration: BoxDecoration(
         //color: isCheckedRow ? Color.alphaBlend(const Color(0x11757575), rowColor()) : rowColor(),
-        border:isSelectedRow?Border.all(color: Colors.green,width:1): Border(
-          top: isDragTarget && isTopDragTarget
-              ? BorderSide(
+        borderRadius: BorderRadius.circular(4),
+        border: (widget.stateManager.mode == PlutoGridMode.select && isSelectedRow)
+            ? Border.all(color: const Color(0xff028a99), width: 1)
+            : Border(
+                top: isDragTarget && isTopDragTarget
+                    ? BorderSide(
+                        width: PlutoGridSettings.rowBorderWidth,
+                        color: widget.stateManager.configuration.activatedBorderColor,
+                      )
+                    : BorderSide.none,
+                bottom: BorderSide(
                   width: PlutoGridSettings.rowBorderWidth,
-                  color: widget.stateManager.configuration.activatedBorderColor,
-                )
-              : BorderSide.none,
-          bottom: BorderSide(
-            width: PlutoGridSettings.rowBorderWidth,
-            color: isDragTarget && isBottomDragTarget
-                ? widget.stateManager.configuration.activatedBorderColor
-                : widget.stateManager.configuration.borderColor,
-          ),
-        ),
+                  color: isDragTarget && isBottomDragTarget
+                      ? widget.stateManager.configuration.activatedBorderColor
+                      : widget.stateManager.configuration.borderColor,
+                ),
+              ),
       ),
       child: widget.child,
     );
