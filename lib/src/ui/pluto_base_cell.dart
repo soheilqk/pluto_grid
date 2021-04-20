@@ -130,18 +130,18 @@ class _PlutoBaseCellState extends _PlutoBaseCellStateWithChangeKeepAlive {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
-        onTap: () {
-          if (widget.onRowClick != null) {
-            widget.onRowClick(widget.row.key);
-          }
-          if (widget.stateManager.mode == PlutoGridMode.select) {
-            //widget.stateManager.notifyListeners();
-            setState(() {
-              widget.stateManager.clearCurrentSelectingRows();
-              widget.stateManager.toggleSelectingRow(widget.rowIdx);
-            });
-          }
-        },
+        // onTap: () {
+        //   if (widget.onRowClick != null) {
+        //     widget.onRowClick(widget.row.key);
+        //   }
+        //   if (widget.stateManager.mode == PlutoGridMode.select) {
+        //     //widget.stateManager.notifyListeners();
+        //     setState(() {
+        //       widget.stateManager.clearCurrentSelectingRows();
+        //       widget.stateManager.toggleSelectingRow(widget.rowIdx);
+        //     });
+        //   }
+        // },
         //behavior: HitTestBehavior.translucent,
         //onTapUp: _handleOnTapUp,
         //onLongPressStart: _handleOnLongPressStart,
