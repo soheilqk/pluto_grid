@@ -143,13 +143,12 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
         Expanded(
           child: GestureDetector(
             onTap: () {
-    if (widget.stateManager.mode == PlutoGridMode.select) {
-        //widget.stateManager.notifyListeners();
-        setState(() {
-          widget.stateManager.clearCurrentSelectingRows();
-          widget.stateManager.toggleSelectingRow(widget.rowIdx);
-        });
-      }
+              if (widget.stateManager.mode == PlutoGridMode.select) {
+                widget.stateManager.clearCurrentSelectingRows();
+                widget.stateManager.toggleSelectingRow(widget.rowIdx);
+                widget.stateManager.notifyListeners();
+                setState(() {});
+              }
             },
             child: Container(
               height: widget.stateManager.rowHeight ?? PlutoGridSettings.rowHeight,
@@ -169,42 +168,78 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
                                 )
                               : BorderRadius.zero
                       : BorderRadius.zero,
-                  leftSide: modeSelect? rowIsSelected? widget.isLast
-                      ? borderSide
-                      : noneBorder:noneBorder : (widget.row.checked && checkedHasBorder)
-                      ? widget.isLast
+                  leftSide: modeSelect
+                      ? rowIsSelected
+                          ? widget.isLast
+                              ? borderSide
+                              : noneBorder
+                          : noneBorder
+                      : (widget.row.checked && checkedHasBorder)
+                          ? widget.isLast
+                              ? borderSide
+                              : noneBorder
+                          : noneBorder,
+                  topSide: modeSelect
+                      ? rowIsSelected
                           ? borderSide
                           : noneBorder
-                      : noneBorder,
-                  topSide:  modeSelect? rowIsSelected? borderSide:noneBorder : (widget.row.checked && checkedHasBorder) ? borderSide : noneBorder,
-                  bottomSide:  modeSelect? rowIsSelected? borderSide:noneBorder : (widget.row.checked && checkedHasBorder) ? borderSide : noneBorder,
-                  rightSide:  modeSelect? rowIsSelected? widget.isFirst
-                      ? borderSide
-                      : noneBorder:noneBorder : (widget.row.checked && checkedHasBorder)
-                      ? widget.isFirst
+                      : (widget.row.checked && checkedHasBorder)
+                          ? borderSide
+                          : noneBorder,
+                  bottomSide: modeSelect
+                      ? rowIsSelected
                           ? borderSide
                           : noneBorder
-                      : noneBorder,
-                  topRightCornerSide: modeSelect? rowIsSelected? borderSide:noneBorder :  (widget.row.checked && checkedHasBorder)
-                      ? widget.isFirst
+                      : (widget.row.checked && checkedHasBorder)
                           ? borderSide
-                          : borderSide
-                      : noneBorder,
-                  bottomRightCornerSide:  modeSelect? rowIsSelected? borderSide:noneBorder : (widget.row.checked && checkedHasBorder)
-                      ? widget.isFirst
+                          : noneBorder,
+                  rightSide: modeSelect
+                      ? rowIsSelected
+                          ? widget.isFirst
+                              ? borderSide
+                              : noneBorder
+                          : noneBorder
+                      : (widget.row.checked && checkedHasBorder)
+                          ? widget.isFirst
+                              ? borderSide
+                              : noneBorder
+                          : noneBorder,
+                  topRightCornerSide: modeSelect
+                      ? rowIsSelected
                           ? borderSide
-                          : borderSide
-                      : noneBorder,
-                  topLeftCornerSide: modeSelect? rowIsSelected? borderSide:noneBorder :  (widget.row.checked && checkedHasBorder)
-                      ? widget.isLast
+                          : noneBorder
+                      : (widget.row.checked && checkedHasBorder)
+                          ? widget.isFirst
+                              ? borderSide
+                              : borderSide
+                          : noneBorder,
+                  bottomRightCornerSide: modeSelect
+                      ? rowIsSelected
                           ? borderSide
-                          : borderSide
-                      : noneBorder,
-                  bottomLeftCornerSide: modeSelect? rowIsSelected? borderSide:noneBorder :  (widget.row.checked && checkedHasBorder)
-                      ? widget.isLast
+                          : noneBorder
+                      : (widget.row.checked && checkedHasBorder)
+                          ? widget.isFirst
+                              ? borderSide
+                              : borderSide
+                          : noneBorder,
+                  topLeftCornerSide: modeSelect
+                      ? rowIsSelected
                           ? borderSide
-                          : borderSide
-                      : noneBorder,
+                          : noneBorder
+                      : (widget.row.checked && checkedHasBorder)
+                          ? widget.isLast
+                              ? borderSide
+                              : borderSide
+                          : noneBorder,
+                  bottomLeftCornerSide: modeSelect
+                      ? rowIsSelected
+                          ? borderSide
+                          : noneBorder
+                      : (widget.row.checked && checkedHasBorder)
+                          ? widget.isLast
+                              ? borderSide
+                              : borderSide
+                          : noneBorder,
                 ),
               ),
               child: Center(child: cellWidget),
@@ -216,8 +251,20 @@ class _PlutoDefaultCellState extends _PlutoDefaultCellStateWithChange {
             decoration: ShapeDecoration(
                 color: widget.rowColor,
                 shape: CustomRoundedRectangleBorder(
-                  bottomSide:  modeSelect? rowIsSelected? borderSide:noneBorder : (widget.row.checked && checkedHasBorder) ? borderSide : noneBorder,
-                  topSide: modeSelect? rowIsSelected? borderSide:noneBorder :  (widget.row.checked && checkedHasBorder) ? borderSide : noneBorder,
+                  bottomSide: modeSelect
+                      ? rowIsSelected
+                          ? borderSide
+                          : noneBorder
+                      : (widget.row.checked && checkedHasBorder)
+                          ? borderSide
+                          : noneBorder,
+                  topSide: modeSelect
+                      ? rowIsSelected
+                          ? borderSide
+                          : noneBorder
+                      : (widget.row.checked && checkedHasBorder)
+                          ? borderSide
+                          : noneBorder,
                   // rightSide: BorderSide(color: Colors.transparent, width: 0),
                   // leftSide: BorderSide(color: Colors.transparent, width: 0),
                 )
