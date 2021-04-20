@@ -43,8 +43,7 @@ class PlutoBaseCell extends PlutoStatefulWidget {
   _PlutoBaseCellState createState() => _PlutoBaseCellState();
 }
 
-abstract class _PlutoBaseCellStateWithChangeKeepAlive
-    extends PlutoStateWithChangeKeepAlive<PlutoBaseCell> {
+abstract class _PlutoBaseCellStateWithChangeKeepAlive extends PlutoStateWithChangeKeepAlive<PlutoBaseCell> {
   dynamic cellValue;
 
   bool isCurrentCell;
@@ -113,18 +112,15 @@ class _PlutoBaseCellState extends _PlutoBaseCellStateWithChangeKeepAlive {
   }
 
   void _handleOnLongPressStart(LongPressStartDetails details) {
-    _addGestureEvent(
-        PlutoGridGestureType.onLongPressStart, details.globalPosition);
+    _addGestureEvent(PlutoGridGestureType.onLongPressStart, details.globalPosition);
   }
 
   void _handleOnLongPressMoveUpdate(LongPressMoveUpdateDetails details) {
-    _addGestureEvent(
-        PlutoGridGestureType.onLongPressMoveUpdate, details.globalPosition);
+    _addGestureEvent(PlutoGridGestureType.onLongPressMoveUpdate, details.globalPosition);
   }
 
   void _handleOnLongPressEnd(LongPressEndDetails details) {
-    _addGestureEvent(
-        PlutoGridGestureType.onLongPressEnd, details.globalPosition);
+    _addGestureEvent(PlutoGridGestureType.onLongPressEnd, details.globalPosition);
   }
 
   BorderSide borderSide = const BorderSide(width: 1, color: Color(0xff028a99));
@@ -145,8 +141,7 @@ class _PlutoBaseCellState extends _PlutoBaseCellStateWithChangeKeepAlive {
           if (widget.onRowClick != null) {
             widget.onRowClick(widget.row.key);
           }
-          if(widget.stateManager.mode== PlutoGridMode.select){
-
+          if (widget.stateManager.mode == PlutoGridMode.select) {
             //widget.stateManager.notifyListeners();
             setState(() {
               widget.stateManager.clearCurrentSelectingRows();
@@ -165,53 +160,89 @@ class _PlutoBaseCellState extends _PlutoBaseCellStateWithChangeKeepAlive {
             shape: CustomRoundedRectangleBorder(
               borderRadius: (widget.rowRadius != null && widget.rowRadius > 0)
                   ? (widget.column.enableRowChecked || widget.isFirst)
-                  ? BorderRadius.only(
-                topRight: Radius.circular(widget.rowRadius),
-                bottomRight: Radius.circular(widget.rowRadius),
-              )
-                  : widget.isLast
-                  ? BorderRadius.only(
-                topLeft: Radius.circular(widget.rowRadius),
-                bottomLeft: Radius.circular(widget.rowRadius),
-              )
-                  : BorderRadius.zero
+                      ? BorderRadius.only(
+                          topRight: Radius.circular(widget.rowRadius),
+                          bottomRight: Radius.circular(widget.rowRadius),
+                        )
+                      : widget.isLast
+                          ? BorderRadius.only(
+                              topLeft: Radius.circular(widget.rowRadius),
+                              bottomLeft: Radius.circular(widget.rowRadius),
+                            )
+                          : BorderRadius.zero
                   : BorderRadius.zero,
-              leftSide: modeSelect? rowIsSelected? widget.isLast
-                  ? borderSide
-                  : noneBorder:noneBorder : (widget.row.checked && checkedHasBorder)
-                  ? widget.isLast
-                  ? borderSide
-                  : noneBorder
-                  : noneBorder,
-              topSide:  modeSelect? rowIsSelected? borderSide:noneBorder : (widget.row.checked && checkedHasBorder) ? borderSide : noneBorder,
-              bottomSide:  modeSelect? rowIsSelected? borderSide:noneBorder : (widget.row.checked && checkedHasBorder) ? borderSide : noneBorder,
-              rightSide:  modeSelect? rowIsSelected? widget.isFirst
-                  ? borderSide
-                  : noneBorder:noneBorder : (widget.row.checked && checkedHasBorder)
-                  ? widget.isFirst
-                  ? borderSide
-                  : noneBorder
-                  : noneBorder,
-              topRightCornerSide: modeSelect? rowIsSelected? borderSide:noneBorder :  (widget.row.checked && checkedHasBorder)
-                  ? widget.isFirst
-                  ? borderSide
-                  : borderSide
-                  : noneBorder,
-              bottomRightCornerSide:  modeSelect? rowIsSelected? borderSide:noneBorder : (widget.row.checked && checkedHasBorder)
-                  ? widget.isFirst
-                  ? borderSide
-                  : borderSide
-                  : noneBorder,
-              topLeftCornerSide: modeSelect? rowIsSelected? borderSide:noneBorder :  (widget.row.checked && checkedHasBorder)
-                  ? widget.isLast
-                  ? borderSide
-                  : borderSide
-                  : noneBorder,
-              bottomLeftCornerSide: modeSelect? rowIsSelected? borderSide:noneBorder :  (widget.row.checked && checkedHasBorder)
-                  ? widget.isLast
-                  ? borderSide
-                  : borderSide
-                  : noneBorder,
+              leftSide: modeSelect
+                  ? rowIsSelected
+                      ? widget.isLast
+                          ? borderSide
+                          : noneBorder
+                      : noneBorder
+                  : (widget.row.checked && checkedHasBorder)
+                      ? widget.isLast
+                          ? borderSide
+                          : noneBorder
+                      : noneBorder,
+              topSide: modeSelect
+                  ? rowIsSelected
+                      ? borderSide
+                      : noneBorder
+                  : (widget.row.checked && checkedHasBorder)
+                      ? borderSide
+                      : noneBorder,
+              bottomSide: modeSelect
+                  ? rowIsSelected
+                      ? borderSide
+                      : noneBorder
+                  : (widget.row.checked && checkedHasBorder)
+                      ? borderSide
+                      : noneBorder,
+              rightSide: modeSelect
+                  ? rowIsSelected
+                      ? widget.isFirst
+                          ? borderSide
+                          : noneBorder
+                      : noneBorder
+                  : (widget.row.checked && checkedHasBorder)
+                      ? widget.isFirst
+                          ? borderSide
+                          : noneBorder
+                      : noneBorder,
+              topRightCornerSide: modeSelect
+                  ? rowIsSelected
+                      ? borderSide
+                      : noneBorder
+                  : (widget.row.checked && checkedHasBorder)
+                      ? widget.isFirst
+                          ? borderSide
+                          : borderSide
+                      : noneBorder,
+              bottomRightCornerSide: modeSelect
+                  ? rowIsSelected
+                      ? borderSide
+                      : noneBorder
+                  : (widget.row.checked && checkedHasBorder)
+                      ? widget.isFirst
+                          ? borderSide
+                          : borderSide
+                      : noneBorder,
+              topLeftCornerSide: modeSelect
+                  ? rowIsSelected
+                      ? borderSide
+                      : noneBorder
+                  : (widget.row.checked && checkedHasBorder)
+                      ? widget.isLast
+                          ? borderSide
+                          : borderSide
+                      : noneBorder,
+              bottomLeftCornerSide: modeSelect
+                  ? rowIsSelected
+                      ? borderSide
+                      : noneBorder
+                  : (widget.row.checked && checkedHasBorder)
+                      ? widget.isLast
+                          ? borderSide
+                          : borderSide
+                      : noneBorder,
             ),
           ),
           child: _CellContainer(
@@ -281,9 +312,7 @@ class _CellContainer extends StatelessWidget {
       return selectingMode.isRow ? configuration.activatedColor : null;
     }
 
-    return readOnly == true
-        ? configuration.cellColorInReadOnlyState
-        : configuration.cellColorInEditState;
+    return readOnly == true ? configuration.cellColorInReadOnlyState : configuration.cellColorInEditState;
   }
 
   BoxDecoration _boxDecoration() {
