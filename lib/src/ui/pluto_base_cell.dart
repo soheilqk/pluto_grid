@@ -141,7 +141,7 @@ class _PlutoBaseCellState extends _PlutoBaseCellStateWithChangeKeepAlive {
             }
             widget.stateManager.toggleSelectingRow(widget.rowIdx);
             if (widget.onRowSelected != null) {
-              widget.onRowSelected(widget.stateManager.currentSelectingRows.first);
+              widget.onRowSelected(widget.stateManager.currentSelectingRows.isNotEmpty ? widget.stateManager.currentSelectingRows.first : null);
             }
 
             //widget.stateManager.notifyListeners();
