@@ -127,12 +127,13 @@ class _PlutoBaseCellState extends _PlutoBaseCellStateWithChangeKeepAlive {
         PlutoGridGestureType.onLongPressEnd, details.globalPosition);
   }
 
+  BorderSide borderSide = const BorderSide(width: 1, color: Color(0xff028a99));
+  BorderSide noneBorder = const BorderSide(color: Colors.transparent, width: 0);
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
 
-    BorderSide borderSide = const BorderSide(width: 1, color: Color(0xff028a99));
-    BorderSide noneBorder = const BorderSide(color: Colors.transparent, width: 0);
     var checkedHasBorder = widget.stateManager.configuration.checkedHasBorder;
     var modeSelect = widget.stateManager.mode == PlutoGridMode.select;
     var rowIsSelected = widget.stateManager.isSelectedRow(widget.row.key);
@@ -148,7 +149,7 @@ class _PlutoBaseCellState extends _PlutoBaseCellStateWithChangeKeepAlive {
             widget.stateManager.clearCurrentSelectingRows();
             widget.stateManager.toggleSelectingRow(widget.rowIdx);
             //widget.stateManager.notifyListeners();
-            //setState(() {});
+            setState(() {});
           }
         },
         //behavior: HitTestBehavior.translucent,
