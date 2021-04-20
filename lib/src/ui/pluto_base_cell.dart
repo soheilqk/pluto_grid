@@ -137,7 +137,8 @@ class _PlutoBaseCellState extends _PlutoBaseCellStateWithChangeKeepAlive {
           if (widget.stateManager.mode == PlutoGridMode.select) {
             widget.stateManager.clearCurrentSelectingRows();
             widget.stateManager.toggleSelectingRow(widget.rowIdx);
-            //widget.stateManager.notifyListeners();
+            print('[selecteds] ${widget.stateManager.currentSelectingRows.first}');
+            widget.stateManager.notifyListeners();
             //setState(() {});
           }
         },
