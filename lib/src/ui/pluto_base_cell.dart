@@ -132,6 +132,7 @@ class _PlutoBaseCellState extends _PlutoBaseCellStateWithChangeKeepAlive {
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
         onTap: () {
+          widget.stateManager.setRowChecked(widget.row, !widget.row.checked);
           if (widget.onRowClick != null) {
             widget.onRowClick(widget.row.key);
           }
