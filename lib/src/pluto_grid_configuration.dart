@@ -70,6 +70,10 @@ class PlutoGridConfiguration {
   /// default is set to `false`
   final bool checkedHasBorder;
 
+  /// if set to true by checkbox will toggle by taping on row
+  /// default is `false`
+  final bool toggleCheckOnRowTap;
+
   PlutoGridConfiguration({
     this.enableColumnBorder = false,
     this.gridBackgroundColor = Colors.white,
@@ -100,6 +104,7 @@ class PlutoGridConfiguration {
     this.scrollbarConfig = const PlutoGridScrollbarConfig(),
     this.columnFilterConfig = const PlutoGridColumnFilterConfig(),
     this.checkedHasBorder = false,
+    this.toggleCheckOnRowTap = false,
   }) {
     _init();
   }
@@ -134,6 +139,7 @@ class PlutoGridConfiguration {
     this.scrollbarConfig = const PlutoGridScrollbarConfig(),
     this.columnFilterConfig = const PlutoGridColumnFilterConfig(),
     this.checkedHasBorder = false,
+    this.toggleCheckOnRowTap = false,
   }) {
     _init();
   }
@@ -187,6 +193,8 @@ class PlutoGridConfiguration {
     PlutoGridLocaleText localeText,
     PlutoGridScrollbarConfig scrollbarConfig,
     PlutoGridColumnFilterConfig columnFilterConfig,
+    bool checkedHasBorder,
+    bool toggleCheckOnRowTap,
   }) {
     return PlutoGridConfiguration(
       enableColumnBorder: enableColumnBorder ?? this.enableColumnBorder,
@@ -210,6 +218,8 @@ class PlutoGridConfiguration {
       localeText: localeText ?? this.localeText,
       scrollbarConfig: scrollbarConfig ?? this.scrollbarConfig,
       columnFilterConfig: columnFilterConfig ?? this.columnFilterConfig,
+      checkedHasBorder: checkedHasBorder ?? this.checkedHasBorder,
+      toggleCheckOnRowTap: toggleCheckOnRowTap ?? this.toggleCheckOnRowTap,
     );
   }
 }
